@@ -1,0 +1,231 @@
+@page "/students/create"
+@page "/students/edit/{Id:guid}"
+@using Microsoft.EntityFrameworkCore
+@using University.Infrastructure.Data
+@inject ApplicationDbContext DbContext
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
+@attribute [Authorize(Roles = "SuperAdmin,Admin")]
+
+<PageTitle>@(_isEditMode ? "Edit Student" : "Create Student") - University ERP</PageTitle>
+
+<MudText Typo="Typo.h4" GutterBottom="true">@(_isEditMode ? "Edit Student" : "Create New Student")</MudText>
+
+<MudPaper Class="pa-4">
+    <EditForm Model="@_student" OnValidSubmit="HandleSubmit">
+        <DataAnnotationsValidator />
+
+        <MudGrid>
+            <MudItem xs="12" md="4">
+                <MudTextField @bind-Value="_student.FirstName"
+                              Label="First Name"
+                              Variant="Variant.Outlined"
+                              Required="true"
+                              FullWidth="true" />
+            </MudItem>
+            <MudItem xs="12" md="4">
+                <MudTextField @bind-Value="_student.MiddleName"
+                              Label="Middle Name"
+                              Variant="Variant.Outlined"
+                              FullWidth="true" />
+            </MudItem>
+            <MudItem xs="12" md="4">
+                <MudTextField @bind-Value="_student.LastName"
+                              Label="Last Name"
+                              Variant="Variant.Outlined"
+                              Required="true"
+                              FullWidth="true" />
+            </MudItem>
+
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="_student.Email"
+                              Label="Email"
+                              Variant="Variant.Outlined"
+                              InputType="InputType.Email"
+                              Required="true"
+                              FullWidth="true" />
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="_student.PhoneNumber"
+                              Label="Phone Number"
+                              Variant="Variant.Outlined"
+                              Required="true"
+                              FullWidth="true" />
+            </MudItem>
+
+            <MudItem xs="12" md="4">
+                <MudDatePicker @bind-Date="_dateOfBirth"
+                               Label="Date of Birth"
+                               Variant="Variant.Outlined"
+                               Required="true"
+                               MaxDate="DateTime.Today"
+                               FullWidth="true" />
+            </MudItem>
+            <MudItem xs="12" md="4">
+                <MudSelect @bind-Value="_student.Gender"
+                           Label="Gender"
+                           Variant="Variant.Outlined"
+                           Required="true">
+                    @foreach (Gender gender in Enum.GetValues(typeof(Gender)))
+                    {
+                        <MudSelectItem Value="@gender">@gender</MudSelectItem>
+                    }
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12" md="4">
+                <MudSelect @bind-Value="_student.ProgramId"
+                           Label="Program"
+                           Variant="Variant.Outlined"
+                           Required="true">
+                    @foreach (var program in _programs)
+                    {
+                        <MudSelectItem Value="@program.Id">@program.Name</MudSelectItem>
+                    }
+                </MudSelect>
+            </MudItem>
+
+            <MudItem xs="12">
+                <MudTextField @bind-Value="_student.Address"
+                              Label="Address"
+                              Variant="Variant.Outlined"
+                              Lines="2"
+                              FullWidth="true" />
+            </MudItem>
+
+            <MudItem xs="12" md="4">
+                <MudTextField @bind-Value="_student.City"
+                              Label="City"
+                              Variant="Variant.Outlined"
+                              FullWidth="true" />
+            </MudItem>
+            <MudItem xs="12" md="4">
+                <MudTextField @bind-Value="_student.State"
+                              Label="State/Province"
+                              Variant="Variant.Outlined"
+                              FullWidth="true" />
+            </MudItem>
+            <MudItem xs="12" md="4">
+                <MudTextField @bind-Value="_student.Country"
+                              Label="Country"
+                              Variant="Variant.Outlined"
+                              FullWidth="true" />
+            </MudItem>
+
+            <MudItem xs="12">
+                <MudText Typo="Typo.h6" Class="mt-4 mb-2">Guardian Information</MudText>
+            </MudItem>
+
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="_student.GuardianName"
+                              Label="Guardian Name"
+                              Variant="Variant.Outlined"
+                              FullWidth="true" />
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudTextField @bind-Value="_student.GuardianPhone"
+                              Label="Guardian Phone"
+                              Variant="Variant.Outlined"
+                              FullWidth="true" />
+            </MudItem>
+
+            <MudItem xs="12" Class="d-flex justify-space-between mt-4">
+                <MudButton Variant="Variant.Filled"
+                           StartIcon="@Icons.Material.Filled.ArrowBack"
+                           Href="/students">
+                    Back to List
+                </MudButton>
+                <MudButton ButtonType="ButtonType.Submit"
+                           Variant="Variant.Filled"
+                           Color="Color.Primary"
+                           StartIcon="@Icons.Material.Filled.Save"
+                           Disabled="@_isSaving">
+                    @if (_isSaving)
+                    {
+                        <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+                        <span class="ml-2">Saving...</span>
+                    }
+                    else
+                    {
+                        <span>Save Student</span>
+                    }
+                </MudButton>
+            </MudItem>
+        </MudGrid>
+    </EditForm>
+</MudPaper>
+
+@code {
+    [Parameter]
+    public Guid? Id { get; set; }
+
+    private Student _student = new();
+    private List<Program> _programs = new();
+    private DateTime? _dateOfBirth;
+    private bool _isEditMode => Id.HasValue;
+    private bool _isSaving;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _programs = await DbContext.Programs.OrderBy(p => p.Name).ToListAsync();
+
+        if (_isEditMode)
+        {
+            var student = await DbContext.Students.FindAsync(Id.Value);
+            if (student != null)
+            {
+                _student = student;
+                _dateOfBirth = _student.DateOfBirth;
+            }
+            else
+            {
+                Navigation.NavigateTo("/students");
+            }
+        }
+        else
+        {
+            _student.StudentId = GenerateStudentId();
+            _student.EnrollmentDate = DateTime.UtcNow;
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        _isSaving = true;
+
+        try
+        {
+            if (_dateOfBirth.HasValue)
+            {
+                _student.DateOfBirth = _dateOfBirth.Value;
+            }
+
+            if (_isEditMode)
+            {
+                _student.UpdatedAt = DateTime.UtcNow;
+                DbContext.Students.Update(_student);
+            }
+            else
+            {
+                _student.CreatedAt = DateTime.UtcNow;
+                await DbContext.Students.AddAsync(_student);
+            }
+
+            await DbContext.SaveChangesAsync();
+            Snackbar.Add($"Student {(_isEditMode ? "updated" : "created")} successfully!", Severity.Success);
+            Navigation.NavigateTo("/students");
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            _isSaving = false;
+        }
+    }
+
+    private string GenerateStudentId()
+    {
+        return $"STU{DateTime.UtcNow.Year}{Random.Shared.Next(1000, 9999)}";
+    }
+}

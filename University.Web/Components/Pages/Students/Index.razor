@@ -1,0 +1,86 @@
+@page "/students"
+@using Microsoft.EntityFrameworkCore
+@using University.Infrastructure.Data
+@inject ApplicationDbContext DbContext
+@inject NavigationManager Navigation
+@attribute [Authorize(Roles = "SuperAdmin,Admin,Faculty")]
+
+<PageTitle>Students - University ERP</PageTitle>
+
+<MudText Typo="Typo.h4" GutterBottom="true">Student Management</MudText>
+
+<MudPaper Class="pa-4 mb-4">
+    <MudGrid>
+        <MudItem xs="12" md="9">
+            <MudTextField @bind-Value="_searchString"
+                          Label="Search Students"
+                          Variant="Variant.Outlined"
+                          Adornment="Adornment.End"
+                          AdornmentIcon="@Icons.Material.Filled.Search"
+                          OnKeyUp="@(async () => await LoadStudents())"
+                          FullWidth="true" />
+        </MudItem>
+        <MudItem xs="12" md="3">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       StartIcon="@Icons.Material.Filled.Add"
+                       Href="/students/create"
+                       FullWidth="true">
+                Add Student
+            </MudButton>
+        </MudItem>
+    </MudGrid>
+</MudPaper>
+
+<MudTable Items="@_students" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@_loading" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>Student ID</MudTh>
+        <MudTh>Name</MudTh>
+        <MudTh>Email</MudTh>
+        <MudTh>Program</MudTh>
+        <MudTh>Status</MudTh>
+        <MudTh>Actions</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Student ID">@context.StudentId</MudTd>
+        <MudTd DataLabel="Name">@context.FirstName @context.LastName</MudTd>
+        <MudTd DataLabel="Email">@context.Email</MudTd>
+        <MudTd DataLabel="Program">@context.Program?.Name</MudTd>
+        <MudTd DataLabel="Status">@context.Status</MudTd>
+        <MudTd DataLabel="Actions">
+            <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Primary" Size="Size.Small" Href="@($"/students/edit/{context.Id}")" />
+        </MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[]{10, 25, 50, 100}" />
+    </PagerContent>
+</MudTable>
+
+@code {
+    private List<Student> _students = new();
+    private string _searchString = string.Empty;
+    private bool _loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadStudents();
+    }
+
+    private async Task LoadStudents()
+    {
+        _loading = true;
+        var query = DbContext.Students.Include(s => s.Program).AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(_searchString))
+        {
+            query = query.Where(s =>
+                s.FirstName.Contains(_searchString) ||
+                s.LastName.Contains(_searchString) ||
+                s.Email.Contains(_searchString) ||
+                s.StudentId.Contains(_searchString));
+        }
+
+        _students = await query.OrderBy(s => s.LastName).ToListAsync();
+        _loading = false;
+    }
+}
