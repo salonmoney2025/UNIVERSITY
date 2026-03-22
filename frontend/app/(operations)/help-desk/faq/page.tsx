@@ -95,33 +95,33 @@ export default function FAQPage() {
 
   return (
     <DashboardLayout>
-      <div className="p-6 bg-gray-50 bg-white min-h-screen">
+      <div className="p-6 bg-solid black-50 bg-white min-h-screen">
         <div className="mb-6 flex items-center space-x-3">
           <div className="w-12 h-12 bg-teal-100  rounded-lg flex items-center justify-center">
             <HelpCircle className="w-6 h-6 text-teal-600 text-teal-600" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 text-black">Frequently Asked Questions</h1>
-            <p className="text-sm text-gray-500 text-black">Find answers to common questions</p>
+            <h1 className="text-3xl font-bold text-black text-black">Frequently Asked Questions</h1>
+            <p className="text-sm text-black text-black">Find answers to common questions</p>
           </div>
         </div>
 
         {/* Search */}
-        <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6 mb-6">
+        <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6 mb-6">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black w-5 h-5" />
             <input
               type="text"
               placeholder="Search FAQs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 bg-white text-black"
+              className="w-full pl-10 pr-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 bg-white text-black"
             />
           </div>
         </div>
 
         {/* Categories */}
-        <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6 mb-6">
+        <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6 mb-6">
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <button
@@ -130,7 +130,7 @@ export default function FAQPage() {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   activeCategory === category
                     ? 'bg-portal-teal-600 text-white'
-                    : 'bg-gray-100 bg-white text-gray-700 text-black hover:bg-gray-200 hover:bg-gray-50'
+                    : 'bg-solid black-100 bg-white text-black text-black hover:bg-solid black-200 hover:bg-solid black-50'
                 }`}
               >
                 {category === 'all' ? 'All Categories' : category}
@@ -144,11 +144,11 @@ export default function FAQPage() {
           {filteredFAQs.map((faq) => (
             <div
               key={faq.id}
-              className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 overflow-hidden"
+              className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 overflow-hidden"
             >
               <button
                 onClick={() => toggleExpand(faq.id)}
-                className="w-full p-6 flex items-center justify-between hover:bg-gray-50 hover:bg-gray-50 transition-colors"
+                className="w-full p-6 flex items-center justify-between hover:bg-solid black-50 hover:bg-solid black-50 transition-colors"
               >
                 <div className="flex-1 text-left">
                   <div className="flex items-center space-x-2 mb-1">
@@ -156,19 +156,19 @@ export default function FAQPage() {
                       {faq.category}
                     </span>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 text-black">{faq.question}</h3>
+                  <h3 className="text-lg font-semibold text-black text-black">{faq.question}</h3>
                 </div>
                 <div className="ml-4">
                   {expandedId === faq.id ? (
-                    <ChevronUp className="w-5 h-5 text-gray-500" />
+                    <ChevronUp className="w-5 h-5 text-black" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-500" />
+                    <ChevronDown className="w-5 h-5 text-black" />
                   )}
                 </div>
               </button>
               {expandedId === faq.id && (
-                <div className="px-6 pb-6 border-t border-gray-200 border-gray-300 pt-4">
-                  <p className="text-gray-700 text-black leading-relaxed">{faq.answer}</p>
+                <div className="px-6 pb-6 border-t border-solid black-200 border-solid black-300 pt-4">
+                  <p className="text-black text-black leading-relaxed">{faq.answer}</p>
                 </div>
               )}
             </div>
@@ -176,10 +176,10 @@ export default function FAQPage() {
         </div>
 
         {filteredFAQs.length === 0 && (
-          <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-12 text-center">
-            <HelpCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 text-black mb-2">No FAQs Found</h3>
-            <p className="text-gray-500 text-black">
+          <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-12 text-center">
+            <HelpCircle className="w-16 h-16 text-black mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-black text-black mb-2">No FAQs Found</h3>
+            <p className="text-black text-black">
               No FAQs match your search criteria. Try adjusting your search or category filter.
             </p>
           </div>

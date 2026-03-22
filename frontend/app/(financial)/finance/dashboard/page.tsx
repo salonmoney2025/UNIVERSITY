@@ -139,7 +139,7 @@ export default function FinanceDashboardPage() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-SL', {
       style: 'currency',
-      currency: 'SLE',
+      currency: 'NSL',
       minimumFractionDigits: 2,
     }).format(amount);
   };
@@ -151,14 +151,14 @@ export default function FinanceDashboardPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading finance dashboard...</p>
+          <p className="mt-4 text-black">Loading finance dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-solid black-50">
       {/* Header */}
       <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -184,10 +184,10 @@ export default function FinanceDashboardPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Today's Statistics */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Today's Revenue</p>
+                <p className="text-sm font-medium text-black">Today's Revenue</p>
                 <p className="text-3xl font-bold text-green-600 mt-2">
                   {formatCurrency(stats?.today.revenue || 0)}
                 </p>
@@ -198,10 +198,10 @@ export default function FinanceDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Today's Payments</p>
+                <p className="text-sm font-medium text-black">Today's Payments</p>
                 <p className="text-3xl font-bold text-blue-600 mt-2">
                   {stats?.today.payments || 0}
                 </p>
@@ -212,10 +212,10 @@ export default function FinanceDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Monthly Revenue</p>
+                <p className="text-sm font-medium text-black">Monthly Revenue</p>
                 <p className="text-3xl font-bold text-indigo-600 mt-2">
                   {formatCurrency(stats?.thisMonth.revenue || 0)}
                 </p>
@@ -232,10 +232,10 @@ export default function FinanceDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Pending Payments</p>
+                <p className="text-sm font-medium text-black">Pending Payments</p>
                 <p className="text-3xl font-bold text-orange-600 mt-2">
                   {stats?.today.pendingPayments || 0}
                 </p>
@@ -250,8 +250,8 @@ export default function FinanceDashboardPage() {
         {/* Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Daily Revenue Trend */}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Daily Revenue (Last 7 Days)</h2>
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
+            <h2 className="text-lg font-semibold text-black mb-4">Daily Revenue (Last 7 Days)</h2>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={stats?.dailyRevenue}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -271,8 +271,8 @@ export default function FinanceDashboardPage() {
           </div>
 
           {/* Payment Types Distribution */}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Revenue by Payment Type</h2>
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
+            <h2 className="text-lg font-semibold text-black mb-4">Revenue by Payment Type</h2>
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
@@ -299,79 +299,79 @@ export default function FinanceDashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <button
             onClick={() => router.push('/receipt/generate')}
-            className="bg-white p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all flex items-center gap-3"
+            className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-green-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-green-100 p-2 rounded-lg">
               <Receipt className="h-5 w-5 text-green-600" />
             </div>
-            <span className="font-medium text-gray-900">Generate Receipt</span>
+            <span className="font-medium text-black">Generate Receipt</span>
           </button>
 
           <button
             onClick={() => router.push('/receipt/verify')}
-            className="bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all flex items-center gap-3"
+            className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-blue-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-blue-100 p-2 rounded-lg">
               <CheckCircle className="h-5 w-5 text-blue-600" />
             </div>
-            <span className="font-medium text-gray-900">Verify Payment</span>
+            <span className="font-medium text-black">Verify Payment</span>
           </button>
 
           <button
             onClick={() => router.push('/banks/manage-banks')}
-            className="bg-white p-4 rounded-lg border border-gray-200 hover:border-indigo-300 hover:shadow-md transition-all flex items-center gap-3"
+            className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-indigo-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-indigo-100 p-2 rounded-lg">
               <Building2 className="h-5 w-5 text-indigo-600" />
             </div>
-            <span className="font-medium text-gray-900">Manage Banks</span>
+            <span className="font-medium text-black">Manage Banks</span>
           </button>
 
           <button
             onClick={() => router.push('/receipt/payment-records')}
-            className="bg-white p-4 rounded-lg border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all flex items-center gap-3"
+            className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-purple-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-purple-100 p-2 rounded-lg">
               <Download className="h-5 w-5 text-purple-600" />
             </div>
-            <span className="font-medium text-gray-900">Payment Records</span>
+            <span className="font-medium text-black">Payment Records</span>
           </button>
         </div>
 
         {/* Recent Payments */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Recent Payments</h2>
+        <div className="bg-white rounded-xl shadow-sm border border-solid black-200">
+          <div className="px-6 py-4 border-b border-solid black-200">
+            <h2 className="text-lg font-semibold text-black">Recent Payments</h2>
           </div>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-solid black-200">
+              <thead className="bg-solid black-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Receipt No</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Student</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Receipt No</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Student</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Type</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Amount</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Date</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Status</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-solid black-200">
                 {stats?.recentPayments.map((payment: any) => (
-                  <tr key={payment.id} className="hover:bg-gray-50">
+                  <tr key={payment.id} className="hover:bg-solid black-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">
                       {payment.receiptNo}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">{payment.studentName}</div>
-                      <div className="text-sm text-gray-500">{payment.studentId}</div>
+                      <div className="text-sm font-medium text-black">{payment.studentName}</div>
+                      <div className="text-sm text-black">{payment.studentId}</div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       {payment.paymentType}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-black">
                       {formatCurrency(payment.amount)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                       {new Date(payment.paymentDate).toLocaleDateString()}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -380,7 +380,7 @@ export default function FinanceDashboardPage() {
                           ? 'bg-green-100 text-green-800'
                           : payment.status === 'pending'
                           ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-gray-100 text-gray-800'
+                          : 'bg-solid black-100 text-black'
                       }`}>
                         {payment.status}
                       </span>

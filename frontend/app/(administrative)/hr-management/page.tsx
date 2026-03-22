@@ -389,7 +389,7 @@ export default function HRManagementPage() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-SL', {
       style: 'currency',
-      currency: 'SLE',
+      currency: 'NSL',
       minimumFractionDigits: 0,
     }).format(amount);
   };
@@ -399,17 +399,17 @@ export default function HRManagementPage() {
       active: 'bg-green-100 text-green-800',
       on_leave: 'bg-yellow-100 text-yellow-800',
       suspended: 'bg-red-100 text-red-800',
-      terminated: 'bg-gray-100 text-gray-800',
+      terminated: 'bg-solid black-100 text-black',
       pending: 'bg-blue-100 text-blue-800',
       approved: 'bg-green-100 text-green-800',
       rejected: 'bg-red-100 text-red-800',
       paid: 'bg-green-100 text-green-800',
       processed: 'bg-blue-100 text-blue-800',
-      draft: 'bg-gray-100 text-gray-800',
+      draft: 'bg-solid black-100 text-black',
       completed: 'bg-green-100 text-green-800',
       acknowledged: 'bg-teal-100 text-teal-800',
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colors[status] || 'bg-solid black-100 text-black';
   };
 
   // Overview Dashboard
@@ -420,8 +420,8 @@ export default function HRManagementPage() {
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Total Staff</p>
-              <p className="text-3xl font-bold text-gray-900 mt-1">{staff.length}</p>
+              <p className="text-sm font-medium text-black">Total Staff</p>
+              <p className="text-3xl font-bold text-black mt-1">{staff.length}</p>
               <p className="text-xs text-green-600 mt-1">
                 {staff.filter(s => s.status === 'active').length} active
               </p>
@@ -435,11 +435,11 @@ export default function HRManagementPage() {
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Open Positions</p>
-              <p className="text-3xl font-bold text-gray-900 mt-1">
+              <p className="text-sm font-medium text-black">Open Positions</p>
+              <p className="text-3xl font-bold text-black mt-1">
                 {positions.reduce((sum, p) => sum + p.vacancies, 0)}
               </p>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-black mt-1">
                 {positions.filter(p => p.status === 'active').length} active postings
               </p>
             </div>
@@ -452,11 +452,11 @@ export default function HRManagementPage() {
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-orange-500">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Pending Leaves</p>
-              <p className="text-3xl font-bold text-gray-900 mt-1">
+              <p className="text-sm font-medium text-black">Pending Leaves</p>
+              <p className="text-3xl font-bold text-black mt-1">
                 {leaveRequests.filter(l => l.status === 'pending').length}
               </p>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-black mt-1">
                 {leaveRequests.filter(l => l.status === 'approved').length} approved this month
               </p>
             </div>
@@ -469,11 +469,11 @@ export default function HRManagementPage() {
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Monthly Payroll</p>
-              <p className="text-2xl font-bold text-gray-900 mt-1">
+              <p className="text-sm font-medium text-black">Monthly Payroll</p>
+              <p className="text-2xl font-bold text-black mt-1">
                 {formatCurrency(payrollRecords.reduce((sum, p) => sum + p.net_salary, 0))}
               </p>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-black mt-1">
                 {payrollRecords.filter(p => p.status === 'paid').length} of {payrollRecords.length} paid
               </p>
             </div>
@@ -486,35 +486,35 @@ export default function HRManagementPage() {
 
       {/* Quick Actions */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+        <h3 className="text-lg font-semibold text-black mb-4">Quick Actions</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <button
             onClick={() => setActiveTab('staff')}
-            className="flex flex-col items-center p-4 border-2 border-gray-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 transition-all"
+            className="flex flex-col items-center p-4 border-2 border-solid black-200 rounded-lg hover:border-indigo-500 hover:bg-indigo-50 transition-all"
           >
             <UserPlus className="w-8 h-8 text-indigo-600 mb-2" />
-            <span className="text-sm font-medium text-gray-700">Add Staff</span>
+            <span className="text-sm font-medium text-black">Add Staff</span>
           </button>
           <button
             onClick={() => setActiveTab('leave')}
-            className="flex flex-col items-center p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all"
+            className="flex flex-col items-center p-4 border-2 border-solid black-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all"
           >
             <Calendar className="w-8 h-8 text-green-600 mb-2" />
-            <span className="text-sm font-medium text-gray-700">Manage Leave</span>
+            <span className="text-sm font-medium text-black">Manage Leave</span>
           </button>
           <button
             onClick={() => setActiveTab('payroll')}
-            className="flex flex-col items-center p-4 border-2 border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all"
+            className="flex flex-col items-center p-4 border-2 border-solid black-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all"
           >
             <DollarSign className="w-8 h-8 text-purple-600 mb-2" />
-            <span className="text-sm font-medium text-gray-700">Process Payroll</span>
+            <span className="text-sm font-medium text-black">Process Payroll</span>
           </button>
           <button
             onClick={() => setActiveTab('reports')}
-            className="flex flex-col items-center p-4 border-2 border-gray-200 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition-all"
+            className="flex flex-col items-center p-4 border-2 border-solid black-200 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition-all"
           >
             <BarChart3 className="w-8 h-8 text-orange-600 mb-2" />
-            <span className="text-sm font-medium text-gray-700">View Reports</span>
+            <span className="text-sm font-medium text-black">View Reports</span>
           </button>
         </div>
       </div>
@@ -522,13 +522,13 @@ export default function HRManagementPage() {
       {/* Recent Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Leave Requests</h3>
+          <h3 className="text-lg font-semibold text-black mb-4">Recent Leave Requests</h3>
           <div className="space-y-3">
             {leaveRequests.slice(0, 3).map(leave => (
-              <div key={leave.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              <div key={leave.id} className="flex items-center justify-between p-3 bg-solid black-50 rounded-lg">
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">{leave.staff_name}</p>
-                  <p className="text-xs text-gray-600">{leave.leave_type} - {leave.days} days</p>
+                  <p className="text-sm font-medium text-black">{leave.staff_name}</p>
+                  <p className="text-xs text-black">{leave.leave_type} - {leave.days} days</p>
                 </div>
                 <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(leave.status)}`}>
                   {leave.status}
@@ -539,17 +539,17 @@ export default function HRManagementPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Department Overview</h3>
+          <h3 className="text-lg font-semibold text-black mb-4">Department Overview</h3>
           <div className="space-y-3">
             {departments.slice(0, 5).map(dept => {
               const deptStaff = staff.filter(s => s.department === dept);
               return (
-                <div key={dept} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={dept} className="flex items-center justify-between p-3 bg-solid black-50 rounded-lg">
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">{dept}</p>
-                    <p className="text-xs text-gray-600">{deptStaff.length} staff members</p>
+                    <p className="text-sm font-medium text-black">{dept}</p>
+                    <p className="text-xs text-black">{deptStaff.length} staff members</p>
                   </div>
-                  <Building2 className="w-5 h-5 text-gray-400" />
+                  <Building2 className="w-5 h-5 text-black" />
                 </div>
               );
             })}
@@ -566,13 +566,13 @@ export default function HRManagementPage() {
         <div className="flex justify-between items-center mb-4">
           <div className="flex-1 max-w-md">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black" />
               <input
                 type="text"
                 placeholder="Search staff..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-solid black-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -590,35 +590,35 @@ export default function HRManagementPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-solid black-200">
+          <thead className="bg-solid black-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Staff ID</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Position</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Staff ID</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Name</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Department</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Position</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Contact</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Status</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-solid black-200">
             {staff.map(member => (
-              <tr key={member.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <tr key={member.id} className="hover:bg-solid black-50">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-black">
                   {member.staff_id}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{member.name}</div>
-                  <div className="text-xs text-gray-500">{member.email}</div>
+                  <div className="text-sm font-medium text-black">{member.name}</div>
+                  <div className="text-xs text-black">{member.email}</div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {member.department}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {member.position}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   <div className="flex items-center space-x-1">
                     <Phone className="w-3 h-3" />
                     <span>{member.phone}</span>
@@ -657,7 +657,7 @@ export default function HRManagementPage() {
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Pending Requests</p>
+              <p className="text-sm font-medium text-black">Pending Requests</p>
               <p className="text-3xl font-bold text-orange-600 mt-1">
                 {leaveRequests.filter(l => l.status === 'pending').length}
               </p>
@@ -668,7 +668,7 @@ export default function HRManagementPage() {
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Approved This Month</p>
+              <p className="text-sm font-medium text-black">Approved This Month</p>
               <p className="text-3xl font-bold text-green-600 mt-1">
                 {leaveRequests.filter(l => l.status === 'approved').length}
               </p>
@@ -679,7 +679,7 @@ export default function HRManagementPage() {
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-gray-600">Rejected</p>
+              <p className="text-sm font-medium text-black">Rejected</p>
               <p className="text-3xl font-bold text-red-600 mt-1">
                 {leaveRequests.filter(l => l.status === 'rejected').length}
               </p>
@@ -690,38 +690,38 @@ export default function HRManagementPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <div className="p-6 border-b border-gray-200">
-          <h3 className="text-lg font-semibold text-gray-900">Leave Requests</h3>
+        <div className="p-6 border-b border-solid black-200">
+          <h3 className="text-lg font-semibold text-black">Leave Requests</h3>
         </div>
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-solid black-200">
+          <thead className="bg-solid black-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Staff</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Leave Type</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Days</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reason</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Staff</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Leave Type</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Duration</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Days</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Reason</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Status</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-solid black-200">
             {leaveRequests.map(leave => (
-              <tr key={leave.id} className="hover:bg-gray-50">
+              <tr key={leave.id} className="hover:bg-solid black-50">
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{leave.staff_name}</div>
-                  <div className="text-xs text-gray-500">{leave.staff_id}</div>
+                  <div className="text-sm font-medium text-black">{leave.staff_name}</div>
+                  <div className="text-xs text-black">{leave.staff_id}</div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {leave.leave_type}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {leave.start_date} to {leave.end_date}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-black">
                   {leave.days} days
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">
+                <td className="px-6 py-4 text-sm text-black max-w-xs truncate">
                   {leave.reason}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -754,25 +754,25 @@ export default function HRManagementPage() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-purple-500">
-          <p className="text-sm font-medium text-gray-600">Total Payroll</p>
-          <p className="text-2xl font-bold text-gray-900 mt-1">
+          <p className="text-sm font-medium text-black">Total Payroll</p>
+          <p className="text-2xl font-bold text-black mt-1">
             {formatCurrency(payrollRecords.reduce((sum, p) => sum + p.net_salary, 0))}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
-          <p className="text-sm font-medium text-gray-600">Paid</p>
+          <p className="text-sm font-medium text-black">Paid</p>
           <p className="text-2xl font-bold text-green-600 mt-1">
             {payrollRecords.filter(p => p.status === 'paid').length}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
-          <p className="text-sm font-medium text-gray-600">Processed</p>
+          <p className="text-sm font-medium text-black">Processed</p>
           <p className="text-2xl font-bold text-blue-600 mt-1">
             {payrollRecords.filter(p => p.status === 'processed').length}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-orange-500">
-          <p className="text-sm font-medium text-gray-600">Pending</p>
+          <p className="text-sm font-medium text-black">Pending</p>
           <p className="text-2xl font-bold text-orange-600 mt-1">
             {payrollRecords.filter(p => p.status === 'pending').length}
           </p>
@@ -781,7 +781,7 @@ export default function HRManagementPage() {
 
       <div className="bg-white rounded-lg shadow p-6">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Payroll Records - March 2024</h3>
+          <h3 className="text-lg font-semibold text-black">Payroll Records - March 2024</h3>
           <div className="flex gap-3">
             <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
               <Send className="w-5 h-5" />
@@ -796,30 +796,30 @@ export default function HRManagementPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-solid black-200">
+          <thead className="bg-solid black-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Staff</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Basic Salary</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Allowances</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Deductions</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Net Salary</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Staff</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Department</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Basic Salary</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Allowances</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Deductions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Net Salary</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Status</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-solid black-200">
             {payrollRecords.map(record => (
-              <tr key={record.id} className="hover:bg-gray-50">
+              <tr key={record.id} className="hover:bg-solid black-50">
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{record.staff_name}</div>
-                  <div className="text-xs text-gray-500">{record.staff_id}</div>
+                  <div className="text-sm font-medium text-black">{record.staff_name}</div>
+                  <div className="text-xs text-black">{record.staff_id}</div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {record.department}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {formatCurrency(record.basic_salary)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-green-600">
@@ -828,7 +828,7 @@ export default function HRManagementPage() {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-red-600">
                   -{formatCurrency(record.deductions)}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-black">
                   {formatCurrency(record.net_salary)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -859,7 +859,7 @@ export default function HRManagementPage() {
     <div className="space-y-6">
       <div className="bg-white rounded-lg shadow p-6">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Performance Reviews</h3>
+          <h3 className="text-lg font-semibold text-black">Performance Reviews</h3>
           <button className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
             <Plus className="w-5 h-5" />
             <span>New Review</span>
@@ -877,15 +877,15 @@ export default function HRManagementPage() {
                     <Award className="w-6 h-6 text-indigo-600" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900">{review.staff_name}</h4>
-                    <p className="text-sm text-gray-600">{review.staff_id} • Reviewed by {review.reviewer}</p>
+                    <h4 className="text-lg font-semibold text-black">{review.staff_name}</h4>
+                    <p className="text-sm text-black">{review.staff_id} • Reviewed by {review.reviewer}</p>
                   </div>
                 </div>
               </div>
               <div className="text-right">
                 <div className="flex items-center space-x-2">
                   <span className="text-2xl font-bold text-indigo-600">{review.rating}</span>
-                  <span className="text-gray-400">/5.0</span>
+                  <span className="text-black">/5.0</span>
                 </div>
                 <span className={`inline-block px-2 py-1 text-xs font-semibold rounded-full mt-1 ${getStatusColor(review.status)}`}>
                   {review.status}
@@ -904,13 +904,13 @@ export default function HRManagementPage() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
-              <span className="text-sm text-gray-600">Review Period: {review.period}</span>
+            <div className="flex justify-between items-center mt-4 pt-4 border-t border-solid black-200">
+              <span className="text-sm text-black">Review Period: {review.period}</span>
               <div className="flex space-x-2">
                 <button className="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
                   View Full Report
                 </button>
-                <button className="text-gray-600 hover:text-gray-900 text-sm font-medium">
+                <button className="text-black hover:text-black text-sm font-medium">
                   Print
                 </button>
               </div>
@@ -926,7 +926,7 @@ export default function HRManagementPage() {
     <div className="space-y-6">
       <div className="bg-white rounded-lg shadow p-6">
         <div className="flex justify-between items-center">
-          <h3 className="text-lg font-semibold text-gray-900">Position Management</h3>
+          <h3 className="text-lg font-semibold text-black">Position Management</h3>
           <button className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
             <Plus className="w-5 h-5" />
             <span>Add Position</span>
@@ -936,17 +936,17 @@ export default function HRManagementPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-blue-500">
-          <p className="text-sm font-medium text-gray-600">Total Positions</p>
-          <p className="text-3xl font-bold text-gray-900 mt-1">{positions.length}</p>
+          <p className="text-sm font-medium text-black">Total Positions</p>
+          <p className="text-3xl font-bold text-black mt-1">{positions.length}</p>
         </div>
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-green-500">
-          <p className="text-sm font-medium text-gray-600">Active Positions</p>
+          <p className="text-sm font-medium text-black">Active Positions</p>
           <p className="text-3xl font-bold text-green-600 mt-1">
             {positions.filter(p => p.status === 'active').length}
           </p>
         </div>
         <div className="bg-white rounded-lg shadow p-6 border-l-4 border-orange-500">
-          <p className="text-sm font-medium text-gray-600">Total Vacancies</p>
+          <p className="text-sm font-medium text-black">Total Vacancies</p>
           <p className="text-3xl font-bold text-orange-600 mt-1">
             {positions.reduce((sum, p) => sum + p.vacancies, 0)}
           </p>
@@ -954,31 +954,31 @@ export default function HRManagementPage() {
       </div>
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-solid black-200">
+          <thead className="bg-solid black-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Position Title</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Grade</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Salary Range</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vacancies</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Position Title</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Department</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Grade</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Salary Range</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Vacancies</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Status</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-solid black-200">
             {positions.map(position => (
-              <tr key={position.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <tr key={position.id} className="hover:bg-solid black-50">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-black">
                   {position.title}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {position.department}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {position.grade}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                   {formatCurrency(position.salary_min)} - {formatCurrency(position.salary_max)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -1019,8 +1019,8 @@ export default function HRManagementPage() {
               <BarChart3 className="w-6 h-6 text-blue-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900">Staff Report</h4>
-              <p className="text-sm text-gray-600">Complete staff directory</p>
+              <h4 className="font-semibold text-black">Staff Report</h4>
+              <p className="text-sm text-black">Complete staff directory</p>
             </div>
           </div>
           <button className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
@@ -1034,8 +1034,8 @@ export default function HRManagementPage() {
               <DollarSign className="w-6 h-6 text-green-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900">Payroll Report</h4>
-              <p className="text-sm text-gray-600">Monthly payroll summary</p>
+              <h4 className="font-semibold text-black">Payroll Report</h4>
+              <p className="text-sm text-black">Monthly payroll summary</p>
             </div>
           </div>
           <button className="mt-4 w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
@@ -1049,8 +1049,8 @@ export default function HRManagementPage() {
               <Calendar className="w-6 h-6 text-purple-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900">Leave Report</h4>
-              <p className="text-sm text-gray-600">Leave statistics</p>
+              <h4 className="font-semibold text-black">Leave Report</h4>
+              <p className="text-sm text-black">Leave statistics</p>
             </div>
           </div>
           <button className="mt-4 w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
@@ -1064,8 +1064,8 @@ export default function HRManagementPage() {
               <Award className="w-6 h-6 text-orange-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900">Performance Report</h4>
-              <p className="text-sm text-gray-600">Staff performance analytics</p>
+              <h4 className="font-semibold text-black">Performance Report</h4>
+              <p className="text-sm text-black">Staff performance analytics</p>
             </div>
           </div>
           <button className="mt-4 w-full px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700">
@@ -1079,8 +1079,8 @@ export default function HRManagementPage() {
               <Building2 className="w-6 h-6 text-indigo-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900">Department Report</h4>
-              <p className="text-sm text-gray-600">Department-wise analysis</p>
+              <h4 className="font-semibold text-black">Department Report</h4>
+              <p className="text-sm text-black">Department-wise analysis</p>
             </div>
           </div>
           <button className="mt-4 w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
@@ -1094,8 +1094,8 @@ export default function HRManagementPage() {
               <FileText className="w-6 h-6 text-teal-600" />
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900">Custom Report</h4>
-              <p className="text-sm text-gray-600">Build your own report</p>
+              <h4 className="font-semibold text-black">Custom Report</h4>
+              <p className="text-sm text-black">Build your own report</p>
             </div>
           </div>
           <button className="mt-4 w-full px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">
@@ -1132,7 +1132,7 @@ export default function HRManagementPage() {
 
         {/* Navigation Tabs */}
         <div className="bg-white rounded-lg shadow">
-          <div className="border-b border-gray-200">
+          <div className="border-b border-solid black-200">
             <nav className="-mb-px flex space-x-8 px-6 overflow-x-auto">
               {[
                 { id: 'overview', label: 'Overview', icon: LayoutDashboard },
@@ -1151,7 +1151,7 @@ export default function HRManagementPage() {
                     className={`${
                       activeTab === tab.id
                         ? 'border-indigo-500 text-indigo-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        : 'border-transparent text-black hover:text-black hover:border-solid black-300'
                     } whitespace-nowrap flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors`}
                   >
                     <Icon className="w-5 h-5" />

@@ -75,7 +75,7 @@ export default function HelpDeskPage() {
     {
       id: 'TKT-2025-003',
       subject: 'Fee payment receipt not generated',
-      description: 'I made a tuition payment of Le 2,500,000 on March 10th but the receipt was not generated in my account.',
+      description: 'I made a tuition payment of NSL 2,500,000 on March 10th but the receipt was not generated in my account.',
       category: 'Finance',
       priority: 'High',
       status: 'Open',
@@ -224,9 +224,9 @@ export default function HelpDeskPage() {
       case 'Resolved':
         return 'bg-green-100 text-green-800  text-green-600';
       case 'Closed':
-        return 'bg-gray-100 text-gray-800 bg-white text-black';
+        return 'bg-solid black-100 text-black bg-white text-black';
       default:
-        return 'bg-gray-100 text-gray-800 bg-white text-black';
+        return 'bg-solid black-100 text-black bg-white text-black';
     }
   };
 
@@ -245,15 +245,15 @@ export default function HelpDeskPage() {
               <Headphones className="w-6 h-6 text-portal-teal-600 text-portal-teal-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900 text-black">Help Desk</h1>
-              <p className="text-sm text-gray-500 text-black">
+              <h1 className="text-2xl font-bold text-black text-black">Help Desk</h1>
+              <p className="text-sm text-black text-black">
                 Manage support tickets and requests
               </p>
             </div>
           </div>
           <Link
             href="/help-desk/view-application"
-            className="px-4 py-2 bg-white bg-white border border-gray-300 border-gray-300 text-gray-700 text-black rounded-lg hover:bg-gray-100 hover:bg-gray-50 transition-colors flex items-center space-x-2"
+            className="px-4 py-2 bg-white bg-white border border-solid black-300 border-solid black-300 text-black text-black rounded-lg hover:bg-solid black-100 hover:bg-solid black-50 transition-colors flex items-center space-x-2"
           >
             <FileText className="w-4 h-4" />
             <span>View Applications</span>
@@ -263,37 +263,37 @@ export default function HelpDeskPage() {
 
       {/* Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-gray-300">
+        <div className="bg-white bg-white p-6 rounded-lg shadow-sm border border-solid black-200 border-solid black-300">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 text-black">Total Tickets</p>
-              <p className="text-2xl font-bold text-gray-900 text-black mt-1">{stats.total}</p>
+              <p className="text-sm text-black text-black">Total Tickets</p>
+              <p className="text-2xl font-bold text-black text-black mt-1">{stats.total}</p>
             </div>
             <Headphones className="w-8 h-8 text-portal-teal-600" />
           </div>
         </div>
-        <div className="bg-white bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-gray-300">
+        <div className="bg-white bg-white p-6 rounded-lg shadow-sm border border-solid black-200 border-solid black-300">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 text-black">Open Tickets</p>
+              <p className="text-sm text-black text-black">Open Tickets</p>
               <p className="text-2xl font-bold text-blue-600 text-blue-600 mt-1">{stats.open}</p>
             </div>
             <AlertCircle className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        <div className="bg-white bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-gray-300">
+        <div className="bg-white bg-white p-6 rounded-lg shadow-sm border border-solid black-200 border-solid black-300">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 text-black">In Progress</p>
+              <p className="text-sm text-black text-black">In Progress</p>
               <p className="text-2xl font-bold text-yellow-600 text-yellow-600 mt-1">{stats.inProgress}</p>
             </div>
             <Clock className="w-8 h-8 text-yellow-600" />
           </div>
         </div>
-        <div className="bg-white bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-gray-300">
+        <div className="bg-white bg-white p-6 rounded-lg shadow-sm border border-solid black-200 border-solid black-300">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500 text-black">Resolved</p>
+              <p className="text-sm text-black text-black">Resolved</p>
               <p className="text-2xl font-bold text-green-600 text-green-600 mt-1">{stats.resolved}</p>
             </div>
             <CheckCircle className="w-8 h-8 text-green-600" />
@@ -302,26 +302,26 @@ export default function HelpDeskPage() {
       </div>
 
       {/* Filters and Actions */}
-      <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 mb-6">
+      <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 mb-6">
         <div className="p-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4 flex-1">
               <div className="relative flex-1 md:max-w-xs">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black" />
                 <input
                   type="text"
                   placeholder="Search tickets..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+                  className="w-full pl-10 pr-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
                 />
               </div>
               <div className="flex items-center space-x-2">
-                <Filter className="w-5 h-5 text-gray-400" />
+                <Filter className="w-5 h-5 text-black" />
                 <select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+                  className="px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>
@@ -332,7 +332,7 @@ export default function HelpDeskPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+                  className="px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
                 >
                   {statuses.map((status) => (
                     <option key={status} value={status}>
@@ -343,7 +343,7 @@ export default function HelpDeskPage() {
                 <select
                   value={priorityFilter}
                   onChange={(e) => setPriorityFilter(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+                  className="px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
                 >
                   {priorities.map((priority) => (
                     <option key={priority} value={priority}>
@@ -365,55 +365,55 @@ export default function HelpDeskPage() {
       </div>
 
       {/* Tickets Table */}
-      <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 overflow-hidden">
+      <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50 bg-white border-b border-gray-200 border-gray-300">
+            <thead className="bg-solid black-50 bg-white border-b border-solid black-200 border-solid black-300">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase tracking-wider">
                   Ticket ID
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase tracking-wider">
                   Subject
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase tracking-wider">
                   Priority
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase tracking-wider">
                   Submitted By
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase tracking-wider">
                   Created
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200
+            <tbody className="divide-y divide-solid black-200
               {filteredTickets.map((ticket) => (
-                <tr key={ticket.id} className="hover:bg-gray-50 hover:bg-gray-50">
+                <tr key={ticket.id} className="hover:bg-solid black-50 hover:bg-solid black-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className="text-sm font-medium text-portal-teal-600 text-portal-teal-600">
                       {ticket.id}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-sm font-medium text-gray-900 text-black">
+                    <div className="text-sm font-medium text-black text-black">
                       {ticket.subject}
                     </div>
-                    <div className="text-sm text-gray-500 text-black truncate max-w-xs">
+                    <div className="text-sm text-black text-black truncate max-w-xs">
                       {ticket.description}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-gray-900 text-black">{ticket.category}</span>
+                    <span className="text-sm text-black text-black">{ticket.category}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
@@ -437,11 +437,11 @@ export default function HelpDeskPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center space-x-2">
-                      <User className="w-4 h-4 text-gray-400" />
-                      <span className="text-sm text-gray-900 text-black">{ticket.submittedBy}</span>
+                      <User className="w-4 h-4 text-black" />
+                      <span className="text-sm text-black text-black">{ticket.submittedBy}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-black">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-black text-black">
                     {ticket.createdDate}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -460,8 +460,8 @@ export default function HelpDeskPage() {
 
         {filteredTickets.length === 0 && (
           <div className="p-12 text-center">
-            <Headphones className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-500 text-black">No tickets found matching your criteria</p>
+            <Headphones className="w-12 h-12 text-black mx-auto mb-4" />
+            <p className="text-black text-black">No tickets found matching your criteria</p>
           </div>
         )}
       </div>
@@ -470,27 +470,27 @@ export default function HelpDeskPage() {
       {showCreateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200 border-gray-300">
-              <h3 className="text-xl font-bold text-gray-900 text-black">Create Support Ticket</h3>
+            <div className="p-6 border-b border-solid black-200 border-solid black-300">
+              <h3 className="text-xl font-bold text-black text-black">Create Support Ticket</h3>
             </div>
             <div className="p-6">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 text-black mb-2">
+                  <label className="block text-sm font-medium text-black text-black mb-2">
                     Subject *
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+                    className="w-full px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
                     placeholder="Brief description of the issue"
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 text-black mb-2">
+                    <label className="block text-sm font-medium text-black text-black mb-2">
                       Category *
                     </label>
-                    <select className="w-full px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black">
+                    <select className="w-full px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black">
                       <option value="">Select Category</option>
                       {categories.filter((c) => c !== 'All').map((cat) => (
                         <option key={cat} value={cat}>
@@ -500,10 +500,10 @@ export default function HelpDeskPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 text-black mb-2">
+                    <label className="block text-sm font-medium text-black text-black mb-2">
                       Priority *
                     </label>
-                    <select className="w-full px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black">
+                    <select className="w-full px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black">
                       {priorities.filter((p) => p !== 'All').map((priority) => (
                         <option key={priority} value={priority}>
                           {priority}
@@ -513,21 +513,21 @@ export default function HelpDeskPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 text-black mb-2">
+                  <label className="block text-sm font-medium text-black text-black mb-2">
                     Description *
                   </label>
                   <textarea
                     rows={6}
-                    className="w-full px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+                    className="w-full px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
                     placeholder="Provide detailed information about your issue or request..."
                   />
                 </div>
               </div>
             </div>
-            <div className="p-6 bg-gray-50 bg-white flex justify-end space-x-4">
+            <div className="p-6 bg-solid black-50 bg-white flex justify-end space-x-4">
               <button
                 onClick={() => setShowCreateModal(false)}
-                className="px-6 py-2 border border-gray-300 border-gray-300 text-gray-700 text-black rounded-lg hover:bg-gray-100 hover:bg-gray-50 transition-colors"
+                className="px-6 py-2 border border-solid black-300 border-solid black-300 text-black text-black rounded-lg hover:bg-solid black-100 hover:bg-solid black-50 transition-colors"
               >
                 Cancel
               </button>
@@ -546,10 +546,10 @@ export default function HelpDeskPage() {
       {showViewModal && selectedTicket && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200 border-gray-300">
+            <div className="p-6 border-b border-solid black-200 border-solid black-300">
               <div className="flex items-start justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 text-black mb-2">
+                  <h3 className="text-xl font-bold text-black text-black mb-2">
                     {selectedTicket.subject}
                   </h3>
                   <p className="text-sm text-portal-teal-600 text-portal-teal-600">{selectedTicket.id}</p>
@@ -577,67 +577,67 @@ export default function HelpDeskPage() {
             <div className="p-6">
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-sm font-medium text-gray-700 text-black mb-2">Description</h4>
-                  <p className="text-gray-900 text-black bg-gray-50 bg-white p-4 rounded-lg">
+                  <h4 className="text-sm font-medium text-black text-black mb-2">Description</h4>
+                  <p className="text-black text-black bg-solid black-50 bg-white p-4 rounded-lg">
                     {selectedTicket.description}
                   </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="text-sm font-medium text-gray-700 text-black mb-3">Ticket Information</h4>
+                    <h4 className="text-sm font-medium text-black text-black mb-3">Ticket Information</h4>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 text-sm">
-                        <Tag className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-600 text-black">Category:</span>
-                        <span className="text-gray-900 text-black font-medium">{selectedTicket.category}</span>
+                        <Tag className="w-4 h-4 text-black" />
+                        <span className="text-black text-black">Category:</span>
+                        <span className="text-black text-black font-medium">{selectedTicket.category}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm">
-                        <User className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-600 text-black">Assigned To:</span>
-                        <span className="text-gray-900 text-black font-medium">{selectedTicket.assignedTo}</span>
+                        <User className="w-4 h-4 text-black" />
+                        <span className="text-black text-black">Assigned To:</span>
+                        <span className="text-black text-black font-medium">{selectedTicket.assignedTo}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm">
-                        <Clock className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-600 text-black">Response Time:</span>
-                        <span className="text-gray-900 text-black font-medium">{selectedTicket.responseTime}</span>
+                        <Clock className="w-4 h-4 text-black" />
+                        <span className="text-black text-black">Response Time:</span>
+                        <span className="text-black text-black font-medium">{selectedTicket.responseTime}</span>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-gray-700 text-black mb-3">Timeline</h4>
+                    <h4 className="text-sm font-medium text-black text-black mb-3">Timeline</h4>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 text-sm">
-                        <Calendar className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-600 text-black">Created:</span>
-                        <span className="text-gray-900 text-black font-medium">{selectedTicket.createdDate}</span>
+                        <Calendar className="w-4 h-4 text-black" />
+                        <span className="text-black text-black">Created:</span>
+                        <span className="text-black text-black font-medium">{selectedTicket.createdDate}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm">
-                        <Clock className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-600 text-black">Last Updated:</span>
-                        <span className="text-gray-900 text-black font-medium">{selectedTicket.lastUpdated}</span>
+                        <Clock className="w-4 h-4 text-black" />
+                        <span className="text-black text-black">Last Updated:</span>
+                        <span className="text-black text-black font-medium">{selectedTicket.lastUpdated}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm">
-                        <User className="w-4 h-4 text-gray-400" />
-                        <span className="text-gray-600 text-black">Submitted By:</span>
-                        <span className="text-gray-900 text-black font-medium">{selectedTicket.submittedBy}</span>
+                        <User className="w-4 h-4 text-black" />
+                        <span className="text-black text-black">Submitted By:</span>
+                        <span className="text-black text-black font-medium">{selectedTicket.submittedBy}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-gray-700 text-black mb-3">Add Response</h4>
+                  <h4 className="text-sm font-medium text-black text-black mb-3">Add Response</h4>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+                    className="w-full px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
                     placeholder="Add a response or update to this ticket..."
                   />
                 </div>
               </div>
             </div>
-            <div className="p-6 bg-gray-50 bg-white flex justify-end space-x-4">
+            <div className="p-6 bg-solid black-50 bg-white flex justify-end space-x-4">
               <button
                 onClick={() => setShowViewModal(false)}
-                className="px-6 py-2 border border-gray-300 border-gray-300 text-gray-700 text-black rounded-lg hover:bg-gray-100 hover:bg-gray-50 transition-colors"
+                className="px-6 py-2 border border-solid black-300 border-solid black-300 text-black text-black rounded-lg hover:bg-solid black-100 hover:bg-solid black-50 transition-colors"
               >
                 Close
               </button>

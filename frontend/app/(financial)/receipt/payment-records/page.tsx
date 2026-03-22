@@ -44,7 +44,7 @@ export default function PaymentRecordsPage() {
           <div>
             {payments.map((p) => (
               <div key={p.id} className="p-4 mb-4 bg-white rounded-lg shadow">
-                <p>{p.receiptNo} - {p.studentName} - SLE {p.amount}</p>
+                <p>{p.receiptNo} - {p.studentName} - NSL {p.amount}</p>
               </div>
             ))}
           </div>

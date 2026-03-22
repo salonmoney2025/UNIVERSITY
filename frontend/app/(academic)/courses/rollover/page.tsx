@@ -185,11 +185,11 @@ export default function CourseRolloverPage() {
     <DashboardLayout>
       <div className="space-y-6">
         {/* Action Buttons Bar */}
-        <div className="bg-white border-b border-gray-300 px-6 py-3 flex items-center justify-between shadow-sm">
+        <div className="bg-white border-b border-solid black-300 px-6 py-3 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push('/dashboard')}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-solid black-600 hover:bg-solid black-700 text-white rounded font-medium transition-colors"
             >
               <Home className="h-4 w-4" />
               HOME
@@ -215,8 +215,8 @@ export default function CourseRolloverPage() {
         <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-portal-teal-500">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Course Rollover</h1>
-              <p className="mt-2 text-base text-gray-600">
+              <h1 className="text-3xl font-bold text-black">Course Rollover</h1>
+              <p className="mt-2 text-base text-black">
                 Copy courses from one academic year to the next
               </p>
             </div>
@@ -229,19 +229,19 @@ export default function CourseRolloverPage() {
         {/* Rollover Progress */}
         {(rolloverProgress.isRunning || rolloverProgress.completed.length > 0 || rolloverProgress.failed.length > 0) && (
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-lg font-bold text-gray-800 mb-4">Rollover Progress</h3>
+            <h3 className="text-lg font-bold text-black mb-4">Rollover Progress</h3>
 
             {rolloverProgress.isRunning && (
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm text-gray-600">
+                  <span className="text-sm text-black">
                     Processing: {rolloverProgress.current} of {rolloverProgress.total} courses
                   </span>
                   <span className="text-sm font-medium text-portal-teal-600">
                     {Math.round((rolloverProgress.current / rolloverProgress.total) * 100)}%
                   </span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-3">
+                <div className="w-full bg-solid black-200 rounded-full h-3">
                   <div
                     className="bg-portal-teal-500 h-3 rounded-full transition-all duration-300"
                     style={{ width: `${(rolloverProgress.current / rolloverProgress.total) * 100}%` }}
@@ -288,17 +288,17 @@ export default function CourseRolloverPage() {
 
         {/* Academic Year Selection */}
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Select Academic Years</h3>
+          <h3 className="text-lg font-bold text-black mb-4">Select Academic Years</h3>
 
           <div className="flex items-center gap-6">
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Source Year (Copy From)
               </label>
               <select
                 value={sourceYear}
                 onChange={(e) => setSourceYear(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
               >
                 <option>2024/2025</option>
                 <option>2023/2024</option>
@@ -311,13 +311,13 @@ export default function CourseRolloverPage() {
             </div>
 
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Target Year (Copy To)
               </label>
               <select
                 value={targetYear}
                 onChange={(e) => setTargetYear(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
               >
                 <option>2025/2026</option>
                 <option>2024/2025</option>
@@ -333,13 +333,13 @@ export default function CourseRolloverPage() {
             {/* Filters */}
             <div className="flex gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Faculty
                 </label>
                 <select
                   value={selectedFaculty}
                   onChange={(e) => setSelectedFaculty(e.target.value)}
-                  className="px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                  className="px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 >
                   <option value="all">All Faculties</option>
                   <option value="Engineering">Engineering</option>
@@ -349,13 +349,13 @@ export default function CourseRolloverPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Level
                 </label>
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                  className="px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 >
                   <option value="all">All Levels</option>
                   <option value="100">100 Level</option>
@@ -370,7 +370,7 @@ export default function CourseRolloverPage() {
             <div className="flex gap-2">
               <button
                 onClick={handleSelectAll}
-                className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors"
+                className="px-4 py-2 bg-solid black-200 hover:bg-solid black-300 text-black rounded-lg font-medium transition-colors"
               >
                 {filteredCourses.every(c => c.selected) ? 'Deselect All' : 'Select All'}
               </button>
@@ -379,7 +379,7 @@ export default function CourseRolloverPage() {
                 disabled={selectedCount === 0 || rolloverProgress.isRunning}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                   selectedCount === 0 || rolloverProgress.isRunning
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    ? 'bg-solid black-300 text-black cursor-not-allowed'
                     : 'bg-portal-teal-600 hover:bg-portal-teal-700 text-white'
                 }`}
               >
@@ -395,8 +395,8 @@ export default function CourseRolloverPage() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200 border-b-2 border-gray-400">
-                  <th className="px-6 py-3 text-left border-r border-gray-300">
+                <tr className="bg-solid black-200 border-b-2 border-solid black-400">
+                  <th className="px-6 py-3 text-left border-r border-solid black-300">
                     <input
                       type="checkbox"
                       checked={filteredCourses.length > 0 && filteredCourses.every(c => c.selected)}
@@ -404,33 +404,33 @@ export default function CourseRolloverPage() {
                       className="w-4 h-4 text-portal-teal-600 rounded focus:ring-portal-teal-500"
                     />
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Course Code
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Course Name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Faculty
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Level
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Semester
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Credits
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase">
                     Lecturer
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-solid black-200">
                 {filteredCourses.map((course) => (
-                  <tr key={course.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 border-r border-gray-200">
+                  <tr key={course.id} className="hover:bg-solid black-50 transition-colors">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       <input
                         type="checkbox"
                         checked={course.selected}
@@ -438,26 +438,26 @@ export default function CourseRolloverPage() {
                         className="w-4 h-4 text-portal-teal-600 rounded focus:ring-portal-teal-500"
                       />
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{course.courseCode}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{course.courseCode}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-900">{course.courseName}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{course.courseName}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{course.faculty}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{course.faculty}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{course.level}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{course.level}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{course.semester}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{course.semester}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{course.credits}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{course.credits}</span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-sm text-gray-600">{course.lecturer}</span>
+                      <span className="text-sm text-black">{course.lecturer}</span>
                     </td>
                   </tr>
                 ))}
@@ -467,9 +467,9 @@ export default function CourseRolloverPage() {
 
           {filteredCourses.length === 0 && (
             <div className="text-center py-12">
-              <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-500 font-medium">No courses found</p>
-              <p className="text-sm text-gray-400 mt-1">Try adjusting your filters</p>
+              <BookOpen className="h-12 w-12 text-black mx-auto mb-3" />
+              <p className="text-black font-medium">No courses found</p>
+              <p className="text-sm text-black mt-1">Try adjusting your filters</p>
             </div>
           )}
         </div>
@@ -507,11 +507,11 @@ export default function CourseRolloverPage() {
                   </div>
 
                   <div className="mb-4">
-                    <h4 className="font-bold text-gray-800 mb-2">Selected Courses:</h4>
-                    <div className="max-h-48 overflow-y-auto border border-gray-200 rounded-lg p-3">
+                    <h4 className="font-bold text-black mb-2">Selected Courses:</h4>
+                    <div className="max-h-48 overflow-y-auto border border-solid black-200 rounded-lg p-3">
                       <div className="space-y-1">
                         {courses.filter(c => c.selected).map(course => (
-                          <div key={course.id} className="text-sm text-gray-700">
+                          <div key={course.id} className="text-sm text-black">
                             <strong>{course.courseCode}</strong> - {course.courseName}
                           </div>
                         ))}
@@ -533,10 +533,10 @@ export default function CourseRolloverPage() {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="bg-gray-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-gray-200">
+                <div className="bg-solid black-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-solid black-200">
                   <button
                     onClick={() => setShowConfirmModal(false)}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors"
+                    className="px-4 py-2 bg-solid black-200 hover:bg-solid black-300 text-black rounded-lg font-medium transition-colors"
                   >
                     Cancel
                   </button>

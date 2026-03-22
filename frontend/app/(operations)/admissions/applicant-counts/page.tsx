@@ -81,18 +81,18 @@ export default function ApplicantCountsPage() {
     } else if (trend === 'down') {
       return <TrendingUp className="h-4 w-4 text-red-600 rotate-180" />;
     }
-    return <span className="text-gray-600">─</span>;
+    return <span className="text-black">─</span>;
   };
 
   return (
     <DashboardLayout>
       <div className="space-y-6">
         {/* Action Buttons Bar */}
-        <div className="bg-white border-b border-gray-300 px-6 py-3 flex items-center justify-between shadow-sm">
+        <div className="bg-white border-b border-solid black-300 px-6 py-3 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push('/dashboard')}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-solid black-600 hover:bg-solid black-700 text-white rounded font-medium transition-colors"
             >
               <Home className="h-4 w-4" />
               HOME
@@ -118,8 +118,8 @@ export default function ApplicantCountsPage() {
         <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-portal-teal-500">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Applicant Counts</h1>
-              <p className="mt-2 text-base text-gray-600">
+              <h1 className="text-3xl font-bold text-black">Applicant Counts</h1>
+              <p className="mt-2 text-base text-black">
                 View applicant statistics by faculty, program, status, and campus
               </p>
             </div>
@@ -186,13 +186,13 @@ export default function ApplicantCountsPage() {
             {/* Filters */}
             <div className="flex gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Academic Year
                 </label>
                 <select
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
-                  className="px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                  className="px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 >
                   <option>2025/2026</option>
                   <option>2024/2025</option>
@@ -201,13 +201,13 @@ export default function ApplicantCountsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Campus
                 </label>
                 <select
                   value={selectedCampus}
                   onChange={(e) => setSelectedCampus(e.target.value)}
-                  className="px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                  className="px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 >
                   <option value="all">All Campuses</option>
                   <option value="Main Campus">Main Campus</option>
@@ -224,7 +224,7 @@ export default function ApplicantCountsPage() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                   viewMode === 'overview'
                     ? 'bg-portal-teal-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-solid black-100 text-black hover:bg-solid black-200'
                 }`}
               >
                 <Building className="h-4 w-4" />
@@ -235,7 +235,7 @@ export default function ApplicantCountsPage() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                   viewMode === 'faculty'
                     ? 'bg-portal-teal-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-solid black-100 text-black hover:bg-solid black-200'
                 }`}
               >
                 <BookOpen className="h-4 w-4" />
@@ -246,7 +246,7 @@ export default function ApplicantCountsPage() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                   viewMode === 'program'
                     ? 'bg-portal-teal-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-solid black-100 text-black hover:bg-solid black-200'
                 }`}
               >
                 <BarChart3 className="h-4 w-4" />
@@ -257,7 +257,7 @@ export default function ApplicantCountsPage() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
                   viewMode === 'status'
                     ? 'bg-portal-teal-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-solid black-100 text-black hover:bg-solid black-200'
                 }`}
               >
                 <PieChart className="h-4 w-4" />
@@ -272,51 +272,51 @@ export default function ApplicantCountsPage() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200 border-b-2 border-gray-400">
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                <tr className="bg-solid black-200 border-b-2 border-solid black-400">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     S/N
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     {viewMode === 'overview' ? 'Campus' : viewMode === 'faculty' ? 'Faculty' : viewMode === 'program' ? 'Program' : 'Status'}
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Count
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Percentage
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Trend
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-solid black-200">
                 {getCurrentData().map((count, index) => (
-                  <tr key={count.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-900">{index + 1}</span>
+                  <tr key={count.id} className="hover:bg-solid black-50 transition-colors">
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{index + 1}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{count.subcategory}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{count.subcategory}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       <span className="text-sm font-bold text-portal-teal-600">{count.count}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       <div className="flex items-center gap-2">
-                        <div className="flex-1 bg-gray-200 rounded-full h-2 max-w-[100px]">
+                        <div className="flex-1 bg-solid black-200 rounded-full h-2 max-w-[100px]">
                           <div
                             className="bg-portal-teal-500 h-2 rounded-full"
                             style={{ width: `${count.percentage}%` }}
                           ></div>
                         </div>
-                        <span className="text-sm text-gray-600">{count.percentage}%</span>
+                        <span className="text-sm text-black">{count.percentage}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       <div className="flex items-center gap-1">
                         {getTrendIcon(count.trend)}
                       </div>
@@ -333,16 +333,16 @@ export default function ApplicantCountsPage() {
                   </tr>
                 ))}
               </tbody>
-              <tfoot className="bg-gray-100 border-t-2 border-gray-400">
+              <tfoot className="bg-solid black-100 border-t-2 border-solid black-400">
                 <tr>
-                  <td colSpan={2} className="px-6 py-4 border-r border-gray-300">
-                    <span className="text-sm font-bold text-gray-800 uppercase">Total</span>
+                  <td colSpan={2} className="px-6 py-4 border-r border-solid black-300">
+                    <span className="text-sm font-bold text-black uppercase">Total</span>
                   </td>
-                  <td className="px-6 py-4 border-r border-gray-300">
+                  <td className="px-6 py-4 border-r border-solid black-300">
                     <span className="text-sm font-bold text-portal-teal-600">{totalApplicants}</span>
                   </td>
-                  <td className="px-6 py-4 border-r border-gray-300">
-                    <span className="text-sm font-bold text-gray-800">100%</span>
+                  <td className="px-6 py-4 border-r border-solid black-300">
+                    <span className="text-sm font-bold text-black">100%</span>
                   </td>
                   <td colSpan={2} className="px-6 py-4"></td>
                 </tr>

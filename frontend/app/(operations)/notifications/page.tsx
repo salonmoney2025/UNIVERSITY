@@ -167,7 +167,7 @@ export default function NotificationsPage() {
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading notifications...</p>
+            <p className="mt-4 text-black">Loading notifications...</p>
           </div>
         </div>
       </DashboardLayout>
@@ -184,7 +184,7 @@ export default function NotificationsPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-black">Notifications</h1>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-black">
                 {notifications.length} total, {unreadCount} unread
               </p>
             </div>
@@ -206,7 +206,7 @@ export default function NotificationsPage() {
             className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
               filter === 'all'
                 ? 'bg-indigo-600 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                : 'bg-white text-black hover:bg-solid black-100 border border-solid black-300'
             }`}
           >
             All Notifications
@@ -216,7 +216,7 @@ export default function NotificationsPage() {
             className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
               filter === 'unread'
                 ? 'bg-indigo-600 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                : 'bg-white text-black hover:bg-solid black-100 border border-solid black-300'
             }`}
           >
             Unread Only
@@ -224,12 +224,12 @@ export default function NotificationsPage() {
         </div>
 
         {notifications.length === 0 ? (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
-            <Bell className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <div className="bg-white rounded-xl shadow-sm border border-solid black-200 p-12 text-center">
+            <Bell className="h-16 w-16 text-black mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-black mb-2">
               No notifications
             </h3>
-            <p className="text-gray-600">
+            <p className="text-black">
               {filter === 'unread'
                 ? "You're all caught up! No unread notifications."
                 : "You don't have any notifications yet."}
@@ -256,15 +256,15 @@ export default function NotificationsPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1">
-                          <p className="text-sm font-semibold text-gray-900 mb-1">
+                          <p className="text-sm font-semibold text-black mb-1">
                             {notification.title}
                           </p>
-                          <p className="text-sm text-gray-700">
+                          <p className="text-sm text-black">
                             {notification.message}
                           </p>
                           <div className="flex items-center gap-2 mt-2">
-                            <Calendar className="h-3 w-3 text-gray-400" />
-                            <p className="text-xs text-gray-500">
+                            <Calendar className="h-3 w-3 text-black" />
+                            <p className="text-xs text-black">
                               {formatDate(notification.createdAt)}
                             </p>
                           </div>
@@ -276,7 +276,7 @@ export default function NotificationsPage() {
                                 e.stopPropagation();
                                 markAsRead(notification.id);
                               }}
-                              className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                              className="p-2 text-black hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
                               title="Mark as read"
                             >
                               <Check className="h-4 w-4" />
@@ -287,7 +287,7 @@ export default function NotificationsPage() {
                               e.stopPropagation();
                               deleteNotification(notification.id);
                             }}
-                            className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                            className="p-2 text-black hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                             title="Delete"
                           >
                             <Trash2 className="h-4 w-4" />

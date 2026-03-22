@@ -73,7 +73,7 @@ export async function logPaymentCreated(userId: string, userName: string, paymen
     action: 'CREATE',
     entity: 'PAYMENT',
     entityId: paymentId,
-    description: `${userName} created a payment of SLE ${amount.toFixed(2)}`,
+    description: `${userName} created a payment of NSL ${amount.toFixed(2)}`,
     metadata: { amount },
   });
 }

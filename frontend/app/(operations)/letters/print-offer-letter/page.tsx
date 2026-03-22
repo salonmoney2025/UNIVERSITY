@@ -293,33 +293,33 @@ export default function PrintOfferLetterPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
         {/* Header Section */}
         <div className="mb-8">
-          <div className="flex items-center gap-2 text-sm text-slate-600 mb-4">
-            <span className="text-slate-400">Print Offer Letter Here</span>
-            <span className="text-slate-400">/</span>
+          <div className="flex items-center gap-2 text-sm text-black mb-4">
+            <span className="text-black">Print Offer Letter Here</span>
+            <span className="text-black">/</span>
             <a href="/" className="text-blue-600 hover:text-blue-700">
               Home
             </a>
           </div>
           <div className="flex items-center gap-3 mb-2">
             <FileText className="w-8 h-8 text-blue-600" />
-            <h1 className="text-3xl font-bold text-slate-900">
+            <h1 className="text-3xl font-bold text-black">
               PRINT OFFER LETTER
             </h1>
           </div>
-          <p className="text-slate-600">
+          <p className="text-black">
             Select filters to view and print student offer letters
           </p>
         </div>
 
         {/* Filter Form */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-lg font-semibold text-slate-900 mb-6">
+          <h2 className="text-lg font-semibold text-black mb-6">
             Filter Criteria
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Class Type */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Class Type
               </label>
               <select
@@ -337,7 +337,7 @@ export default function PrintOfferLetterPage() {
 
             {/* Academic Year */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Academic Year
               </label>
               <select
@@ -355,7 +355,7 @@ export default function PrintOfferLetterPage() {
 
             {/* Select Level */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Select Level
               </label>
               <select
@@ -373,7 +373,7 @@ export default function PrintOfferLetterPage() {
 
             {/* Select Class */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Select Class
               </label>
               <select
@@ -408,7 +408,7 @@ export default function PrintOfferLetterPage() {
             {/* Table Controls */}
             <div className="border-b border-slate-200 p-6 flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-2">
-                <label className="text-sm font-medium text-slate-700">
+                <label className="text-sm font-medium text-black">
                   Show
                 </label>
                 <select
@@ -424,7 +424,7 @@ export default function PrintOfferLetterPage() {
                   <option value={25}>25</option>
                   <option value={50}>50</option>
                 </select>
-                <label className="text-sm font-medium text-slate-700">
+                <label className="text-sm font-medium text-black">
                   entries
                 </label>
               </div>
@@ -448,25 +448,25 @@ export default function PrintOfferLetterPage() {
               <table className="w-full">
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-700">
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-black">
                       APPID
                     </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-700">
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-black">
                       Name
                     </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-700">
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-black">
                       Course
                     </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-700">
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-black">
                       Year
                     </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-700">
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-black">
                       Level
                     </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-slate-700">
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-black">
                       Campus
                     </th>
-                    <th className="px-6 py-3 text-center text-sm font-semibold text-slate-700">
+                    <th className="px-6 py-3 text-center text-sm font-semibold text-black">
                       Action
                     </th>
                   </tr>
@@ -480,22 +480,22 @@ export default function PrintOfferLetterPage() {
                           index % 2 === 0 ? 'bg-white' : 'bg-slate-50'
                         }`}
                       >
-                        <td className="px-6 py-4 text-sm text-slate-900 font-medium">
+                        <td className="px-6 py-4 text-sm text-black font-medium">
                           {student.appId}
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-900">
+                        <td className="px-6 py-4 text-sm text-black">
                           {student.name}
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-700">
+                        <td className="px-6 py-4 text-sm text-black">
                           {student.course}
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-700">
+                        <td className="px-6 py-4 text-sm text-black">
                           {student.year}
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-700">
+                        <td className="px-6 py-4 text-sm text-black">
                           {student.level}
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-700">
+                        <td className="px-6 py-4 text-sm text-black">
                           {student.campus}
                         </td>
                         <td className="px-6 py-4 text-center">
@@ -516,7 +516,7 @@ export default function PrintOfferLetterPage() {
                     <tr>
                       <td
                         colSpan={7}
-                        className="px-6 py-8 text-center text-slate-500"
+                        className="px-6 py-8 text-center text-black"
                       >
                         <p className="text-lg font-medium">
                           No records found matching the selected criteria
@@ -531,7 +531,7 @@ export default function PrintOfferLetterPage() {
             {/* Pagination */}
             {filteredStudents.length > 0 && (
               <div className="border-t border-slate-200 px-6 py-4 flex justify-between items-center">
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-black">
                   Showing {startIndex + 1} to{' '}
                   {Math.min(startIndex + entriesPerPage, filteredStudents.length)}{' '}
                   of {filteredStudents.length} entries
@@ -556,7 +556,7 @@ export default function PrintOfferLetterPage() {
                           className={`px-3 py-1 rounded-lg text-sm font-medium transition ${
                             currentPage === page
                               ? 'bg-blue-600 text-white'
-                              : 'border border-slate-300 text-slate-700 hover:bg-slate-50'
+                              : 'border border-slate-300 text-black hover:bg-slate-50'
                           }`}
                         >
                           {page}
@@ -584,11 +584,11 @@ export default function PrintOfferLetterPage() {
         {/* Empty State */}
         {!showResults && (
           <div className="bg-white rounded-lg shadow-md p-12 text-center">
-            <FileText className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-slate-700 mb-2">
+            <FileText className="w-16 h-16 text-black mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-black mb-2">
               No Results Yet
             </h3>
-            <p className="text-slate-600">
+            <p className="text-black">
               Select your filters and click the "Show" button to view student
               offer letters
             </p>

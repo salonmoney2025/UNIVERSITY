@@ -203,11 +203,11 @@ export default function ManageProgramsPage() {
     <DashboardLayout>
       <div className="space-y-6">
         {/* Action Buttons Bar */}
-        <div className="bg-white border-b border-gray-300 px-6 py-3 flex items-center justify-between shadow-sm">
+        <div className="bg-white border-b border-solid black-300 px-6 py-3 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push('/dashboard')}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-solid black-600 hover:bg-solid black-700 text-white rounded font-medium transition-colors"
             >
               <Home className="h-4 w-4" />
               HOME
@@ -240,8 +240,8 @@ export default function ManageProgramsPage() {
         <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-portal-teal-500">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Manage Academic Programs</h1>
-              <p className="mt-2 text-base text-gray-600">
+              <h1 className="text-3xl font-bold text-black">Manage Academic Programs</h1>
+              <p className="mt-2 text-base text-black">
                 Add, edit, and manage degree programs across all faculties
               </p>
             </div>
@@ -307,13 +307,13 @@ export default function ManageProgramsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Faculty Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Select Faculty
               </label>
               <select
                 value={selectedFaculty}
                 onChange={(e) => setSelectedFaculty(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
               >
                 <option value="all">All Faculties</option>
                 <option value="Faculty of Engineering">Faculty of Engineering</option>
@@ -325,13 +325,13 @@ export default function ManageProgramsPage() {
 
             {/* Degree Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Degree Level
               </label>
               <select
                 value={selectedDegree}
                 onChange={(e) => setSelectedDegree(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
               >
                 <option value="all">All Degrees</option>
                 <option value="Bachelor">Bachelor</option>
@@ -343,17 +343,17 @@ export default function ManageProgramsPage() {
 
             {/* Search */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Search Program
               </label>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-black" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by name, code, or department..."
-                  className="w-full pl-10 pr-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full pl-10 pr-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 />
               </div>
             </div>
@@ -365,79 +365,79 @@ export default function ManageProgramsPage() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200 border-b-2 border-gray-400">
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                <tr className="bg-solid black-200 border-b-2 border-solid black-400">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     S/N
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Program Code
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Program Name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Department
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Faculty
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Degree
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Duration
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Students
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-solid black-200">
                 {filteredPrograms.map((program, index) => (
-                  <tr key={program.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-900">{index + 1}</span>
+                  <tr key={program.id} className="hover:bg-solid black-50 transition-colors">
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{index + 1}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{program.programCode}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{program.programCode}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-900">{program.programName}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{program.programName}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{program.department}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{program.department}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{program.faculty}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{program.faculty}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
                         {program.degree}
                       </span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm text-gray-600">{program.duration}</span>
+                        <Calendar className="h-4 w-4 text-black" />
+                        <span className="text-sm text-black">{program.duration}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{program.totalStudents}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{program.totalStudents}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       {program.status === 'active' ? (
                         <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
                           <CheckCircle className="h-3 w-3" />
                           Active
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-solid black-100 text-black">
                           <XCircle className="h-3 w-3" />
                           Inactive
                         </span>
@@ -469,9 +469,9 @@ export default function ManageProgramsPage() {
 
           {filteredPrograms.length === 0 && (
             <div className="text-center py-12">
-              <GraduationCap className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-500 font-medium">No programs found</p>
-              <p className="text-sm text-gray-400 mt-1">Try adjusting your search or filters</p>
+              <GraduationCap className="h-12 w-12 text-black mx-auto mb-3" />
+              <p className="text-black font-medium">No programs found</p>
+              <p className="text-sm text-black mt-1">Try adjusting your search or filters</p>
             </div>
           )}
         </div>
@@ -502,7 +502,7 @@ export default function ManageProgramsPage() {
                 <form onSubmit={handleSubmit} className="p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Program Code <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -510,13 +510,13 @@ export default function ManageProgramsPage() {
                         value={formData.programCode}
                         onChange={(e) => setFormData({ ...formData, programCode: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                         placeholder="e.g., BSC-CS"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Program Name <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -524,20 +524,20 @@ export default function ManageProgramsPage() {
                         value={formData.programName}
                         onChange={(e) => setFormData({ ...formData, programName: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                         placeholder="e.g., BSc. Computer Science"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Faculty <span className="text-red-500">*</span>
                       </label>
                       <select
                         value={formData.faculty}
                         onChange={(e) => setFormData({ ...formData, faculty: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                       >
                         <option value="">Select Faculty</option>
                         <option value="Faculty of Engineering">Faculty of Engineering</option>
@@ -548,7 +548,7 @@ export default function ManageProgramsPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Department <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -556,20 +556,20 @@ export default function ManageProgramsPage() {
                         value={formData.department}
                         onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                         placeholder="e.g., Computer Science"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Degree Level <span className="text-red-500">*</span>
                       </label>
                       <select
                         value={formData.degree}
                         onChange={(e) => setFormData({ ...formData, degree: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                       >
                         <option value="">Select Degree</option>
                         <option value="Bachelor">Bachelor</option>
@@ -580,7 +580,7 @@ export default function ManageProgramsPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Duration <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -588,20 +588,20 @@ export default function ManageProgramsPage() {
                         value={formData.duration}
                         onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                         placeholder="e.g., 4 Years"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Campus <span className="text-red-500">*</span>
                       </label>
                       <select
                         value={formData.campus}
                         onChange={(e) => setFormData({ ...formData, campus: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                       >
                         <option value="">Select Campus</option>
                         <option value="Main Campus">Main Campus</option>
@@ -612,11 +612,11 @@ export default function ManageProgramsPage() {
                   </div>
 
                   {/* Modal Footer */}
-                  <div className="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-gray-200">
+                  <div className="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-solid black-200">
                     <button
                       type="button"
                       onClick={() => setShowAddModal(false)}
-                      className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors"
+                      className="px-4 py-2 bg-solid black-200 hover:bg-solid black-300 text-black rounded-lg font-medium transition-colors"
                     >
                       Cancel
                     </button>

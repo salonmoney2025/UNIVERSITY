@@ -106,8 +106,8 @@ export default function RegisterPage() {
                 <GraduationCap className="h-12 w-12 text-indigo-600" />
               </div>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
-            <p className="mt-2 text-sm text-gray-600">
+            <h1 className="text-3xl font-bold text-black">Create Account</h1>
+            <p className="mt-2 text-sm text-black">
               Join EBKUST University Learning Management System
             </p>
           </div>
@@ -116,12 +116,12 @@ export default function RegisterPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Full Name */}
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="name" className="block text-sm font-medium text-black mb-1">
                 Full Name *
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-5 w-5 text-gray-400" />
+                  <User className="h-5 w-5 text-black" />
                 </div>
                 <input
                   id="name"
@@ -130,7 +130,7 @@ export default function RegisterPage() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+                  className="block w-full pl-10 pr-3 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
                   placeholder="John Doe"
                 />
               </div>
@@ -138,12 +138,12 @@ export default function RegisterPage() {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-black mb-1">
                 Email Address *
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
+                  <Mail className="h-5 w-5 text-black" />
                 </div>
                 <input
                   id="email"
@@ -153,7 +153,7 @@ export default function RegisterPage() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+                  className="block w-full pl-10 pr-3 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
                   placeholder="you@university.edu"
                 />
               </div>
@@ -161,7 +161,7 @@ export default function RegisterPage() {
 
             {/* Role Selection */}
             <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="role" className="block text-sm font-medium text-black mb-1">
                 Role *
               </label>
               <select
@@ -170,7 +170,7 @@ export default function RegisterPage() {
                 required
                 value={formData.role}
                 onChange={handleChange}
-                className="block w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white"
+                className="block w-full px-3 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors bg-white"
               >
                 <option value="STUDENT">Student</option>
                 <option value="STAFF">Staff</option>
@@ -184,12 +184,12 @@ export default function RegisterPage() {
               {/* Student ID (shown for STUDENT role) */}
               {formData.role === 'STUDENT' && (
                 <div>
-                  <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="studentId" className="block text-sm font-medium text-black mb-1">
                     Student ID *
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Hash className="h-5 w-5 text-gray-400" />
+                      <Hash className="h-5 w-5 text-black" />
                     </div>
                     <input
                       id="studentId"
@@ -198,7 +198,7 @@ export default function RegisterPage() {
                       required={formData.role === 'STUDENT'}
                       value={formData.studentId}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+                      className="block w-full pl-10 pr-3 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
                       placeholder="STU-2026-0001"
                     />
                   </div>
@@ -208,12 +208,12 @@ export default function RegisterPage() {
               {/* Staff ID (shown for STAFF/FINANCE/ADMIN roles) */}
               {(formData.role === 'STAFF' || formData.role === 'FINANCE' || formData.role === 'ADMIN') && (
                 <div>
-                  <label htmlFor="staffId" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="staffId" className="block text-sm font-medium text-black mb-1">
                     Staff ID *
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Hash className="h-5 w-5 text-gray-400" />
+                      <Hash className="h-5 w-5 text-black" />
                     </div>
                     <input
                       id="staffId"
@@ -222,7 +222,7 @@ export default function RegisterPage() {
                       required={formData.role !== 'STUDENT'}
                       value={formData.staffId}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+                      className="block w-full pl-10 pr-3 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
                       placeholder="STF-2026-0001"
                     />
                   </div>
@@ -231,12 +231,12 @@ export default function RegisterPage() {
 
               {/* Department */}
               <div>
-                <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="department" className="block text-sm font-medium text-black mb-1">
                   Department
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Building className="h-5 w-5 text-gray-400" />
+                    <Building className="h-5 w-5 text-black" />
                   </div>
                   <input
                     id="department"
@@ -244,7 +244,7 @@ export default function RegisterPage() {
                     type="text"
                     value={formData.department}
                     onChange={handleChange}
-                    className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+                    className="block w-full pl-10 pr-3 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
                     placeholder="Computer Science"
                   />
                 </div>
@@ -253,12 +253,12 @@ export default function RegisterPage() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-black mb-1">
                 Password *
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
+                  <Lock className="h-5 w-5 text-black" />
                 </div>
                 <input
                   id="password"
@@ -268,7 +268,7 @@ export default function RegisterPage() {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  className="block w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+                  className="block w-full pl-10 pr-10 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
                   placeholder="••••••••"
                 />
                 <button
@@ -277,23 +277,23 @@ export default function RegisterPage() {
                   className="absolute inset-y-0 right-0 pr-3 flex items-center"
                 >
                   {showPassword ? (
-                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <EyeOff className="h-5 w-5 text-black hover:text-black" />
                   ) : (
-                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <Eye className="h-5 w-5 text-black hover:text-black" />
                   )}
                 </button>
               </div>
-              <p className="mt-1 text-xs text-gray-500">Must be at least 8 characters long</p>
+              <p className="mt-1 text-xs text-black">Must be at least 8 characters long</p>
             </div>
 
             {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-black mb-1">
                 Confirm Password *
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
+                  <Lock className="h-5 w-5 text-black" />
                 </div>
                 <input
                   id="confirmPassword"
@@ -303,7 +303,7 @@ export default function RegisterPage() {
                   required
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="block w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
+                  className="block w-full pl-10 pr-10 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
                   placeholder="••••••••"
                 />
                 <button
@@ -312,9 +312,9 @@ export default function RegisterPage() {
                   className="absolute inset-y-0 right-0 pr-3 flex items-center"
                 >
                   {showConfirmPassword ? (
-                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <EyeOff className="h-5 w-5 text-black hover:text-black" />
                   ) : (
-                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <Eye className="h-5 w-5 text-black hover:text-black" />
                   )}
                 </button>
               </div>
@@ -338,8 +338,8 @@ export default function RegisterPage() {
           </form>
 
           {/* Login Link */}
-          <div className="text-center pt-4 border-t border-gray-200">
-            <p className="text-sm text-gray-600">
+          <div className="text-center pt-4 border-t border-solid black-200">
+            <p className="text-sm text-black">
               Already have an account?{' '}
               <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
                 Sign in

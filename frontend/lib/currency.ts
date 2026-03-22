@@ -4,7 +4,7 @@
 
 export const CURRENCY = {
   code: 'SLL',
-  symbol: 'Le',
+  symbol: 'NSL',
   name: 'Sierra Leone Leone',
   locale: 'en-SL',
 } as const;

@@ -44,7 +44,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+    <div className="min-h-screen bg-solid black-50 dark:bg-solid black-900 flex">
       {/* Sidebar - Desktop */}
       <div className="hidden lg:block">
         <Sidebar />
@@ -69,7 +69,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
 
         {/* Breadcrumbs */}
-        <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 lg:px-6 py-3">
+        <div className="bg-white dark:bg-solid black-800 border-b border-solid black-200 dark:border-solid black-700 px-4 lg:px-6 py-3">
           <Breadcrumbs />
         </div>
 
@@ -79,8 +79,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         </main>
 
         {/* Footer */}
-        <footer className="bg-portal-header border-t border-gray-700 px-4 lg:px-6 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-300">
+        <footer className="bg-portal-header border-t border-solid black-700 px-4 lg:px-6 py-4">
+          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-black">
             <p>
               © 2026 EBKUST - Ernest Bai Koroma University of Science and Technology. All rights reserved.
             </p>

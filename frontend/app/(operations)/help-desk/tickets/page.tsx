@@ -93,7 +93,7 @@ export default function ViewTicketsPage() {
 
   const getPriorityBadge = (priority: string) => {
     const config = {
-      low: { bg: 'bg-gray-100 bg-white', text: 'text-gray-700 text-black' },
+      low: { bg: 'bg-solid black-100 bg-white', text: 'text-black text-black' },
       medium: { bg: 'bg-blue-100 ', text: 'text-blue-700 text-blue-600' },
       high: { bg: 'bg-orange-100 ', text: 'text-orange-700 text-orange-600' },
       critical: { bg: 'bg-red-100 ', text: 'text-red-700 text-red-600' },
@@ -106,22 +106,22 @@ export default function ViewTicketsPage() {
       open: { bg: 'bg-yellow-100 ', text: 'text-yellow-700 text-yellow-600', icon: AlertCircle },
       'in-progress': { bg: 'bg-blue-100 ', text: 'text-blue-700 text-blue-600', icon: Clock },
       resolved: { bg: 'bg-green-100 ', text: 'text-green-700 text-green-600', icon: CheckCircle },
-      closed: { bg: 'bg-gray-100 bg-white', text: 'text-gray-700 text-black', icon: XCircle },
+      closed: { bg: 'bg-solid black-100 bg-white', text: 'text-black text-black', icon: XCircle },
     };
     return config[status as keyof typeof config] || config.open;
   };
 
   return (
     <DashboardLayout>
-      <div className="p-6 bg-gray-50 bg-white min-h-screen">
+      <div className="p-6 bg-solid black-50 bg-white min-h-screen">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-purple-100  rounded-lg flex items-center justify-center">
               <Ticket className="w-6 h-6 text-purple-600 text-purple-600" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 text-black">Support Tickets</h1>
-              <p className="text-sm text-gray-500 text-black">View and manage your support tickets</p>
+              <h1 className="text-3xl font-bold text-black text-black">Support Tickets</h1>
+              <p className="text-sm text-black text-black">View and manage your support tickets</p>
             </div>
           </div>
           <a
@@ -134,65 +134,65 @@ export default function ViewTicketsPage() {
 
         {/* Statistics */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
-          <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
+          <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 text-black">Total Tickets</p>
-                <p className="text-2xl font-bold text-gray-900 text-black mt-1">{stats.total}</p>
+                <p className="text-sm text-black text-black">Total Tickets</p>
+                <p className="text-2xl font-bold text-black text-black mt-1">{stats.total}</p>
               </div>
-              <div className="w-10 h-10 bg-gray-500 rounded-lg"></div>
+              <div className="w-10 h-10 bg-solid black-500 rounded-lg"></div>
             </div>
           </div>
-          <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
+          <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 text-black">Open</p>
-                <p className="text-2xl font-bold text-gray-900 text-black mt-1">{stats.open}</p>
+                <p className="text-sm text-black text-black">Open</p>
+                <p className="text-2xl font-bold text-black text-black mt-1">{stats.open}</p>
               </div>
               <div className="w-10 h-10 bg-yellow-500 rounded-lg"></div>
             </div>
           </div>
-          <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
+          <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 text-black">In Progress</p>
-                <p className="text-2xl font-bold text-gray-900 text-black mt-1">{stats.inProgress}</p>
+                <p className="text-sm text-black text-black">In Progress</p>
+                <p className="text-2xl font-bold text-black text-black mt-1">{stats.inProgress}</p>
               </div>
               <div className="w-10 h-10 bg-blue-500 rounded-lg"></div>
             </div>
           </div>
-          <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
+          <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 text-black">Resolved</p>
-                <p className="text-2xl font-bold text-gray-900 text-black mt-1">{stats.resolved}</p>
+                <p className="text-sm text-black text-black">Resolved</p>
+                <p className="text-2xl font-bold text-black text-black mt-1">{stats.resolved}</p>
               </div>
               <div className="w-10 h-10 bg-green-500 rounded-lg"></div>
             </div>
           </div>
-          <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
+          <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500 text-black">Closed</p>
-                <p className="text-2xl font-bold text-gray-900 text-black mt-1">{stats.closed}</p>
+                <p className="text-sm text-black text-black">Closed</p>
+                <p className="text-2xl font-bold text-black text-black mt-1">{stats.closed}</p>
               </div>
-              <div className="w-10 h-10 bg-gray-400 rounded-lg"></div>
+              <div className="w-10 h-10 bg-solid black-400 rounded-lg"></div>
             </div>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6 mb-6">
+        <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6 mb-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 gap-4">
             <div className="flex-1 max-w-md">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black w-5 h-5" />
                 <input
                   type="text"
                   placeholder="Search by ticket number, subject, or category..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 bg-white text-black"
+                  className="w-full pl-10 pr-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 bg-white text-black"
                 />
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function ViewTicketsPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 bg-white text-black"
+                className="px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 bg-white text-black"
               >
                 <option value="all">All Status</option>
                 <option value="open">Open</option>
@@ -211,7 +211,7 @@ export default function ViewTicketsPage() {
               <select
                 value={priorityFilter}
                 onChange={(e) => setPriorityFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 bg-white text-black"
+                className="px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 bg-white text-black"
               >
                 <option value="all">All Priority</option>
                 <option value="low">Low</option>
@@ -224,38 +224,38 @@ export default function ViewTicketsPage() {
         </div>
 
         {/* Tickets Table */}
-        <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300">
+        <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 bg-white">
+              <thead className="bg-solid black-50 bg-white">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase">Ticket #</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase">Subject</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase">Category</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase">Priority</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase">Assigned To</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase">Responses</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 text-black uppercase">Actions</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase">Ticket #</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase">Subject</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase">Category</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase">Priority</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase">Status</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase">Assigned To</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase">Responses</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-black text-black uppercase">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200
+              <tbody className="divide-y divide-solid black-200
                 {filteredTickets.map((ticket) => {
                   const priorityConfig = getPriorityBadge(ticket.priority);
                   const statusConfig = getStatusBadge(ticket.status);
                   const StatusIcon = statusConfig.icon;
                   return (
-                    <tr key={ticket.id} className="hover:bg-gray-50 hover:bg-gray-50">
+                    <tr key={ticket.id} className="hover:bg-solid black-50 hover:bg-solid black-50">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-portal-teal-600">
                         {ticket.ticketNo}
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm font-medium text-gray-900 text-black">{ticket.subject}</div>
-                        <div className="text-xs text-gray-500 text-black">
+                        <div className="text-sm font-medium text-black text-black">{ticket.subject}</div>
+                        <div className="text-xs text-black text-black">
                           Created: {new Date(ticket.createdDate).toLocaleDateString()}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-black">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black text-black">
                         {ticket.category}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -269,11 +269,11 @@ export default function ViewTicketsPage() {
                           <span className="capitalize">{ticket.status.replace('-', ' ')}</span>
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-black">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black text-black">
                         {ticket.assignedTo}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center space-x-1 text-sm text-gray-900 text-black">
+                        <div className="flex items-center space-x-1 text-sm text-black text-black">
                           <MessageSquare className="w-4 h-4" />
                           <span>{ticket.responses}</span>
                         </div>

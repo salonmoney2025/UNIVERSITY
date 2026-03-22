@@ -147,11 +147,11 @@ export default function ManageUsersPage() {
     <DashboardLayout>
       <div className="space-y-6">
         {/* Action Buttons Bar */}
-        <div className="bg-white border-b border-gray-300 px-6 py-3 flex items-center justify-between shadow-sm">
+        <div className="bg-white border-b border-solid black-300 px-6 py-3 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push('/dashboard')}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-solid black-600 hover:bg-solid black-700 text-white rounded font-medium transition-colors"
             >
               <Home className="h-4 w-4" />
               HOME
@@ -182,17 +182,17 @@ export default function ManageUsersPage() {
 
         {/* Page Title */}
         <div className="bg-white p-6 border-l-4 border-portal-teal-500 shadow-sm">
-          <h1 className="text-2xl font-bold text-gray-800">MANAGE COLLEGE ADMINS</h1>
+          <h1 className="text-2xl font-bold text-black">MANAGE COLLEGE ADMINS</h1>
         </div>
 
         {/* Campus Selection */}
         <div className="bg-white p-6 shadow-sm rounded">
           <div className="flex items-center gap-4">
-            <label className="text-sm font-semibold text-gray-700">SELECT CAMPUS:</label>
+            <label className="text-sm font-semibold text-black">SELECT CAMPUS:</label>
             <select
               value={selectedCampus}
               onChange={(e) => setSelectedCampus(e.target.value)}
-              className="px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500 min-w-[250px]"
+              className="px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500 min-w-[250px]"
             >
               <option value="all">All Campuses</option>
               <option value="Main Campus">Main Campus</option>
@@ -207,57 +207,57 @@ export default function ManageUsersPage() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200 border-b-2 border-gray-400">
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                <tr className="bg-solid black-200 border-b-2 border-solid black-400">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     S/N
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Username
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Full Name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Email
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Role
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Campus
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase">
                     Actions
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {filteredUsers.map((user, index) => (
-                  <tr key={user.id} className="border-b border-gray-200 hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm text-gray-900 border-r border-gray-200">
+                  <tr key={user.id} className="border-b border-solid black-200 hover:bg-solid black-50">
+                    <td className="px-6 py-4 text-sm text-black border-r border-solid black-200">
                       {index + 1}
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900 border-r border-gray-200">
+                    <td className="px-6 py-4 text-sm font-medium text-black border-r border-solid black-200">
                       {user.username}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 border-r border-gray-200">
+                    <td className="px-6 py-4 text-sm text-black border-r border-solid black-200">
                       {user.fullName}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 border-r border-gray-200">
+                    <td className="px-6 py-4 text-sm text-black border-r border-solid black-200">
                       {user.email}
                     </td>
-                    <td className="px-6 py-4 text-sm border-r border-gray-200">
+                    <td className="px-6 py-4 text-sm border-r border-solid black-200">
                       <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold">
                         {user.role}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 border-r border-gray-200">
+                    <td className="px-6 py-4 text-sm text-black border-r border-solid black-200">
                       {user.campus}
                     </td>
-                    <td className="px-6 py-4 text-sm border-r border-gray-200">
+                    <td className="px-6 py-4 text-sm border-r border-solid black-200">
                       <span className={`px-2 py-1 rounded text-xs font-semibold ${
                         user.status === 'active'
                           ? 'bg-green-100 text-green-800'
@@ -292,7 +292,7 @@ export default function ManageUsersPage() {
 
           {filteredUsers.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 font-medium">No users found for the selected campus</p>
+              <p className="text-black font-medium">No users found for the selected campus</p>
             </div>
           )}
         </div>
@@ -311,7 +311,7 @@ export default function ManageUsersPage() {
                     setEditingUser(null);
                     resetForm();
                   }}
-                  className="text-white hover:text-gray-200"
+                  className="text-white hover:text-black"
                 >
                   <X className="h-6 w-6" />
                 </button>
@@ -319,65 +319,65 @@ export default function ManageUsersPage() {
 
               <div className="p-6 space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-black mb-2">
                     Username *
                   </label>
                   <input
                     type="text"
                     value={formData.username}
                     onChange={(e) => setFormData({...formData, username: e.target.value})}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                    className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                     placeholder="Enter username"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-black mb-2">
                     Full Name *
                   </label>
                   <input
                     type="text"
                     value={formData.fullName}
                     onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                    className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                     placeholder="Enter full name"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-black mb-2">
                     Email *
                   </label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                    className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                     placeholder="Enter email"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-black mb-2">
                     Password {!editingUser && '*'}
                   </label>
                   <input
                     type="password"
                     value={formData.password}
                     onChange={(e) => setFormData({...formData, password: e.target.value})}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                    className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                     placeholder={editingUser ? "Leave blank to keep current password" : "Enter password"}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-black mb-2">
                     Role *
                   </label>
                   <select
                     value={formData.role}
                     onChange={(e) => setFormData({...formData, role: e.target.value})}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                    className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                   >
                     <option value="ADMIN">Admin</option>
                     <option value="SUPER_ADMIN">Super Admin</option>
@@ -388,13 +388,13 @@ export default function ManageUsersPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-black mb-2">
                     Campus *
                   </label>
                   <select
                     value={formData.campus}
                     onChange={(e) => setFormData({...formData, campus: e.target.value})}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                    className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                   >
                     <option value="">Select Campus</option>
                     <option value="Main Campus">Main Campus</option>
@@ -404,13 +404,13 @@ export default function ManageUsersPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-black mb-2">
                     Status *
                   </label>
                   <select
                     value={formData.status}
                     onChange={(e) => setFormData({...formData, status: e.target.value})}
-                    className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                    className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                   >
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
@@ -424,7 +424,7 @@ export default function ManageUsersPage() {
                       setEditingUser(null);
                       resetForm();
                     }}
-                    className="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded font-medium transition-colors"
+                    className="px-6 py-2 bg-solid black-500 hover:bg-solid black-600 text-white rounded font-medium transition-colors"
                   >
                     Cancel
                   </button>

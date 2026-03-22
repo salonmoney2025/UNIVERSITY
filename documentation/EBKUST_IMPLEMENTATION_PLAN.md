@@ -13,8 +13,8 @@
 - **New:** Teal/Turquoise theme (#14A38B)
   - Sidebar Background: #14A38B (teal)
   - Welcome Section: #14A38B (bright teal)
-  - Header: #3A4D5C (dark blue-gray)
-  - Active Menu: #2C3E50 (dark gray)
+  - Header: #3A4D5C (dark blue-solid black)
+  - Active Menu: #2C3E50 (dark solid black)
   - Submenu BG: rgba(0,0,0,0.2) (darker teal)
 
 ### Layout Changes:

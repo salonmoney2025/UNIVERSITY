@@ -165,11 +165,11 @@ export default function ManageFacultiesPage() {
     <DashboardLayout>
       <div className="space-y-6">
         {/* Action Buttons Bar */}
-        <div className="bg-white border-b border-gray-300 px-6 py-3 flex items-center justify-between shadow-sm">
+        <div className="bg-white border-b border-solid black-300 px-6 py-3 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push('/dashboard')}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-solid black-600 hover:bg-solid black-700 text-white rounded font-medium transition-colors"
             >
               <Home className="h-4 w-4" />
               HOME
@@ -202,8 +202,8 @@ export default function ManageFacultiesPage() {
         <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-portal-teal-500">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Manage Faculties</h1>
-              <p className="mt-2 text-base text-gray-600">
+              <h1 className="text-3xl font-bold text-black">Manage Faculties</h1>
+              <p className="mt-2 text-base text-black">
                 Add, edit, and manage university faculties
               </p>
             </div>
@@ -269,13 +269,13 @@ export default function ManageFacultiesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Campus Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Select Campus
               </label>
               <select
                 value={selectedCampus}
                 onChange={(e) => setSelectedCampus(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
               >
                 <option value="all">All Campuses</option>
                 <option value="Main Campus">Main Campus</option>
@@ -286,17 +286,17 @@ export default function ManageFacultiesPage() {
 
             {/* Search */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Search Faculty
               </label>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-black" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by name, code, or dean..."
-                  className="w-full pl-10 pr-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full pl-10 pr-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 />
               </div>
             </div>
@@ -308,68 +308,68 @@ export default function ManageFacultiesPage() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200 border-b-2 border-gray-400">
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                <tr className="bg-solid black-200 border-b-2 border-solid black-400">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     S/N
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Faculty Code
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Faculty Name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Dean
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Campus
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Departments
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Students
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-solid black-200">
                 {filteredFaculties.map((faculty, index) => (
-                  <tr key={faculty.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-900">{index + 1}</span>
+                  <tr key={faculty.id} className="hover:bg-solid black-50 transition-colors">
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{index + 1}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{faculty.facultyCode}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{faculty.facultyCode}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-900">{faculty.facultyName}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{faculty.facultyName}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{faculty.dean}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{faculty.dean}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{faculty.campus}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{faculty.campus}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{faculty.totalDepartments}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{faculty.totalDepartments}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{faculty.totalStudents}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{faculty.totalStudents}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       {faculty.status === 'active' ? (
                         <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
                           <CheckCircle className="h-3 w-3" />
                           Active
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-solid black-100 text-black">
                           <XCircle className="h-3 w-3" />
                           Inactive
                         </span>
@@ -401,9 +401,9 @@ export default function ManageFacultiesPage() {
 
           {filteredFaculties.length === 0 && (
             <div className="text-center py-12">
-              <Building className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-500 font-medium">No faculties found</p>
-              <p className="text-sm text-gray-400 mt-1">Try adjusting your search or filters</p>
+              <Building className="h-12 w-12 text-black mx-auto mb-3" />
+              <p className="text-black font-medium">No faculties found</p>
+              <p className="text-sm text-black mt-1">Try adjusting your search or filters</p>
             </div>
           )}
         </div>
@@ -434,7 +434,7 @@ export default function ManageFacultiesPage() {
                 <form onSubmit={handleSubmit} className="p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Faculty Code <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -442,13 +442,13 @@ export default function ManageFacultiesPage() {
                         value={formData.facultyCode}
                         onChange={(e) => setFormData({ ...formData, facultyCode: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                         placeholder="e.g., ENG"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Faculty Name <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -456,13 +456,13 @@ export default function ManageFacultiesPage() {
                         value={formData.facultyName}
                         onChange={(e) => setFormData({ ...formData, facultyName: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                         placeholder="e.g., Faculty of Engineering"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Dean <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -470,20 +470,20 @@ export default function ManageFacultiesPage() {
                         value={formData.dean}
                         onChange={(e) => setFormData({ ...formData, dean: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                         placeholder="e.g., Prof. John Doe"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Campus <span className="text-red-500">*</span>
                       </label>
                       <select
                         value={formData.campus}
                         onChange={(e) => setFormData({ ...formData, campus: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                       >
                         <option value="">Select Campus</option>
                         <option value="Main Campus">Main Campus</option>
@@ -493,7 +493,7 @@ export default function ManageFacultiesPage() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-black mb-2">
                         Established Year <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -501,18 +501,18 @@ export default function ManageFacultiesPage() {
                         value={formData.establishedYear}
                         onChange={(e) => setFormData({ ...formData, establishedYear: e.target.value })}
                         required
-                        className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                        className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                         placeholder="e.g., 2015"
                       />
                     </div>
                   </div>
 
                   {/* Modal Footer */}
-                  <div className="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-gray-200">
+                  <div className="flex items-center justify-end gap-3 mt-6 pt-6 border-t border-solid black-200">
                     <button
                       type="button"
                       onClick={() => setShowAddModal(false)}
-                      className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors"
+                      className="px-4 py-2 bg-solid black-200 hover:bg-solid black-300 text-black rounded-lg font-medium transition-colors"
                     >
                       Cancel
                     </button>

@@ -71,7 +71,7 @@ export default function DashboardPage() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-SL', {
       style: 'currency',
-      currency: 'SLE',
+      currency: 'NSL',
       minimumFractionDigits: 2,
     }).format(amount);
   };
@@ -81,8 +81,8 @@ export default function DashboardPage() {
       <div className="space-y-6">
         {/* Page Header */}
         <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-portal-teal-500">
-          <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
-          <p className="mt-2 text-base text-gray-600">
+          <h1 className="text-3xl font-bold text-black">Dashboard</h1>
+          <p className="mt-2 text-base text-black">
             Welcome back! Here's an overview of your university system.
           </p>
         </div>
@@ -175,15 +175,15 @@ export default function DashboardPage() {
               <div className="bg-blue-100 p-2 rounded-lg">
                 <TrendingUp className="h-6 w-6 text-blue-600" />
               </div>
-              <h3 className="text-lg font-bold text-gray-800">Recent Activity</h3>
+              <h3 className="text-lg font-bold text-black">Recent Activity</h3>
             </div>
             <div className="space-y-4">
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm font-medium text-gray-700">New Students (7 days)</span>
+              <div className="flex justify-between items-center p-3 bg-solid black-50 rounded">
+                <span className="text-sm font-medium text-black">New Students (7 days)</span>
                 <span className="text-lg font-bold text-blue-600">{stats?.recent_activity.new_students || 0}</span>
               </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm font-medium text-gray-700">New Enrollments</span>
+              <div className="flex justify-between items-center p-3 bg-solid black-50 rounded">
+                <span className="text-sm font-medium text-black">New Enrollments</span>
                 <span className="text-lg font-bold text-blue-600">{stats?.recent_activity.new_enrollments || 0}</span>
               </div>
             </div>
@@ -195,15 +195,15 @@ export default function DashboardPage() {
               <div className="bg-purple-100 p-2 rounded-lg">
                 <BookOpen className="h-6 w-6 text-purple-600" />
               </div>
-              <h3 className="text-lg font-bold text-gray-800">Course Offerings</h3>
+              <h3 className="text-lg font-bold text-black">Course Offerings</h3>
             </div>
             <div className="space-y-4">
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm font-medium text-gray-700">Total Courses</span>
+              <div className="flex justify-between items-center p-3 bg-solid black-50 rounded">
+                <span className="text-sm font-medium text-black">Total Courses</span>
                 <span className="text-lg font-bold text-purple-600">{stats?.offerings.total || 0}</span>
               </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm font-medium text-gray-700">Open for Enrollment</span>
+              <div className="flex justify-between items-center p-3 bg-solid black-50 rounded">
+                <span className="text-sm font-medium text-black">Open for Enrollment</span>
                 <span className="text-lg font-bold text-green-600">{stats?.offerings.open || 0}</span>
               </div>
             </div>
@@ -215,15 +215,15 @@ export default function DashboardPage() {
               <div className="bg-green-100 p-2 rounded-lg">
                 <DollarSign className="h-6 w-6 text-green-600" />
               </div>
-              <h3 className="text-lg font-bold text-gray-800">Finance Summary</h3>
+              <h3 className="text-lg font-bold text-black">Finance Summary</h3>
             </div>
             <div className="space-y-4">
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm font-medium text-gray-700">Total Revenue</span>
+              <div className="flex justify-between items-center p-3 bg-solid black-50 rounded">
+                <span className="text-sm font-medium text-black">Total Revenue</span>
                 <span className="text-lg font-bold text-green-600">{formatCurrency(stats?.finance.total_revenue || 0)}</span>
               </div>
-              <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                <span className="text-sm font-medium text-gray-700">Pending Fees</span>
+              <div className="flex justify-between items-center p-3 bg-solid black-50 rounded">
+                <span className="text-sm font-medium text-black">Pending Fees</span>
                 <span className="text-lg font-bold text-orange-600">{formatCurrency(stats?.finance.pending_fees || 0)}</span>
               </div>
             </div>
@@ -235,7 +235,7 @@ export default function DashboardPage() {
           {/* Quick Actions */}
           <div className="lg:col-span-2 bg-white rounded-lg shadow-md p-6 border-t-4 border-portal-teal-500">
             <div className="flex items-center justify-between mb-5">
-              <h3 className="text-xl font-bold text-gray-800">Quick Actions</h3>
+              <h3 className="text-xl font-bold text-black">Quick Actions</h3>
               <ExportMenu data={stats ? [stats] : []} filename="dashboard-report" />
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -244,28 +244,28 @@ export default function DashboardPage() {
                 className="flex flex-col items-center justify-center p-4 bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition-all hover:shadow-md group"
               >
                 <UserPlus className="h-8 w-8 text-blue-600 mb-2 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium text-gray-700">Add Student</span>
+                <span className="text-sm font-medium text-black">Add Student</span>
               </button>
               <button
                 onClick={() => router.push('/receipt/generate')}
                 className="flex flex-col items-center justify-center p-4 bg-green-50 hover:bg-green-100 rounded-lg border border-green-200 transition-all hover:shadow-md group"
               >
                 <Receipt className="h-8 w-8 text-green-600 mb-2 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium text-gray-700">Generate Receipt</span>
+                <span className="text-sm font-medium text-black">Generate Receipt</span>
               </button>
               <button
                 onClick={() => router.push('/applications')}
                 className="flex flex-col items-center justify-center p-4 bg-purple-50 hover:bg-purple-100 rounded-lg border border-purple-200 transition-all hover:shadow-md group"
               >
                 <FileText className="h-8 w-8 text-purple-600 mb-2 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium text-gray-700">View Applications</span>
+                <span className="text-sm font-medium text-black">View Applications</span>
               </button>
               <button
                 onClick={() => router.push('/reports')}
                 className="flex flex-col items-center justify-center p-4 bg-orange-50 hover:bg-orange-100 rounded-lg border border-orange-200 transition-all hover:shadow-md group"
               >
                 <BarChart3 className="h-8 w-8 text-orange-600 mb-2 group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium text-gray-700">View Reports</span>
+                <span className="text-sm font-medium text-black">View Reports</span>
               </button>
             </div>
           </div>
@@ -274,15 +274,15 @@ export default function DashboardPage() {
           <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg shadow-md p-6 border-l-4 border-amber-500">
             <div className="flex items-center gap-2 mb-4">
               <Bell className="h-5 w-5 text-amber-600" />
-              <h3 className="text-lg font-bold text-gray-800">Announcements</h3>
+              <h3 className="text-lg font-bold text-black">Announcements</h3>
             </div>
             <div className="space-y-3">
               <div className="bg-white p-3 rounded-lg shadow-sm border border-amber-200">
                 <div className="flex items-start gap-2">
                   <Info className="h-4 w-4 text-blue-600 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-medium text-gray-800">Semester Registration</p>
-                    <p className="text-xs text-gray-600 mt-1">Opens on March 25, 2026</p>
+                    <p className="text-sm font-medium text-black">Semester Registration</p>
+                    <p className="text-xs text-black mt-1">Opens on March 25, 2026</p>
                   </div>
                 </div>
               </div>
@@ -290,8 +290,8 @@ export default function DashboardPage() {
                 <div className="flex items-start gap-2">
                   <AlertCircle className="h-4 w-4 text-orange-600 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="text-sm font-medium text-gray-800">Fee Payment Deadline</p>
-                    <p className="text-xs text-gray-600 mt-1">Due by March 30, 2026</p>
+                    <p className="text-sm font-medium text-black">Fee Payment Deadline</p>
+                    <p className="text-xs text-black mt-1">Due by March 30, 2026</p>
                   </div>
                 </div>
               </div>
@@ -306,60 +306,60 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <Activity className="h-5 w-5 text-portal-teal-600" />
-                <h3 className="text-lg font-bold text-gray-800">Recent Activities</h3>
+                <h3 className="text-lg font-bold text-black">Recent Activities</h3>
               </div>
               <button className="text-sm text-portal-teal-600 hover:text-portal-teal-700 font-medium">
                 View All
               </button>
             </div>
             <div className="space-y-3">
-              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-start gap-3 p-3 bg-solid black-50 rounded-lg hover:bg-solid black-100 transition-colors">
                 <div className="bg-green-100 p-2 rounded-full">
                   <CheckCircle className="h-4 w-4 text-green-600" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-800">New Student Enrolled</p>
-                  <p className="text-xs text-gray-600">John Doe - Computer Science</p>
-                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                  <p className="text-sm font-medium text-black">New Student Enrolled</p>
+                  <p className="text-xs text-black">John Doe - Computer Science</p>
+                  <p className="text-xs text-black mt-1 flex items-center gap-1">
                     <Clock className="h-3 w-3" />
                     5 minutes ago
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-start gap-3 p-3 bg-solid black-50 rounded-lg hover:bg-solid black-100 transition-colors">
                 <div className="bg-blue-100 p-2 rounded-full">
                   <Receipt className="h-4 w-4 text-blue-600" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-800">Payment Received</p>
-                  <p className="text-xs text-gray-600">Le 50,000 - STU-2024-001</p>
-                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                  <p className="text-sm font-medium text-black">Payment Received</p>
+                  <p className="text-xs text-black">NSL 50,000 - STU-2024-001</p>
+                  <p className="text-xs text-black mt-1 flex items-center gap-1">
                     <Clock className="h-3 w-3" />
                     1 hour ago
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-start gap-3 p-3 bg-solid black-50 rounded-lg hover:bg-solid black-100 transition-colors">
                 <div className="bg-purple-100 p-2 rounded-full">
                   <FileText className="h-4 w-4 text-purple-600" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-800">Application Submitted</p>
-                  <p className="text-xs text-gray-600">Engineering Program - APP-2024-156</p>
-                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                  <p className="text-sm font-medium text-black">Application Submitted</p>
+                  <p className="text-xs text-black">Engineering Program - APP-2024-156</p>
+                  <p className="text-xs text-black mt-1 flex items-center gap-1">
                     <Clock className="h-3 w-3" />
                     2 hours ago
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+              <div className="flex items-start gap-3 p-3 bg-solid black-50 rounded-lg hover:bg-solid black-100 transition-colors">
                 <div className="bg-orange-100 p-2 rounded-full">
                   <BookOpen className="h-4 w-4 text-orange-600" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-800">Course Updated</p>
-                  <p className="text-xs text-gray-600">CS101 - Introduction to Programming</p>
-                  <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                  <p className="text-sm font-medium text-black">Course Updated</p>
+                  <p className="text-xs text-black">CS101 - Introduction to Programming</p>
+                  <p className="text-xs text-black mt-1 flex items-center gap-1">
                     <Clock className="h-3 w-3" />
                     3 hours ago
                   </p>
@@ -373,7 +373,7 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-portal-teal-600" />
-                <h3 className="text-lg font-bold text-gray-800">Upcoming Events</h3>
+                <h3 className="text-lg font-bold text-black">Upcoming Events</h3>
               </div>
               <button className="text-sm text-portal-teal-600 hover:text-portal-teal-700 font-medium">
                 View Calendar
@@ -388,9 +388,9 @@ export default function DashboardPage() {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold text-gray-800">Registration Opens</p>
-                  <p className="text-sm text-gray-600">Semester 2 2025/26</p>
-                  <p className="text-xs text-gray-500 mt-1">9:00 AM - Online Portal</p>
+                  <p className="font-semibold text-black">Registration Opens</p>
+                  <p className="text-sm text-black">Semester 2 2025/26</p>
+                  <p className="text-xs text-black mt-1">9:00 AM - Online Portal</p>
                 </div>
               </div>
               <div className="flex gap-4 p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
@@ -401,9 +401,9 @@ export default function DashboardPage() {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold text-gray-800">Faculty Meeting</p>
-                  <p className="text-sm text-gray-600">All Departments</p>
-                  <p className="text-xs text-gray-500 mt-1">2:00 PM - Main Hall</p>
+                  <p className="font-semibold text-black">Faculty Meeting</p>
+                  <p className="text-sm text-black">All Departments</p>
+                  <p className="text-xs text-black mt-1">2:00 PM - Main Hall</p>
                 </div>
               </div>
               <div className="flex gap-4 p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
@@ -414,9 +414,9 @@ export default function DashboardPage() {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold text-gray-800">Payment Deadline</p>
-                  <p className="text-sm text-gray-600">Tuition Fees</p>
-                  <p className="text-xs text-gray-500 mt-1">5:00 PM - Finance Office</p>
+                  <p className="font-semibold text-black">Payment Deadline</p>
+                  <p className="text-sm text-black">Tuition Fees</p>
+                  <p className="text-xs text-black mt-1">5:00 PM - Finance Office</p>
                 </div>
               </div>
             </div>
@@ -428,9 +428,9 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-5">
             <div className="flex items-center gap-2">
               <BarChart3 className="h-5 w-5 text-portal-teal-600" />
-              <h3 className="text-lg font-bold text-gray-800">Student Enrollment Trend</h3>
+              <h3 className="text-lg font-bold text-black">Student Enrollment Trend</h3>
             </div>
-            <select className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-portal-teal-500">
+            <select className="px-3 py-2 border border-solid black-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-portal-teal-500">
               <option>Last 6 Months</option>
               <option>Last Year</option>
               <option>All Time</option>
@@ -439,66 +439,66 @@ export default function DashboardPage() {
           <div className="grid grid-cols-6 gap-2 items-end h-48">
             <div className="flex flex-col items-center">
               <div className="w-full bg-blue-500 rounded-t-lg hover:bg-blue-600 transition-colors" style={{ height: '60%' }}></div>
-              <p className="text-xs text-gray-600 mt-2">Oct</p>
-              <p className="text-xs font-semibold text-gray-800">120</p>
+              <p className="text-xs text-black mt-2">Oct</p>
+              <p className="text-xs font-semibold text-black">120</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-full bg-blue-500 rounded-t-lg hover:bg-blue-600 transition-colors" style={{ height: '75%' }}></div>
-              <p className="text-xs text-gray-600 mt-2">Nov</p>
-              <p className="text-xs font-semibold text-gray-800">150</p>
+              <p className="text-xs text-black mt-2">Nov</p>
+              <p className="text-xs font-semibold text-black">150</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-full bg-blue-500 rounded-t-lg hover:bg-blue-600 transition-colors" style={{ height: '85%' }}></div>
-              <p className="text-xs text-gray-600 mt-2">Dec</p>
-              <p className="text-xs font-semibold text-gray-800">170</p>
+              <p className="text-xs text-black mt-2">Dec</p>
+              <p className="text-xs font-semibold text-black">170</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-full bg-blue-500 rounded-t-lg hover:bg-blue-600 transition-colors" style={{ height: '70%' }}></div>
-              <p className="text-xs text-gray-600 mt-2">Jan</p>
-              <p className="text-xs font-semibold text-gray-800">140</p>
+              <p className="text-xs text-black mt-2">Jan</p>
+              <p className="text-xs font-semibold text-black">140</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-full bg-blue-500 rounded-t-lg hover:bg-blue-600 transition-colors" style={{ height: '90%' }}></div>
-              <p className="text-xs text-gray-600 mt-2">Feb</p>
-              <p className="text-xs font-semibold text-gray-800">180</p>
+              <p className="text-xs text-black mt-2">Feb</p>
+              <p className="text-xs font-semibold text-black">180</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-full bg-portal-teal-500 rounded-t-lg hover:bg-portal-teal-600 transition-colors" style={{ height: '100%' }}></div>
-              <p className="text-xs text-gray-600 mt-2">Mar</p>
-              <p className="text-xs font-semibold text-gray-800">200</p>
+              <p className="text-xs text-black mt-2">Mar</p>
+              <p className="text-xs font-semibold text-black">200</p>
             </div>
           </div>
         </div>
 
         {/* System Status */}
         <div className="bg-white rounded-lg shadow-md p-6 border-l-4 border-portal-teal-500">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">System Status</h3>
+          <h3 className="text-xl font-bold text-black mb-4">System Status</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
               <span className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></span>
               <div>
-                <p className="text-xs text-gray-600">Frontend</p>
+                <p className="text-xs text-black">Frontend</p>
                 <p className="font-semibold text-green-700">Running</p>
               </div>
             </div>
             <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
               <span className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></span>
               <div>
-                <p className="text-xs text-gray-600">Backend API</p>
+                <p className="text-xs text-black">Backend API</p>
                 <p className="font-semibold text-green-700">Running</p>
               </div>
             </div>
             <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-200">
               <span className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></span>
               <div>
-                <p className="text-xs text-gray-600">Database</p>
+                <p className="text-xs text-black">Database</p>
                 <p className="font-semibold text-green-700">Connected</p>
               </div>
             </div>
             <div className="flex items-center p-3 bg-blue-50 rounded-lg border border-blue-200">
               <span className="w-3 h-3 bg-blue-500 rounded-full mr-3"></span>
               <div>
-                <p className="text-xs text-gray-600">Active Records</p>
+                <p className="text-xs text-black">Active Records</p>
                 <p className="font-semibold text-blue-700">{stats ? `${stats.students.total} students` : 'Loading...'}</p>
               </div>
             </div>

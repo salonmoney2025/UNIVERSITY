@@ -20,7 +20,7 @@ export default function AdvancedSearch() {
   const mockResults: SearchResult[] = [
     { id: '1', type: 'student', title: 'John Doe', subtitle: 'STU-2024-001 - Computer Science', link: '/students/1' },
     { id: '2', type: 'course', title: 'CS101', subtitle: 'Introduction to Programming', link: '/courses/1' },
-    { id: '3', type: 'payment', title: 'Payment #12345', subtitle: 'Le 50,000 - Tuition Fee', link: '/payments/1' },
+    { id: '3', type: 'payment', title: 'Payment #12345', subtitle: 'NSL 50,000 - Tuition Fee', link: '/payments/1' },
     { id: '4', type: 'application', title: 'Application #APP-2024-156', subtitle: 'Engineering Program', link: '/applications/1' },
   ];
 
@@ -44,7 +44,7 @@ export default function AdvancedSearch() {
       case 'course': return <BookOpen className="h-5 w-5 text-purple-600" />;
       case 'payment': return <Receipt className="h-5 w-5 text-green-600" />;
       case 'application': return <FileText className="h-5 w-5 text-orange-600" />;
-      default: return <Search className="h-5 w-5 text-gray-600" />;
+      default: return <Search className="h-5 w-5 text-black" />;
     }
   };
 
@@ -52,7 +52,7 @@ export default function AdvancedSearch() {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="hidden md:flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-white"
+        className="hidden md:flex items-center gap-2 px-4 py-2 bg-solid black-700 hover:bg-solid black-600 rounded-lg transition-colors text-white"
       >
         <Search className="h-4 w-4" />
         <span className="text-sm">Advanced Search...</span>
@@ -71,9 +71,9 @@ export default function AdvancedSearch() {
       {/* Search Modal */}
       <div className="fixed top-20 left-1/2 -translate-x-1/2 w-full max-w-2xl bg-white rounded-lg shadow-2xl z-50 overflow-hidden">
         {/* Search Input */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-solid black-200">
           <div className="flex items-center gap-3">
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-5 w-5 text-black" />
             <input
               type="text"
               value={query}
@@ -84,9 +84,9 @@ export default function AdvancedSearch() {
             />
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-solid black-100 rounded-lg transition-colors"
             >
-              <X className="h-5 w-5 text-gray-500" />
+              <X className="h-5 w-5 text-black" />
             </button>
           </div>
 
@@ -97,7 +97,7 @@ export default function AdvancedSearch() {
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 filter === 'all'
                   ? 'bg-portal-teal-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-solid black-100 text-black hover:bg-solid black-200'
               }`}
             >
               All
@@ -107,7 +107,7 @@ export default function AdvancedSearch() {
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 filter === 'student'
                   ? 'bg-blue-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-solid black-100 text-black hover:bg-solid black-200'
               }`}
             >
               Students
@@ -117,7 +117,7 @@ export default function AdvancedSearch() {
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 filter === 'course'
                   ? 'bg-purple-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-solid black-100 text-black hover:bg-solid black-200'
               }`}
             >
               Courses
@@ -127,7 +127,7 @@ export default function AdvancedSearch() {
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 filter === 'payment'
                   ? 'bg-green-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-solid black-100 text-black hover:bg-solid black-200'
               }`}
             >
               Payments
@@ -137,7 +137,7 @@ export default function AdvancedSearch() {
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 filter === 'application'
                   ? 'bg-orange-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  : 'bg-solid black-100 text-black hover:bg-solid black-200'
               }`}
             >
               Applications
@@ -148,7 +148,7 @@ export default function AdvancedSearch() {
         {/* Results */}
         <div className="max-h-96 overflow-y-auto">
           {query.length > 0 && results.length === 0 && (
-            <div className="p-8 text-center text-gray-500">
+            <div className="p-8 text-center text-black">
               No results found for "{query}"
             </div>
           )}
@@ -156,16 +156,16 @@ export default function AdvancedSearch() {
             <a
               key={result.id}
               href={result.link}
-              className="flex items-start gap-4 p-4 hover:bg-gray-50 border-b border-gray-100 transition-colors"
+              className="flex items-start gap-4 p-4 hover:bg-solid black-50 border-b border-solid black-100 transition-colors"
             >
-              <div className="bg-gray-100 p-2 rounded-lg">
+              <div className="bg-solid black-100 p-2 rounded-lg">
                 {getIcon(result.type)}
               </div>
               <div className="flex-1">
-                <p className="font-medium text-gray-900">{result.title}</p>
-                <p className="text-sm text-gray-600 mt-1">{result.subtitle}</p>
+                <p className="font-medium text-black">{result.title}</p>
+                <p className="text-sm text-black mt-1">{result.subtitle}</p>
               </div>
-              <span className="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full capitalize">
+              <span className="text-xs px-2 py-1 bg-solid black-100 text-black rounded-full capitalize">
                 {result.type}
               </span>
             </a>
@@ -174,19 +174,19 @@ export default function AdvancedSearch() {
 
         {/* Footer with keyboard shortcuts */}
         {query.length === 0 && (
-          <div className="p-4 bg-gray-50 border-t border-gray-200">
-            <div className="flex items-center justify-between text-xs text-gray-500">
+          <div className="p-4 bg-solid black-50 border-t border-solid black-200">
+            <div className="flex items-center justify-between text-xs text-black">
               <div className="flex gap-4">
                 <div className="flex items-center gap-2">
-                  <kbd className="px-2 py-1 bg-white border border-gray-300 rounded">↑↓</kbd>
+                  <kbd className="px-2 py-1 bg-white border border-solid black-300 rounded">↑↓</kbd>
                   <span>Navigate</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <kbd className="px-2 py-1 bg-white border border-gray-300 rounded">Enter</kbd>
+                  <kbd className="px-2 py-1 bg-white border border-solid black-300 rounded">Enter</kbd>
                   <span>Select</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <kbd className="px-2 py-1 bg-white border border-gray-300 rounded">Esc</kbd>
+                  <kbd className="px-2 py-1 bg-white border border-solid black-300 rounded">Esc</kbd>
                   <span>Close</span>
                 </div>
               </div>

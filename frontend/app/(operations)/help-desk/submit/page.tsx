@@ -34,7 +34,7 @@ export default function SubmitTicketPage() {
 
   return (
     <DashboardLayout>
-      <div className="p-6 bg-gray-50 min-h-screen">
+      <div className="p-6 bg-solid black-50 min-h-screen">
         <div className="mb-6 flex items-center space-x-3">
           <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
             <HelpCircle className="w-6 h-6 text-orange-600" />
@@ -46,7 +46,7 @@ export default function SubmitTicketPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-sm border border-solid black-200 p-6 mb-6">
             <h3 className="text-lg font-semibold text-black mb-4">Ticket Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -57,7 +57,7 @@ export default function SubmitTicketPage() {
                   required
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-black focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg bg-white text-black focus:ring-2 focus:ring-portal-teal-500"
                 >
                   <option value="">Select Category</option>
                   {categories.map((cat) => (
@@ -73,7 +73,7 @@ export default function SubmitTicketPage() {
                   required
                   value={formData.priority}
                   onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-black focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg bg-white text-black focus:ring-2 focus:ring-portal-teal-500"
                 >
                   <option value="low">Low - General inquiry</option>
                   <option value="medium">Medium - Need assistance</option>
@@ -91,7 +91,7 @@ export default function SubmitTicketPage() {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="Brief description of your issue"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-black placeholder-gray-500 focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg bg-white text-black placeholder-solid black-500 focus:ring-2 focus:ring-portal-teal-500"
                 />
               </div>
               <div className="md:col-span-2">
@@ -104,13 +104,13 @@ export default function SubmitTicketPage() {
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   rows={6}
                   placeholder="Provide detailed information about your issue..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-black placeholder-gray-500 focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg bg-white text-black placeholder-solid black-500 focus:ring-2 focus:ring-portal-teal-500"
                 />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-sm border border-solid black-200 p-6 mb-6">
             <h3 className="text-lg font-semibold text-black mb-4">Contact Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -123,7 +123,7 @@ export default function SubmitTicketPage() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="your.email@example.com"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-black placeholder-gray-500 focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg bg-white text-black placeholder-solid black-500 focus:ring-2 focus:ring-portal-teal-500"
                 />
               </div>
               <div>
@@ -135,16 +135,16 @@ export default function SubmitTicketPage() {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder="+232 XX XXX XXXX"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white text-black placeholder-gray-500 focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg bg-white text-black placeholder-solid black-500 focus:ring-2 focus:ring-portal-teal-500"
                 />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-sm border border-solid black-200 p-6 mb-6">
             <h3 className="text-lg font-semibold text-black mb-4">Attachments (Optional)</h3>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <div className="border-2 border-dashed border-solid black-300 rounded-lg p-8 text-center">
+              <Upload className="w-12 h-12 text-black mx-auto mb-4" />
               <p className="text-sm text-black mb-2">
                 Click to upload or drag and drop
               </p>
@@ -159,7 +159,7 @@ export default function SubmitTicketPage() {
             <button
               type="button"
               onClick={() => window.history.back()}
-              className="px-6 py-2 border border-gray-300 text-black rounded-lg hover:bg-gray-50"
+              className="px-6 py-2 border border-solid black-300 text-black rounded-lg hover:bg-solid black-50"
             >
               Cancel
             </button>

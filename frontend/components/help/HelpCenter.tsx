@@ -66,7 +66,7 @@ export default function HelpCenter() {
       case 'students': return 'bg-purple-100 text-purple-700';
       case 'finance': return 'bg-green-100 text-green-700';
       case 'technical': return 'bg-orange-100 text-orange-700';
-      default: return 'bg-gray-100 text-gray-700';
+      default: return 'bg-solid black-100 text-black';
     }
   };
 
@@ -111,59 +111,59 @@ export default function HelpCenter() {
 
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-black" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search help topics..."
-              className="w-full pl-10 pr-4 py-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+              className="w-full pl-10 pr-4 py-2 rounded-lg bg-white bg-opacity-20 text-white placeholder-solid black-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
             />
           </div>
         </div>
 
         {/* Quick Actions */}
-        <div className="p-4 border-b border-gray-200">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">Quick Support</h3>
+        <div className="p-4 border-b border-solid black-200">
+          <h3 className="text-sm font-semibold text-black mb-3">Quick Support</h3>
           <div className="grid grid-cols-3 gap-2">
             <button className="flex flex-col items-center gap-2 p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">
               <Video className="h-5 w-5 text-blue-600" />
-              <span className="text-xs font-medium text-gray-700">Video Guides</span>
+              <span className="text-xs font-medium text-black">Video Guides</span>
             </button>
             <button className="flex flex-col items-center gap-2 p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors">
               <MessageCircle className="h-5 w-5 text-green-600" />
-              <span className="text-xs font-medium text-gray-700">Live Chat</span>
+              <span className="text-xs font-medium text-black">Live Chat</span>
             </button>
             <button className="flex flex-col items-center gap-2 p-3 bg-orange-50 hover:bg-orange-100 rounded-lg transition-colors">
               <FileText className="h-5 w-5 text-orange-600" />
-              <span className="text-xs font-medium text-gray-700">Documentation</span>
+              <span className="text-xs font-medium text-black">Documentation</span>
             </button>
           </div>
         </div>
 
         {/* Help Topics */}
         <div className="flex-1 overflow-y-auto p-4">
-          <h3 className="text-sm font-semibold text-gray-700 mb-3">Popular Topics</h3>
+          <h3 className="text-sm font-semibold text-black mb-3">Popular Topics</h3>
           <div className="space-y-2">
             {filteredTopics.map((topic) => (
               <button
                 key={topic.id}
-                className="w-full text-left p-4 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors group"
+                className="w-full text-left p-4 bg-solid black-50 hover:bg-solid black-100 rounded-lg transition-colors group"
               >
                 <div className="flex items-start gap-3">
                   <div className={`p-2 rounded-lg ${getCategoryColor(topic.category)}`}>
                     <topic.icon className="h-4 w-4" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-medium text-gray-900 group-hover:text-portal-teal-600 transition-colors">
+                    <h4 className="font-medium text-black group-hover:text-portal-teal-600 transition-colors">
                       {topic.title}
                     </h4>
-                    <p className="text-sm text-gray-600 mt-1">{topic.description}</p>
+                    <p className="text-sm text-black mt-1">{topic.description}</p>
                     <span className={`inline-block mt-2 px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(topic.category)}`}>
                       {topic.category.replace('-', ' ')}
                     </span>
                   </div>
-                  <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-portal-teal-600 transition-colors" />
+                  <ChevronRight className="h-5 w-5 text-black group-hover:text-portal-teal-600 transition-colors" />
                 </div>
               </button>
             ))}
@@ -171,9 +171,9 @@ export default function HelpCenter() {
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-200 bg-gray-50">
+        <div className="p-4 border-t border-solid black-200 bg-solid black-50">
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-2">Still need help?</p>
+            <p className="text-sm text-black mb-2">Still need help?</p>
             <button className="w-full bg-portal-teal-600 hover:bg-portal-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
               Contact Support
             </button>

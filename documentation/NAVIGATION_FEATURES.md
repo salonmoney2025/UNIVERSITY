@@ -156,7 +156,7 @@ Home > Finance > Payments
 - Fully implemented across all components
 - Toggle button in header
 - Automatic class switching (`dark:` variants)
-- Professional dark gray palette
+- Professional dark solid black palette
 
 ### Responsive Design
 - Mobile: Hamburger menu + overlay sidebar

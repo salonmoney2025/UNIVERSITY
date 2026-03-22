@@ -48,6 +48,7 @@ import {
   ClipboardList,
   FileSignature,
   HandshakeIcon,
+  Calendar,
 } from 'lucide-react';
 
 interface SubMenuItem {
@@ -62,6 +63,7 @@ interface NavItem {
   icon: any;
   badge?: number;
   submenu?: SubMenuItem[];
+  roles?: string[]; // Allowed roles for this menu item
 }
 
 export default function Sidebar() {
@@ -92,11 +94,23 @@ export default function Sidebar() {
   const isExpanded = (menuName: string) => expandedMenus.includes(menuName);
   const isActive = (href: string) => pathname === href;
 
+  // Check if user has access to a menu item based on roles
+  const hasAccess = (allowedRoles?: string[]) => {
+    if (!allowedRoles || allowedRoles.length === 0) return true; // No restrictions
+    if (!user?.role) return false; // No user role
+
+    // Admin and Super Admin have access to everything
+    if (user.role === 'admin' || user.role === 'superadmin') return true;
+
+    return allowedRoles.includes(user.role);
+  };
+
   const navigationItems: NavItem[] = [
     { name: 'DASHBOARD', href: '/dashboard', icon: LayoutDashboard },
     {
       name: 'SYSTEM SETTINGS',
       icon: Settings,
+      roles: ['admin', 'superadmin'], // Only admin and superadmin
       submenu: [
         { name: 'Add Campus', href: '/system-settings/add-campus', icon: Plus },
         { name: 'Manage Campuses', href: '/system-settings/manage-campuses', icon: Eye },
@@ -111,6 +125,7 @@ export default function Sidebar() {
     {
       name: 'SYSTEM ADMINS',
       icon: Users,
+      roles: ['admin', 'superadmin'], // Only admin and superadmin
       submenu: [
         { name: 'Add User', href: '/system-admins/add-user', icon: Plus },
         { name: 'Manage Users', href: '/system-admins/manage-users', icon: Users },
@@ -129,6 +144,7 @@ export default function Sidebar() {
     {
       name: 'RECEIPT',
       icon: Receipt,
+      roles: ['admin', 'superadmin', 'finance', 'accountant'], // Finance-related roles
       submenu: [
         { name: 'Generate Receipt', href: '/receipt/generate', icon: Plus },
         { name: 'Payment Records', href: '/receipt/payment-records', icon: CreditCard },
@@ -142,13 +158,18 @@ export default function Sidebar() {
       icon: FileText,
       submenu: [
         { name: 'Applicant Counts', href: '/applications/counts', icon: ClipboardList },
-        { name: 'Verified Applications', href: '/applications/verified', icon: CheckCircle },
-        { name: 'View All Applications', href: '/applications', icon: FileCheck },
-        { name: 'Few Other Examinations', href: '/applications/examinations', icon: BookCheck },
-        { name: 'Edit Application Information', href: '/applications/edit', icon: FilePenLine },
-        { name: 'Online Application List', href: '/applications/list', icon: ClipboardList },
-        { name: 'Set Provisional Letter', href: '/applications/provisional-letter', icon: FileSignature },
-        { name: 'Accept Offer Letter', href: '/applications/offer-letter', icon: HandshakeIcon },
+        { name: 'Verify Applications', href: '/applications/verify', icon: CheckCircle },
+        { name: 'Check Results', href: '/applications/check-results', icon: FileCheck },
+        { name: 'View All Applications', href: '/applications', icon: Eye },
+        { name: 'View Other Examinations', href: '/applications/examinations', icon: BookCheck },
+        { name: 'Edit Applicants Info', href: '/applications/edit', icon: FilePenLine },
+        { name: 'Online Applications List', href: '/applications/list', icon: List },
+        { name: 'Update Course Info', href: '/applications/update-course', icon: Edit },
+        { name: 'Reset Provisional Letters', href: '/applications/reset-provisional', icon: RefreshCw },
+        { name: 'Transfer Applicants', href: '/applications/transfer', icon: RefreshCw },
+        { name: 'Applicants Exemption', href: '/applications/exemption', icon: FileSignature },
+        { name: 'Delete Allotment', href: '/applications/delete-allotment', icon: Trash2 },
+        { name: 'Accept Offer Letter', href: '/applications/accept-offer', icon: HandshakeIcon },
       ],
     },
     {
@@ -160,7 +181,18 @@ export default function Sidebar() {
         { name: 'FAQ', href: '/help-desk/faq', icon: HelpCircle },
       ],
     },
-    { name: 'LETTERS', href: '/letters', icon: Mail },
+    {
+      name: 'LETTERS',
+      icon: Mail,
+      submenu: [
+        { name: 'Print Offer Letter', href: '/letters/print-offer-letter', icon: FileText },
+        { name: 'Print Admission Letter', href: '/letters/print-admission-letter', icon: FileCheck },
+        { name: 'Provisional Letter', href: '/letters/provisional-letter', icon: FileSignature },
+        { name: 'Acceptance Letter', href: '/letters/acceptance-letter', icon: HandshakeIcon },
+        { name: 'Deferral Letter', href: '/letters/deferral-letter', icon: FileText },
+        { name: 'All Letters', href: '/letters', icon: List },
+      ],
+    },
     {
       name: 'STUDENT MANAGEMENT',
       icon: GraduationCap,
@@ -176,13 +208,23 @@ export default function Sidebar() {
         { name: 'Reset Other Students', href: '/students/reset-others', icon: UserX },
       ],
     },
-    { name: 'BACK OFFICE', href: '/back-office', icon: Briefcase },
+    {
+      name: 'BACK OFFICE',
+      icon: Briefcase,
+      submenu: [
+        { name: 'Reset Pin Password', href: '/back-office/reset-pin', icon: Key },
+        { name: 'Extend Pin Deadline', href: '/back-office/extend-deadline', icon: Calendar },
+        { name: 'Transfer Applicants', href: '/back-office/transfer-applicant', icon: RefreshCw },
+        { name: 'Online Application', href: '/back-office/online-application', icon: FileText },
+        { name: 'Student Registration', href: '/back-office/student-registration', icon: UserPlus },
+      ],
+    },
     { name: 'STUDENT ID CARDS', href: '/student-id-cards', icon: IdCard },
     { name: 'STAFF ID CARDS', href: '/staff-id-cards', icon: BadgeCheck },
     { name: 'NOTIFICATIONS', href: '/notifications', icon: Bell },
-    { name: 'STAFF BENEFIT', href: '/staff-benefit', icon: Gift },
-    { name: 'MANAGE REVERSALS', href: '/manage-reversals', icon: RefreshCw },
-    { name: 'HR MANAGEMENT', href: '/hr-management', icon: Users },
+    { name: 'STAFF BENEFIT', href: '/staff-benefit', icon: Gift, roles: ['admin', 'superadmin', 'hr'] },
+    { name: 'MANAGE REVERSALS', href: '/manage-reversals', icon: RefreshCw, roles: ['admin', 'superadmin', 'finance'] },
+    { name: 'HR MANAGEMENT', href: '/hr-management', icon: Users, roles: ['admin', 'superadmin', 'hr'] },
     { name: 'FILES MANAGEMENT', href: '/files-management', icon: Folders },
     { name: 'MATRICULATION', href: '/matriculation', icon: Clipboard },
     { name: 'EXAMINATIONS', href: '/examinations', icon: FileText },
@@ -221,7 +263,7 @@ export default function Sidebar() {
 
       {/* Navigation Items */}
       <nav className="flex-1 py-2">
-        {navigationItems.map((item) => (
+        {navigationItems.filter(item => hasAccess(item.roles)).map((item) => (
           <div key={item.name}>
             {/* Main Menu Item */}
             {item.submenu ? (

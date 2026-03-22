@@ -156,11 +156,11 @@ export default function ResetApplicationPage() {
     <DashboardLayout>
       <div className="space-y-6">
         {/* Action Buttons Bar */}
-        <div className="bg-white border-b border-gray-300 px-6 py-3 flex items-center justify-between shadow-sm">
+        <div className="bg-white border-b border-solid black-300 px-6 py-3 flex items-center justify-between shadow-sm">
           <div className="flex items-center gap-3">
             <button
               onClick={() => router.push('/dashboard')}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-solid black-600 hover:bg-solid black-700 text-white rounded font-medium transition-colors"
             >
               <Home className="h-4 w-4" />
               HOME
@@ -186,8 +186,8 @@ export default function ResetApplicationPage() {
         <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-portal-teal-500">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Reset Application</h1>
-              <p className="mt-2 text-base text-gray-600">
+              <h1 className="text-3xl font-bold text-black">Reset Application</h1>
+              <p className="mt-2 text-base text-black">
                 Reset submitted applications to allow students to make corrections
               </p>
             </div>
@@ -216,13 +216,13 @@ export default function ResetApplicationPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Campus Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Select Campus
               </label>
               <select
                 value={selectedCampus}
                 onChange={(e) => setSelectedCampus(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
               >
                 <option value="all">All Campuses</option>
                 <option value="Main Campus">Main Campus</option>
@@ -233,17 +233,17 @@ export default function ResetApplicationPage() {
 
             {/* Search */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Search Application
               </label>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-black" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by name or application ID..."
-                  className="w-full pl-10 pr-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full pl-10 pr-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 />
               </div>
             </div>
@@ -255,57 +255,57 @@ export default function ResetApplicationPage() {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200 border-b-2 border-gray-400">
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                <tr className="bg-solid black-200 border-b-2 border-solid black-400">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     S/N
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Application ID
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Student Name
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Program
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Campus
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Application Date
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase border-r border-gray-300">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase border-r border-solid black-300">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-sm font-bold text-gray-800 uppercase">
+                  <th className="px-6 py-3 text-left text-sm font-bold text-black uppercase">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-solid black-200">
                 {filteredApplications.map((app, index) => (
-                  <tr key={app.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-900">{index + 1}</span>
+                  <tr key={app.id} className="hover:bg-solid black-50 transition-colors">
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{index + 1}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm font-medium text-gray-900">{app.applicationId}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm font-medium text-black">{app.applicationId}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-900">{app.studentName}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{app.studentName}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{app.program}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{app.program}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">{app.campus}</span>
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">{app.campus}</span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
-                      <span className="text-sm text-gray-600">
+                    <td className="px-6 py-4 border-r border-solid black-200">
+                      <span className="text-sm text-black">
                         {new Date(app.applicationDate).toLocaleDateString('en-GB')}
                       </span>
                     </td>
-                    <td className="px-6 py-4 border-r border-gray-200">
+                    <td className="px-6 py-4 border-r border-solid black-200">
                       {getStatusBadge(app.status)}
                     </td>
                     <td className="px-6 py-4">
@@ -316,7 +316,7 @@ export default function ResetApplicationPage() {
                           className={`flex items-center gap-1 px-3 py-1.5 rounded-lg font-medium transition-colors ${
                             app.canReset
                               ? 'bg-orange-600 hover:bg-orange-700 text-white'
-                              : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                              : 'bg-solid black-200 text-black cursor-not-allowed'
                           }`}
                           title={app.canReset ? 'Reset Application' : 'Cannot reset approved applications'}
                         >
@@ -333,9 +333,9 @@ export default function ResetApplicationPage() {
 
           {filteredApplications.length === 0 && (
             <div className="text-center py-12">
-              <FileText className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-500 font-medium">No applications found</p>
-              <p className="text-sm text-gray-400 mt-1">Try adjusting your search or filters</p>
+              <FileText className="h-12 w-12 text-black mx-auto mb-3" />
+              <p className="text-black font-medium">No applications found</p>
+              <p className="text-sm text-black mt-1">Try adjusting your search or filters</p>
             </div>
           )}
         </div>
@@ -375,26 +375,26 @@ export default function ResetApplicationPage() {
                   <div className="space-y-4 mb-6">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <p className="text-sm font-medium text-gray-700">Application ID</p>
-                        <p className="text-sm text-gray-900">{selectedApplication.applicationId}</p>
+                        <p className="text-sm font-medium text-black">Application ID</p>
+                        <p className="text-sm text-black">{selectedApplication.applicationId}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-700">Current Status</p>
+                        <p className="text-sm font-medium text-black">Current Status</p>
                         <div className="mt-1">{getStatusBadge(selectedApplication.status)}</div>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-700">Program</p>
-                        <p className="text-sm text-gray-900">{selectedApplication.program}</p>
+                        <p className="text-sm font-medium text-black">Program</p>
+                        <p className="text-sm text-black">{selectedApplication.program}</p>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-700">Campus</p>
-                        <p className="text-sm text-gray-900">{selectedApplication.campus}</p>
+                        <p className="text-sm font-medium text-black">Campus</p>
+                        <p className="text-sm text-black">{selectedApplication.campus}</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-black mb-2">
                       Reason for Reset <span className="text-red-500">*</span>
                     </label>
                     <textarea
@@ -402,16 +402,16 @@ export default function ResetApplicationPage() {
                       onChange={(e) => setResetReason(e.target.value)}
                       placeholder="Please provide a detailed reason for resetting this application..."
                       rows={4}
-                      className="w-full px-4 py-2 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+                      className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 </div>
 
                 {/* Modal Footer */}
-                <div className="bg-gray-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-gray-200">
+                <div className="bg-solid black-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-solid black-200">
                   <button
                     onClick={() => setShowConfirmModal(false)}
-                    className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-medium transition-colors"
+                    className="px-4 py-2 bg-solid black-200 hover:bg-solid black-300 text-black rounded-lg font-medium transition-colors"
                   >
                     Cancel
                   </button>

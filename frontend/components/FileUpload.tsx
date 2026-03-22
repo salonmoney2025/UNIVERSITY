@@ -166,7 +166,7 @@ export default function FileUpload({
         className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
           isDragging
             ? 'border-portal-teal-500 bg-portal-teal-50 dark:bg-portal-teal-900/20'
-            : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800'
+            : 'border-solid black-300 dark:border-solid black-600 bg-white dark:bg-solid black-800'
         }`}
       >
         <input
@@ -182,15 +182,15 @@ export default function FileUpload({
           className={`w-12 h-12 mx-auto mb-4 ${
             isDragging
               ? 'text-portal-teal-600 dark:text-portal-teal-400'
-              : 'text-gray-400'
+              : 'text-black'
           }`}
         />
 
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
           {isDragging ? 'Drop files here' : 'Upload Files'}
         </h3>
 
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+        <p className="text-sm text-black dark:text-black mb-4">
           Drag and drop your files here, or click to browse
         </p>
 
@@ -201,7 +201,7 @@ export default function FileUpload({
           Browse Files
         </button>
 
-        <p className="text-xs text-gray-400 dark:text-gray-500 mt-4">
+        <p className="text-xs text-black dark:text-black mt-4">
           Maximum file size: {maxSize}MB
           {acceptedTypes.length > 0 && acceptedTypes[0] !== '*/*' && (
             <span> • Accepted: {acceptedTypes.join(', ')}</span>
@@ -212,13 +212,13 @@ export default function FileUpload({
       {/* Uploaded Files List */}
       {files.length > 0 && (
         <div className="mt-6 space-y-3">
-          <h4 className="font-semibold text-gray-900 dark:text-white">
+          <h4 className="font-semibold text-black dark:text-white">
             {files.length} {files.length === 1 ? 'File' : 'Files'}
           </h4>
           {files.map((uploadedFile, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+              className="bg-white dark:bg-solid black-800 border border-solid black-200 dark:border-solid black-700 rounded-lg p-4"
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-3 flex-1 min-w-0">
@@ -227,15 +227,15 @@ export default function FileUpload({
                       ? 'text-green-600'
                       : uploadedFile.status === 'error'
                       ? 'text-red-600'
-                      : 'text-gray-600'
+                      : 'text-black'
                   }`}>
                     {getFileIcon(uploadedFile.file.name)}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                    <p className="text-sm font-medium text-black dark:text-white truncate">
                       {uploadedFile.file.name}
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                    <p className="text-xs text-black dark:text-black">
                       {formatFileSize(uploadedFile.file.size)}
                     </p>
                   </div>
@@ -249,7 +249,7 @@ export default function FileUpload({
                   )}
                   <button
                     onClick={() => removeFile(index)}
-                    className="text-gray-400 hover:text-red-600 transition-colors"
+                    className="text-black hover:text-red-600 transition-colors"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -258,7 +258,7 @@ export default function FileUpload({
 
               {/* Progress Bar */}
               {uploadedFile.status === 'uploading' && (
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div className="w-full bg-solid black-200 dark:bg-solid black-700 rounded-full h-2">
                   <div
                     className="bg-portal-teal-600 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${uploadedFile.progress}%` }}

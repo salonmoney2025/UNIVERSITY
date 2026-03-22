@@ -77,7 +77,7 @@ export function paymentReceiptEmail(data: {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-SL', {
       style: 'currency',
-      currency: 'SLE',
+      currency: 'NSL',
       minimumFractionDigits: 2,
     }).format(amount);
   };

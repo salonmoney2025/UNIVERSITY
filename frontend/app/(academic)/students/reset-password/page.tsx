@@ -26,20 +26,20 @@ export default function ResetStudentPasswordPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-solid black-50">
         {/* Header */}
-        <div className="bg-gray-700 px-6 py-4">
+        <div className="bg-solid black-700 px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <Key className="w-8 h-8 text-teal-400" />
               <div>
                 <h1 className="text-2xl font-bold text-white">RESET STUDENT PASSWORD</h1>
-                <p className="text-sm text-gray-300">Reset student account passwords</p>
+                <p className="text-sm text-black">Reset student account passwords</p>
               </div>
             </div>
             <Link
               href="/dashboard"
-              className="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded flex items-center space-x-2 transition-colors"
+              className="px-4 py-2 bg-solid black-600 hover:bg-solid black-500 text-white rounded flex items-center space-x-2 transition-colors"
             >
               <Home className="w-4 h-4" />
               <span>Home</span>
@@ -49,7 +49,7 @@ export default function ResetStudentPasswordPage() {
 
         {/* Search Student */}
         <div className="px-6 py-6">
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg shadow border border-solid black-200 p-6 mb-6">
             <h2 className="text-xl font-semibold text-black mb-4">Find Student</h2>
             <div className="flex space-x-3">
               <input
@@ -57,7 +57,7 @@ export default function ResetStudentPasswordPage() {
                 value={studentId}
                 onChange={(e) => setStudentId(e.target.value)}
                 placeholder="Enter Student ID or Email"
-                className="flex-1 px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
+                className="flex-1 px-4 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
               />
               <button
                 onClick={handleSearch}
@@ -73,34 +73,34 @@ export default function ResetStudentPasswordPage() {
           {studentInfo && (
             <>
               {/* Student Information */}
-              <div className="bg-white rounded-lg shadow border border-gray-200 p-6 mb-6">
+              <div className="bg-white rounded-lg shadow border border-solid black-200 p-6 mb-6">
                 <h2 className="text-xl font-semibold text-black mb-4">Student Information</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600">Student ID</p>
+                    <p className="text-sm text-black">Student ID</p>
                     <p className="text-black font-medium">{studentInfo.id}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Full Name</p>
+                    <p className="text-sm text-black">Full Name</p>
                     <p className="text-black font-medium">{studentInfo.name}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Email</p>
+                    <p className="text-sm text-black">Email</p>
                     <p className="text-black font-medium">{studentInfo.email}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Level</p>
+                    <p className="text-sm text-black">Level</p>
                     <p className="text-black font-medium">{studentInfo.level}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Department</p>
+                    <p className="text-sm text-black">Department</p>
                     <p className="text-black font-medium">{studentInfo.department}</p>
                   </div>
                 </div>
               </div>
 
               {/* Password Reset Form */}
-              <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
+              <div className="bg-white rounded-lg shadow border border-solid black-200 p-6">
                 <h2 className="text-xl font-semibold text-black mb-4">Reset Password</h2>
                 <div className="space-y-4 max-w-md">
                   <div>
@@ -111,7 +111,7 @@ export default function ResetStudentPasswordPage() {
                       type="password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
+                      className="w-full px-4 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
                       placeholder="Enter new password"
                     />
                   </div>
@@ -124,7 +124,7 @@ export default function ResetStudentPasswordPage() {
                       type="password"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
+                      className="w-full px-4 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
                       placeholder="Confirm new password"
                     />
                   </div>

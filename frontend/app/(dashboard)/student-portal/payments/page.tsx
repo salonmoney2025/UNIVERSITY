@@ -116,7 +116,7 @@ export default function StudentPaymentsPage() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-SL', {
       style: 'currency',
-      currency: 'SLE',
+      currency: 'NSL',
       minimumFractionDigits: 2,
     }).format(amount);
   };
@@ -129,14 +129,14 @@ export default function StudentPaymentsPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading payments...</p>
+          <p className="mt-4 text-black">Loading payments...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-solid black-50">
       {/* Header */}
       <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -149,8 +149,8 @@ export default function StudentPaymentsPage() {
           </button>
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Payment History</h1>
-              <p className="mt-1 text-sm text-gray-600">
+              <h1 className="text-3xl font-bold text-black">Payment History</h1>
+              <p className="mt-1 text-sm text-black">
                 View and download all your payment receipts
               </p>
             </div>
@@ -166,34 +166,34 @@ export default function StudentPaymentsPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6 border border-gray-200">
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-6 border border-solid black-200">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {/* Search */}
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Search
               </label>
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black" />
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Search by receipt number or transaction ref..."
-                  className="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="pl-10 w-full px-4 py-2 border border-solid black-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 />
               </div>
             </div>
 
             {/* Status Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Status
               </label>
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-solid black-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               >
                 <option value="all">All Status</option>
                 <option value="completed">Completed</option>
@@ -204,13 +204,13 @@ export default function StudentPaymentsPage() {
 
             {/* Type Filter */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black mb-2">
                 Payment Type
               </label>
               <select
                 value={filterType}
                 onChange={(e) => setFilterType(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-solid black-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               >
                 <option value="all">All Types</option>
                 {paymentTypes.map((type) => (
@@ -223,7 +223,7 @@ export default function StudentPaymentsPage() {
           </div>
 
           <div className="mt-4 flex items-center justify-between">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-black">
               Showing {filteredPayments.length} of {payments.length} payments
             </p>
             {(searchTerm || filterStatus !== 'all' || filterType !== 'all') && (
@@ -242,41 +242,41 @@ export default function StudentPaymentsPage() {
         </div>
 
         {/* Payments Table */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white rounded-lg shadow-sm border border-solid black-200">
           {filteredPayments.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-solid black-200">
+                <thead className="bg-solid black-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Receipt No
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Payment Type
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Amount
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Method
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Date
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Academic Year
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Action
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-solid black-200">
                   {filteredPayments.map((payment) => (
-                    <tr key={payment.id} className="hover:bg-gray-50">
+                    <tr key={payment.id} className="hover:bg-solid black-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <Receipt className="h-4 w-4 text-indigo-600 mr-2" />
@@ -285,19 +285,19 @@ export default function StudentPaymentsPage() {
                           </span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                         {payment.paymentType}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-black">
                         {formatCurrency(payment.amount)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                         {payment.paymentMethod}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                         {new Date(payment.paymentDate).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                         {payment.academicYear} - {payment.semester}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -308,7 +308,7 @@ export default function StudentPaymentsPage() {
                             ? 'bg-yellow-100 text-yellow-800'
                             : payment.status === 'verified'
                             ? 'bg-blue-100 text-blue-800'
-                            : 'bg-gray-100 text-gray-800'
+                            : 'bg-solid black-100 text-black'
                         }`}>
                           {payment.status}
                         </span>
@@ -329,9 +329,9 @@ export default function StudentPaymentsPage() {
             </div>
           ) : (
             <div className="px-6 py-12 text-center">
-              <FileText className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No payments found</h3>
-              <p className="mt-1 text-sm text-gray-500">
+              <FileText className="mx-auto h-12 w-12 text-black" />
+              <h3 className="mt-2 text-sm font-medium text-black">No payments found</h3>
+              <p className="mt-1 text-sm text-black">
                 {searchTerm || filterStatus !== 'all' || filterType !== 'all'
                   ? 'Try adjusting your filters'
                   : 'Your payment history will appear here'}
@@ -346,22 +346,22 @@ export default function StudentPaymentsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="text-center">
                 <DollarSign className="mx-auto h-8 w-8 text-indigo-600 mb-2" />
-                <p className="text-sm text-gray-600">Total Amount</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-sm text-black">Total Amount</p>
+                <p className="text-2xl font-bold text-black">
                   {formatCurrency(totalPaid)}
                 </p>
               </div>
               <div className="text-center">
                 <Receipt className="mx-auto h-8 w-8 text-purple-600 mb-2" />
-                <p className="text-sm text-gray-600">Total Payments</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-sm text-black">Total Payments</p>
+                <p className="text-2xl font-bold text-black">
                   {filteredPayments.length}
                 </p>
               </div>
               <div className="text-center">
                 <Calendar className="mx-auto h-8 w-8 text-pink-600 mb-2" />
-                <p className="text-sm text-gray-600">Last Payment</p>
-                <p className="text-lg font-bold text-gray-900">
+                <p className="text-sm text-black">Last Payment</p>
+                <p className="text-lg font-bold text-black">
                   {filteredPayments[0]
                     ? new Date(filteredPayments[0].paymentDate).toLocaleDateString()
                     : 'N/A'}
