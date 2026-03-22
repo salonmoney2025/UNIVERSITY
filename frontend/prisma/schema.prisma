@@ -1,0 +1,217 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String
+  role          String    @default("STUDENT")
+  status        String    @default("active")
+  studentId     String?   @unique
+  staffId       String?   @unique
+  department    String?
+  lastLogin     DateTime?
+  resetToken    String?
+  resetTokenExpiry DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Bank {
+  id            String   @id @default(cuid())
+  bankName      String
+  bankCode      String   @unique
+  swiftCode     String?
+  sortCode      String?
+  branch        String
+  address       String
+  city          String
+  phone         String
+  email         String
+  accountNumber String
+  accountName   String
+  status        String   @default("active")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  payments Payment[]
+}
+
+model Payment {
+  id              String   @id @default(cuid())
+  receiptNo       String   @unique
+  studentId       String
+  studentName     String
+  paymentType     String
+  amount          Float
+  paymentMethod   String
+  paymentDate     DateTime
+  transactionRef  String?
+  academicYear    String
+  semester        String
+  description     String?
+  status          String   @default("completed")
+  verifiedBy      String?
+  verifiedDate    DateTime?
+  bankId          String?
+  bank            Bank?    @relation(fields: [bankId], references: [id])
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Ticket {
+  id          String   @id @default(cuid())
+  ticketNo    String   @unique
+  subject     String
+  description String
+  category    String
+  priority    String   @default("medium")
+  status      String   @default("open")
+  email       String
+  phone       String?
+  assignedTo  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  responses TicketResponse[]
+}
+
+model TicketResponse {
+  id        String   @id @default(cuid())
+  ticketId  String
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  message   String
+  respondBy String
+  isStaff   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Campus {
+  id          String   @id @default(cuid())
+  name        String
+  code        String   @unique
+  district    String
+  region      String
+  address     String
+  phone       String
+  email       String
+  status      String   @default("Active")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  faculties Faculty[]
+}
+
+model Faculty {
+  id          String   @id @default(cuid())
+  name        String
+  code        String   @unique
+  dean        String?
+  campusId    String
+  campus      Campus   @relation(fields: [campusId], references: [id])
+  status      String   @default("Active")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  departments Department[]
+  courses     Course[]
+}
+
+model Department {
+  id         String   @id @default(cuid())
+  name       String
+  code       String   @unique
+  facultyId  String
+  faculty    Faculty  @relation(fields: [facultyId], references: [id])
+  head       String?
+  status     String   @default("Active")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  courses Course[]
+}
+
+model Course {
+  id           String   @id @default(cuid())
+  courseCode   String   @unique
+  courseName   String
+  credits      Int
+  facultyId    String
+  faculty      Faculty  @relation(fields: [facultyId], references: [id])
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id])
+  level        String
+  semester     String
+  status       String   @default("Active")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Signature {
+  id          String   @id @default(cuid())
+  name        String
+  title       String
+  role        String
+  department  String
+  imageUrl    String
+  status      String   @default("Active")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SMSTemplate {
+  id        String   @id @default(cuid())
+  name      String
+  category  String
+  message   String
+  variables String
+  status    String   @default("Active")
+  usage     Int      @default(0)
+  lastUsed  DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String   @default("info")
+  read      Boolean  @default(false)
+  link      String?
+  metadata  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Document {
+  id           String   @id @default(cuid())
+  userId       String
+  fileName     String
+  originalName String
+  fileType     String
+  fileSize     Int
+  filePath     String
+  category     String
+  description  String?
+  isPublic     Boolean  @default(false)
+  downloadCount Int     @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ActivityLog {
+  id          String   @id @default(cuid())
+  userId      String
+  userName    String
+  action      String
+  entity      String
+  entityId    String?
+  description String
+  ipAddress   String?
+  userAgent   String?
+  metadata    String?
+  createdAt   DateTime @default(now())
+}
