@@ -1,0 +1,44 @@
+# Multi-stage Dockerfile for Rust Workers Service
+# Optimized for fast builds and small final image
+
+# Stage 1: Build
+FROM rust:1.83-slim as builder
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    pkg-config \
+    libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy workspace files
+COPY Cargo.toml ./
+COPY shared/ ./shared/
+COPY workers/ ./workers/
+
+# Build the workers service (release mode)
+RUN cargo build --release --bin workers
+
+# Stage 2: Runtime
+FROM debian:bookworm-slim
+
+WORKDIR /app
+
+# Install runtime dependencies
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    libssl3 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy binary from builder
+COPY --from=builder /app/target/release/workers /app/workers
+
+# Create non-root user
+RUN useradd -m -u 1000 rustuser && \
+    chown -R rustuser:rustuser /app
+
+USER rustuser
+
+# Run the workers service
+CMD ["./workers"]

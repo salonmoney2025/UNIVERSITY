@@ -1,0 +1,28 @@
+# Git
+.git
+.gitignore
+
+# Target directory
+target/
+**/target/
+
+# Cargo lock for workspace (we'll regenerate in Docker)
+# Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation
+*.md
+!README.md
+
+# Test files
+tests/
+**/tests/
+
+# Examples
+examples/
+**/examples/

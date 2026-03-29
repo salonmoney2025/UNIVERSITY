@@ -1,0 +1,37 @@
+[package]
+name = "shared"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[dependencies]
+# Database
+sqlx.workspace = true
+
+# Serialization
+serde.workspace = true
+serde_json.workspace = true
+
+# Error handling
+thiserror.workspace = true
+anyhow.workspace = true
+
+# Utilities
+uuid.workspace = true
+chrono.workspace = true
+rust_decimal.workspace = true
+
+# Validation
+validator.workspace = true
+
+# Configuration
+config.workspace = true
+dotenvy.workspace = true
+
+# Logging
+tracing.workspace = true
+
+[lib]
+name = "shared"
+path = "src/lib.rs"
