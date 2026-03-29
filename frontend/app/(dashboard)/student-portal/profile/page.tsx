@@ -96,7 +96,7 @@ export default function StudentProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-solid black-50">
       {/* Header */}
       <div className="bg-white shadow">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -107,8 +107,8 @@ export default function StudentProfilePage() {
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Dashboard
           </button>
-          <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
-          <p className="mt-1 text-sm text-gray-600">
+          <h1 className="text-3xl font-bold text-black">My Profile</h1>
+          <p className="mt-1 text-sm text-black">
             Manage your account information and settings
           </p>
         </div>
@@ -116,9 +116,9 @@ export default function StudentProfilePage() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Profile Information */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-solid black-200 p-6 mb-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-gray-900">Profile Information</h2>
+            <h2 className="text-xl font-semibold text-black">Profile Information</h2>
             {!isEditing && (
               <button
                 onClick={() => setIsEditing(true)}
@@ -132,7 +132,7 @@ export default function StudentProfilePage() {
           <div className="space-y-4">
             {/* Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-black mb-1">
                 Full Name
               </label>
               {isEditing ? (
@@ -140,42 +140,42 @@ export default function StudentProfilePage() {
                   type="text"
                   value={profileData.name}
                   onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 />
               ) : (
                 <div className="flex items-center gap-2 py-2">
-                  <User className="h-5 w-5 text-gray-400" />
-                  <span className="text-gray-900">{user?.name}</span>
+                  <User className="h-5 w-5 text-black" />
+                  <span className="text-black">{user?.name}</span>
                 </div>
               )}
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-black mb-1">
                 Email Address
               </label>
               <div className="flex items-center gap-2 py-2">
-                <Mail className="h-5 w-5 text-gray-400" />
-                <span className="text-gray-900">{user?.email}</span>
-                <span className="text-xs text-gray-500">(Cannot be changed)</span>
+                <Mail className="h-5 w-5 text-black" />
+                <span className="text-black">{user?.email}</span>
+                <span className="text-xs text-black">(Cannot be changed)</span>
               </div>
             </div>
 
             {/* Student ID */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-black mb-1">
                 Student ID
               </label>
               <div className="flex items-center gap-2 py-2">
-                <Hash className="h-5 w-5 text-gray-400" />
-                <span className="text-gray-900">{user?.studentId}</span>
+                <Hash className="h-5 w-5 text-black" />
+                <span className="text-black">{user?.studentId}</span>
               </div>
             </div>
 
             {/* Department */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-black mb-1">
                 Department
               </label>
               {isEditing ? (
@@ -183,12 +183,12 @@ export default function StudentProfilePage() {
                   type="text"
                   value={profileData.department}
                   onChange={(e) => setProfileData({ ...profileData, department: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 />
               ) : (
                 <div className="flex items-center gap-2 py-2">
-                  <Building className="h-5 w-5 text-gray-400" />
-                  <span className="text-gray-900">{user?.department || 'Not specified'}</span>
+                  <Building className="h-5 w-5 text-black" />
+                  <span className="text-black">{user?.department || 'Not specified'}</span>
                 </div>
               )}
             </div>
@@ -213,7 +213,7 @@ export default function StudentProfilePage() {
                     department: user?.department || '',
                   });
                 }}
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+                className="px-4 py-2 text-sm font-medium text-black hover:text-black"
               >
                 Cancel
               </button>
@@ -222,11 +222,11 @@ export default function StudentProfilePage() {
         </div>
 
         {/* Change Password */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-solid black-200 p-6">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h2 className="text-xl font-semibold text-gray-900">Security</h2>
-              <p className="text-sm text-gray-600 mt-1">Update your password</p>
+              <h2 className="text-xl font-semibold text-black">Security</h2>
+              <p className="text-sm text-black mt-1">Update your password</p>
             </div>
             {!isChangingPassword && (
               <button
@@ -241,27 +241,27 @@ export default function StudentProfilePage() {
           {isChangingPassword ? (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-black mb-1">
                   New Password
                 </label>
                 <input
                   type="password"
                   value={passwordData.newPassword}
                   onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="Enter new password"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-black mb-1">
                   Confirm New Password
                 </label>
                 <input
                   type="password"
                   value={passwordData.confirmPassword}
                   onChange={(e) => setPasswordData({ ...passwordData, confirmPassword: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-2 border border-solid black-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="Confirm new password"
                 />
               </div>
@@ -280,15 +280,15 @@ export default function StudentProfilePage() {
                     setIsChangingPassword(false);
                     setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
                   }}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+                  className="px-4 py-2 text-sm font-medium text-black hover:text-black"
                 >
                   Cancel
                 </button>
               </div>
             </div>
           ) : (
-            <div className="flex items-center gap-2 py-2 text-gray-600">
-              <Lock className="h-5 w-5 text-gray-400" />
+            <div className="flex items-center gap-2 py-2 text-black">
+              <Lock className="h-5 w-5 text-black" />
               <span className="text-sm">Password is secure and encrypted</span>
             </div>
           )}

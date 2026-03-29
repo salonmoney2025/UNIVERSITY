@@ -77,7 +77,7 @@ export const generateReceiptPDF = (payment: PaymentData) => {
 
   doc.text(`Amount Paid:`, 20, yPos);
   doc.setFont('helvetica', 'bold');
-  doc.text(`SLE ${payment.amount.toLocaleString('en-SL', { minimumFractionDigits: 2 })}`, 70, yPos);
+  doc.text(`NSL ${payment.amount.toLocaleString('en-SL', { minimumFractionDigits: 2 })}`, 70, yPos);
   doc.setFont('helvetica', 'normal');
   yPos += 6;
 

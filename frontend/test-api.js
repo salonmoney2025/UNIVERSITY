@@ -56,7 +56,7 @@ async function testAPIs() {
     });
     const payment = await paymentResponse.json();
     console.log('   Created payment:', payment.receiptNo);
-    console.log('   Amount: SLE', payment.amount);
+    console.log('   Amount: NSL', payment.amount);
     console.log('');
 
     // Test 4: Verify Payment

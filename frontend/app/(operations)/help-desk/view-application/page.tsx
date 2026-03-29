@@ -199,9 +199,9 @@ export default function ViewApplicationDetailsPage() {
       case 'Rejected':
         return 'bg-red-100 text-red-800  text-red-600';
       case 'Incomplete':
-        return 'bg-gray-100 text-gray-800 bg-white text-black';
+        return 'bg-solid black-100 text-black bg-white text-black';
       default:
-        return 'bg-gray-100 text-gray-800 bg-white text-black';
+        return 'bg-solid black-100 text-black bg-white text-black';
     }
   };
 
@@ -225,7 +225,7 @@ export default function ViewApplicationDetailsPage() {
       case 'Rejected':
         return 'text-red-600 text-red-600';
       default:
-        return 'text-gray-600 text-black';
+        return 'text-black text-black';
     }
   };
 
@@ -245,8 +245,8 @@ export default function ViewApplicationDetailsPage() {
             <FileText className="w-6 h-6 text-portal-teal-600 text-portal-teal-600" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 text-black">View Application Details</h1>
-            <p className="text-sm text-gray-500 text-black">
+            <h1 className="text-2xl font-bold text-black text-black">View Application Details</h1>
+            <p className="text-sm text-black text-black">
               Search and view student application information
             </p>
           </div>
@@ -254,17 +254,17 @@ export default function ViewApplicationDetailsPage() {
       </div>
 
       {/* Search Section */}
-      <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 text-black mb-4">Search Application</h2>
+      <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6 mb-6">
+        <h2 className="text-lg font-semibold text-black text-black mb-4">Search Application</h2>
         <div className="flex flex-col md:flex-row md:items-end space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 text-black mb-2">
+            <label className="block text-sm font-medium text-black text-black mb-2">
               Search By
             </label>
             <select
               value={searchType}
               onChange={(e) => setSearchType(e.target.value as 'id' | 'email' | 'phone')}
-              className="w-full px-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+              className="w-full px-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
             >
               <option value="id">Application ID</option>
               <option value="email">Email Address</option>
@@ -272,11 +272,11 @@ export default function ViewApplicationDetailsPage() {
             </select>
           </div>
           <div className="flex-[2]">
-            <label className="block text-sm font-medium text-gray-700 text-black mb-2">
+            <label className="block text-sm font-medium text-black text-black mb-2">
               Search Query
             </label>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black" />
               <input
                 type="text"
                 value={searchQuery}
@@ -289,7 +289,7 @@ export default function ViewApplicationDetailsPage() {
                     ? 'Enter Email Address'
                     : 'Enter Phone Number'
                 }
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
+                className="w-full pl-10 pr-4 py-2 border border-solid black-300 border-solid black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500 focus:border-transparent bg-white text-black"
               />
             </div>
           </div>
@@ -306,9 +306,9 @@ export default function ViewApplicationDetailsPage() {
 
       {/* No Results */}
       {!application && searchQuery && !isSearching && (
-        <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-12 text-center">
-          <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-500 text-black">No application found matching your search criteria</p>
+        <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-12 text-center">
+          <FileText className="w-12 h-12 text-black mx-auto mb-4" />
+          <p className="text-black text-black">No application found matching your search criteria</p>
         </div>
       )}
 
@@ -316,16 +316,16 @@ export default function ViewApplicationDetailsPage() {
       {application && (
         <div className="space-y-6">
           {/* Status Banner */}
-          <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
+          <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 text-black mb-2">
+                <h2 className="text-2xl font-bold text-black text-black mb-2">
                   {application.firstName} {application.middleName} {application.lastName}
                 </h2>
-                <p className="text-sm text-gray-500 text-black">
+                <p className="text-sm text-black text-black">
                   Application ID: <span className="font-medium text-portal-teal-600 text-portal-teal-600">{application.applicationId}</span>
                 </p>
-                <p className="text-sm text-gray-500 text-black">
+                <p className="text-sm text-black text-black">
                   Submitted: {application.applicationDate}
                 </p>
               </div>
@@ -345,158 +345,158 @@ export default function ViewApplicationDetailsPage() {
             {/* Left Column - Personal & Contact Info */}
             <div className="lg:col-span-2 space-y-6">
               {/* Personal Information */}
-              <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 text-black mb-4 flex items-center space-x-2">
+              <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                <h3 className="text-lg font-semibold text-black text-black mb-4 flex items-center space-x-2">
                   <User className="w-5 h-5 text-portal-teal-600" />
                   <span>Personal Information</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm text-gray-500 text-black">First Name</label>
-                    <p className="text-gray-900 text-black font-medium">{application.firstName}</p>
+                    <label className="text-sm text-black text-black">First Name</label>
+                    <p className="text-black text-black font-medium">{application.firstName}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Middle Name</label>
-                    <p className="text-gray-900 text-black font-medium">{application.middleName}</p>
+                    <label className="text-sm text-black text-black">Middle Name</label>
+                    <p className="text-black text-black font-medium">{application.middleName}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Last Name</label>
-                    <p className="text-gray-900 text-black font-medium">{application.lastName}</p>
+                    <label className="text-sm text-black text-black">Last Name</label>
+                    <p className="text-black text-black font-medium">{application.lastName}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Date of Birth</label>
-                    <p className="text-gray-900 text-black font-medium">{application.dateOfBirth}</p>
+                    <label className="text-sm text-black text-black">Date of Birth</label>
+                    <p className="text-black text-black font-medium">{application.dateOfBirth}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Gender</label>
-                    <p className="text-gray-900 text-black font-medium">{application.gender}</p>
+                    <label className="text-sm text-black text-black">Gender</label>
+                    <p className="text-black text-black font-medium">{application.gender}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Nationality</label>
-                    <p className="text-gray-900 text-black font-medium">{application.nationality}</p>
+                    <label className="text-sm text-black text-black">Nationality</label>
+                    <p className="text-black text-black font-medium">{application.nationality}</p>
                   </div>
                 </div>
               </div>
 
               {/* Contact Information */}
-              <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 text-black mb-4 flex items-center space-x-2">
+              <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                <h3 className="text-lg font-semibold text-black text-black mb-4 flex items-center space-x-2">
                   <Phone className="w-5 h-5 text-portal-teal-600" />
                   <span>Contact Information</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Email</label>
-                    <p className="text-gray-900 text-black font-medium flex items-center space-x-2">
+                    <label className="text-sm text-black text-black">Email</label>
+                    <p className="text-black text-black font-medium flex items-center space-x-2">
                       <Mail className="w-4 h-4" />
                       <span>{application.email}</span>
                     </p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Phone</label>
-                    <p className="text-gray-900 text-black font-medium flex items-center space-x-2">
+                    <label className="text-sm text-black text-black">Phone</label>
+                    <p className="text-black text-black font-medium flex items-center space-x-2">
                       <Phone className="w-4 h-4" />
                       <span>{application.phone}</span>
                     </p>
                   </div>
                   {application.alternatePhone && (
                     <div>
-                      <label className="text-sm text-gray-500 text-black">Alternate Phone</label>
-                      <p className="text-gray-900 text-black font-medium">{application.alternatePhone}</p>
+                      <label className="text-sm text-black text-black">Alternate Phone</label>
+                      <p className="text-black text-black font-medium">{application.alternatePhone}</p>
                     </div>
                   )}
                 </div>
               </div>
 
               {/* Address */}
-              <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 text-black mb-4 flex items-center space-x-2">
+              <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                <h3 className="text-lg font-semibold text-black text-black mb-4 flex items-center space-x-2">
                   <MapPin className="w-5 h-5 text-portal-teal-600" />
                   <span>Address Information</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="md:col-span-2">
-                    <label className="text-sm text-gray-500 text-black">Permanent Address</label>
-                    <p className="text-gray-900 text-black font-medium">{application.permanentAddress}</p>
+                    <label className="text-sm text-black text-black">Permanent Address</label>
+                    <p className="text-black text-black font-medium">{application.permanentAddress}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">City</label>
-                    <p className="text-gray-900 text-black font-medium">{application.city}</p>
+                    <label className="text-sm text-black text-black">City</label>
+                    <p className="text-black text-black font-medium">{application.city}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">District</label>
-                    <p className="text-gray-900 text-black font-medium">{application.district}</p>
+                    <label className="text-sm text-black text-black">District</label>
+                    <p className="text-black text-black font-medium">{application.district}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Country</label>
-                    <p className="text-gray-900 text-black font-medium">{application.country}</p>
+                    <label className="text-sm text-black text-black">Country</label>
+                    <p className="text-black text-black font-medium">{application.country}</p>
                   </div>
                 </div>
               </div>
 
               {/* Academic Information */}
-              <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 text-black mb-4 flex items-center space-x-2">
+              <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                <h3 className="text-lg font-semibold text-black text-black mb-4 flex items-center space-x-2">
                   <GraduationCap className="w-5 h-5 text-portal-teal-600" />
                   <span>Academic Information</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="md:col-span-2">
-                    <label className="text-sm text-gray-500 text-black">Program Applied</label>
-                    <p className="text-gray-900 text-black font-medium">{application.programApplied}</p>
+                    <label className="text-sm text-black text-black">Program Applied</label>
+                    <p className="text-black text-black font-medium">{application.programApplied}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Faculty</label>
-                    <p className="text-gray-900 text-black font-medium">{application.faculty}</p>
+                    <label className="text-sm text-black text-black">Faculty</label>
+                    <p className="text-black text-black font-medium">{application.faculty}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Entry Level</label>
-                    <p className="text-gray-900 text-black font-medium">{application.entryLevel}</p>
+                    <label className="text-sm text-black text-black">Entry Level</label>
+                    <p className="text-black text-black font-medium">{application.entryLevel}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Previous School</label>
-                    <p className="text-gray-900 text-black font-medium">{application.previousSchool}</p>
+                    <label className="text-sm text-black text-black">Previous School</label>
+                    <p className="text-black text-black font-medium">{application.previousSchool}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Previous Qualification</label>
-                    <p className="text-gray-900 text-black font-medium">{application.previousQualification}</p>
+                    <label className="text-sm text-black text-black">Previous Qualification</label>
+                    <p className="text-black text-black font-medium">{application.previousQualification}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Year Completed</label>
-                    <p className="text-gray-900 text-black font-medium">{application.yearCompleted}</p>
+                    <label className="text-sm text-black text-black">Year Completed</label>
+                    <p className="text-black text-black font-medium">{application.yearCompleted}</p>
                   </div>
                   {application.aggregateScore && (
                     <div>
-                      <label className="text-sm text-gray-500 text-black">Aggregate Score</label>
-                      <p className="text-gray-900 text-black font-medium">{application.aggregateScore}</p>
+                      <label className="text-sm text-black text-black">Aggregate Score</label>
+                      <p className="text-black text-black font-medium">{application.aggregateScore}</p>
                     </div>
                   )}
                 </div>
               </div>
 
               {/* Guardian Information */}
-              <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 text-black mb-4 flex items-center space-x-2">
+              <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                <h3 className="text-lg font-semibold text-black text-black mb-4 flex items-center space-x-2">
                   <User className="w-5 h-5 text-portal-teal-600" />
                   <span>Guardian Information</span>
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Guardian Name</label>
-                    <p className="text-gray-900 text-black font-medium">{application.guardianName}</p>
+                    <label className="text-sm text-black text-black">Guardian Name</label>
+                    <p className="text-black text-black font-medium">{application.guardianName}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Relationship</label>
-                    <p className="text-gray-900 text-black font-medium">{application.guardianRelationship}</p>
+                    <label className="text-sm text-black text-black">Relationship</label>
+                    <p className="text-black text-black font-medium">{application.guardianRelationship}</p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Guardian Phone</label>
-                    <p className="text-gray-900 text-black font-medium">{application.guardianPhone}</p>
+                    <label className="text-sm text-black text-black">Guardian Phone</label>
+                    <p className="text-black text-black font-medium">{application.guardianPhone}</p>
                   </div>
                   {application.guardianEmail && (
                     <div>
-                      <label className="text-sm text-gray-500 text-black">Guardian Email</label>
-                      <p className="text-gray-900 text-black font-medium">{application.guardianEmail}</p>
+                      <label className="text-sm text-black text-black">Guardian Email</label>
+                      <p className="text-black text-black font-medium">{application.guardianEmail}</p>
                     </div>
                   )}
                 </div>
@@ -506,8 +506,8 @@ export default function ViewApplicationDetailsPage() {
             {/* Right Column - Documents & Payment */}
             <div className="space-y-6">
               {/* Documents */}
-              <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 text-black mb-4 flex items-center space-x-2">
+              <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                <h3 className="text-lg font-semibold text-black text-black mb-4 flex items-center space-x-2">
                   <FileCheck className="w-5 h-5 text-portal-teal-600" />
                   <span>Documents</span>
                 </h3>
@@ -515,12 +515,12 @@ export default function ViewApplicationDetailsPage() {
                   {application.documents.map((doc, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-3 bg-gray-50 bg-white rounded-lg"
+                      className="flex items-center justify-between p-3 bg-solid black-50 bg-white rounded-lg"
                     >
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 text-black">{doc.name}</p>
+                        <p className="text-sm font-medium text-black text-black">{doc.name}</p>
                         {doc.uploadedDate && (
-                          <p className="text-xs text-gray-500 text-black">
+                          <p className="text-xs text-black text-black">
                             Uploaded: {doc.uploadedDate}
                           </p>
                         )}
@@ -541,20 +541,20 @@ export default function ViewApplicationDetailsPage() {
               </div>
 
               {/* Payment Information */}
-              <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 text-black mb-4 flex items-center space-x-2">
+              <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                <h3 className="text-lg font-semibold text-black text-black mb-4 flex items-center space-x-2">
                   <DollarSign className="w-5 h-5 text-portal-teal-600" />
                   <span>Payment Information</span>
                 </h3>
                 <div className="space-y-3">
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Application Fee</label>
-                    <p className="text-lg font-bold text-gray-900 text-black">
-                      Le {application.applicationFee.toLocaleString()}
+                    <label className="text-sm text-black text-black">Application Fee</label>
+                    <p className="text-lg font-bold text-black text-black">
+                      NSL {application.applicationFee.toLocaleString()}
                     </p>
                   </div>
                   <div>
-                    <label className="text-sm text-gray-500 text-black">Payment Status</label>
+                    <label className="text-sm text-black text-black">Payment Status</label>
                     <p
                       className={`text-sm font-medium ${
                         application.paymentStatus === 'Paid'
@@ -567,13 +567,13 @@ export default function ViewApplicationDetailsPage() {
                   </div>
                   {application.paymentDate && (
                     <div>
-                      <label className="text-sm text-gray-500 text-black">Payment Date</label>
-                      <p className="text-sm text-gray-900 text-black">{application.paymentDate}</p>
+                      <label className="text-sm text-black text-black">Payment Date</label>
+                      <p className="text-sm text-black text-black">{application.paymentDate}</p>
                     </div>
                   )}
                   {application.receiptNumber && (
                     <div>
-                      <label className="text-sm text-gray-500 text-black">Receipt Number</label>
+                      <label className="text-sm text-black text-black">Receipt Number</label>
                       <p className="text-sm font-medium text-portal-teal-600 text-portal-teal-600">
                         {application.receiptNumber}
                       </p>
@@ -584,26 +584,26 @@ export default function ViewApplicationDetailsPage() {
 
               {/* Review Information */}
               {application.reviewedBy && (
-                <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 text-black mb-4 flex items-center space-x-2">
+                <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                  <h3 className="text-lg font-semibold text-black text-black mb-4 flex items-center space-x-2">
                     <Calendar className="w-5 h-5 text-portal-teal-600" />
                     <span>Review Information</span>
                   </h3>
                   <div className="space-y-3">
                     <div>
-                      <label className="text-sm text-gray-500 text-black">Reviewed By</label>
-                      <p className="text-sm text-gray-900 text-black">{application.reviewedBy}</p>
+                      <label className="text-sm text-black text-black">Reviewed By</label>
+                      <p className="text-sm text-black text-black">{application.reviewedBy}</p>
                     </div>
                     {application.reviewDate && (
                       <div>
-                        <label className="text-sm text-gray-500 text-black">Review Date</label>
-                        <p className="text-sm text-gray-900 text-black">{application.reviewDate}</p>
+                        <label className="text-sm text-black text-black">Review Date</label>
+                        <p className="text-sm text-black text-black">{application.reviewDate}</p>
                       </div>
                     )}
                     {application.remarks && (
                       <div>
-                        <label className="text-sm text-gray-500 text-black">Remarks</label>
-                        <p className="text-sm text-gray-900 text-black bg-gray-50 bg-white p-3 rounded">
+                        <label className="text-sm text-black text-black">Remarks</label>
+                        <p className="text-sm text-black text-black bg-solid black-50 bg-white p-3 rounded">
                           {application.remarks}
                         </p>
                       </div>
@@ -613,14 +613,14 @@ export default function ViewApplicationDetailsPage() {
               )}
 
               {/* Actions */}
-              <div className="bg-white bg-white rounded-lg shadow-sm border border-gray-200 border-gray-300 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 text-black mb-4">Actions</h3>
+              <div className="bg-white bg-white rounded-lg shadow-sm border border-solid black-200 border-solid black-300 p-6">
+                <h3 className="text-lg font-semibold text-black text-black mb-4">Actions</h3>
                 <div className="space-y-2">
                   <button className="w-full px-4 py-2 bg-portal-teal-600 text-white rounded-lg hover:bg-portal-teal-700 transition-colors flex items-center justify-center space-x-2">
                     <Download className="w-4 h-4" />
                     <span>Download Application</span>
                   </button>
-                  <button className="w-full px-4 py-2 border border-gray-300 border-gray-300 text-gray-700 text-black rounded-lg hover:bg-gray-100 hover:bg-gray-50 transition-colors">
+                  <button className="w-full px-4 py-2 border border-solid black-300 border-solid black-300 text-black text-black rounded-lg hover:bg-solid black-100 hover:bg-solid black-50 transition-colors">
                     Print Application
                   </button>
                 </div>

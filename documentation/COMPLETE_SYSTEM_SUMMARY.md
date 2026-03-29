@@ -147,12 +147,12 @@ All existing management pages migrated to new layout:
 - ✅ Fully implemented across all pages
 - Toggle in header
 - Automatic class switching
-- Professional dark gray palette
+- Professional dark solid black palette
 
 ### Typography
 - Headings: Font-bold, various sizes
 - Body: Font-medium, text-sm/base
-- Labels: Font-medium, text-gray-600
+- Labels: Font-medium, text-solid black-600
 
 ### Spacing
 - Consistent padding: p-4, p-6

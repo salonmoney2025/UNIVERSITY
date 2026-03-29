@@ -333,7 +333,7 @@ Each system has its own relevant statistics displayed on the overview tab.
 | HR | Orange | Briefcase |
 | Applications | Indigo | FileText |
 | Communications | Pink | Mail |
-| Database | Gray | Database |
+| Database | solid black | Database |
 
 ---
 

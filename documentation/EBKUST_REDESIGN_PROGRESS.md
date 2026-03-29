@@ -80,7 +80,7 @@ RECEIPT ▼
 **File:** `frontend/components/layout/Header.tsx`
 
 **Updates:**
-- ✅ Dark blue-gray background (`bg-portal-header`)
+- ✅ Dark blue-solid black background (`bg-portal-header`)
 - ✅ MC Portal branding with logo
 - ✅ Teal-themed user avatar
 - ✅ Updated notification colors
@@ -339,8 +339,8 @@ All pages follow EBKUST portal design:
 
 **Color Scheme:**
 - Primary: Portal Teal (#14A38B)
-- Header: Dark Blue-Gray (#3A4D5C)
-- Active: Dark Gray (#2C3E50)
+- Header: Dark Blue-solid black (#3A4D5C)
+- Active: Dark solid black (#2C3E50)
 - Accent: Green, Blue, Purple, Orange
 
 **UI Components:**

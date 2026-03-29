@@ -192,7 +192,7 @@ Implemented a comprehensive **Add Student** page based on the EBKUST portal Stud
 - **Primary:** Portal Teal (#14A38B) - Buttons, active states
 - **Success:** Green - Success modal, confirmations
 - **Info:** Blue - Information alerts
-- **Text:** Gray scale - Light/dark mode compatible
+- **Text:** solid black scale - Light/dark mode compatible
 
 ### Components Used
 - **Lucide React Icons:**
@@ -204,7 +204,7 @@ Implemented a comprehensive **Add Student** page based on the EBKUST portal Stud
 - **Grid System:** 1-3 columns (responsive)
 - **Spacing:** Consistent padding and gaps
 - **Typography:** Bold headings, medium labels
-- **Borders:** Subtle gray borders with dark mode variants
+- **Borders:** Subtle solid black borders with dark mode variants
 
 ---
 

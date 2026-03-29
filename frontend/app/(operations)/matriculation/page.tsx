@@ -123,8 +123,8 @@ export default function MatriculationPage() {
         <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-portal-teal-500">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Matriculation Management</h1>
-              <p className="mt-2 text-base text-gray-600">
+              <h1 className="text-3xl font-bold text-black">Matriculation Management</h1>
+              <p className="mt-2 text-base text-black">
                 Manage student matriculation and generate matriculation numbers
               </p>
             
@@ -203,13 +203,13 @@ export default function MatriculationPage() {
             {/* Search */}
             <div className="flex-1 max-w-md">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-black" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by name or student ID..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                  className="w-full pl-10 pr-4 py-2 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 />
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function MatriculationPage() {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   filterStatus === 'all'
                     ? 'bg-portal-teal-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-solid black-100 text-black hover:bg-solid black-200'
                 }`}
               >
                 All
@@ -231,7 +231,7 @@ export default function MatriculationPage() {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   filterStatus === 'matriculated'
                     ? 'bg-green-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-solid black-100 text-black hover:bg-solid black-200'
                 }`}
               >
                 Matriculated
@@ -241,7 +241,7 @@ export default function MatriculationPage() {
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   filterStatus === 'pending'
                     ? 'bg-orange-500 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-solid black-100 text-black hover:bg-solid black-200'
                 }`}
               >
                 Pending
@@ -263,7 +263,7 @@ export default function MatriculationPage() {
                   <select
                     value={currentYear}
                     onChange={(e) => setCurrentYear(e.target.value)}
-                    className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
+                    className="px-3 py-2 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                   >
                     <option>2025/2026</option>
                     <option>2024/2025</option>
@@ -286,7 +286,7 @@ export default function MatriculationPage() {
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
+              <thead className="bg-solid black-50 border-b border-solid black-200">
                 <tr>
                   <th className="px-6 py-4 text-left">
                     <input
@@ -296,32 +296,32 @@ export default function MatriculationPage() {
                       className="w-4 h-4 text-portal-teal-600 rounded focus:ring-portal-teal-500"
                     />
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
                     Student ID
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
                     Name
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
                     Program
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
                     Faculty
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
                     Matriculation #
                   </th>
-                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-solid black-200">
                 {filteredStudents.map((student) => (
-                  <tr key={student.id} className="hover:bg-gray-50 transition-colors">
+                  <tr key={student.id} className="hover:bg-solid black-50 transition-colors">
                     <td className="px-6 py-4">
                       <input
                         type="checkbox"
@@ -331,16 +331,16 @@ export default function MatriculationPage() {
                       />
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-sm font-medium text-gray-900">{student.studentId}</span>
+                      <span className="text-sm font-medium text-black">{student.studentId}</span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-sm text-gray-900">{student.name}</span>
+                      <span className="text-sm text-black">{student.name}</span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-sm text-gray-600">{student.program}</span>
+                      <span className="text-sm text-black">{student.program}</span>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-sm text-gray-600">{student.faculty}</span>
+                      <span className="text-sm text-black">{student.faculty}</span>
                     </td>
                     <td className="px-6 py-4">
                       {student.matriculated ? (
@@ -357,9 +357,9 @@ export default function MatriculationPage() {
                     </td>
                     <td className="px-6 py-4">
                       {student.matriculationNumber ? (
-                        <span className="text-sm font-medium text-gray-900">{student.matriculationNumber}</span>
+                        <span className="text-sm font-medium text-black">{student.matriculationNumber}</span>
                       ) : (
-                        <span className="text-sm text-gray-400">Not assigned</span>
+                        <span className="text-sm text-black">Not assigned</span>
                       )}
                     </td>
                     <td className="px-6 py-4">
@@ -396,9 +396,9 @@ export default function MatriculationPage() {
 
           {filteredStudents.length === 0 && (
             <div className="text-center py-12">
-              <Users className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-              <p className="text-gray-500 font-medium">No students found</p>
-              <p className="text-sm text-gray-400 mt-1">Try adjusting your search or filters</p>
+              <Users className="h-12 w-12 text-black mx-auto mb-3" />
+              <p className="text-black font-medium">No students found</p>
+              <p className="text-sm text-black mt-1">Try adjusting your search or filters</p>
             </div>
           )}
         </div>

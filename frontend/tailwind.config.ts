@@ -25,8 +25,8 @@ const config: Config = {
           800: '#115e59',
           900: '#134e4a',
         },
-        'portal-header': '#3A4D5C',  // Dark blue-gray for header
-        'portal-dark': '#2C3E50',    // Dark gray for active menu
+        'portal-header': '#3A4D5C',  // Dark blue-solid black for header
+        'portal-dark': '#2C3E50',    // Dark solid black for active menu
       },
     },
   },

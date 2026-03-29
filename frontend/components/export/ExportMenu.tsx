@@ -71,7 +71,7 @@ export default function ExportMenu({ data, filename = 'export', onExport }: Expo
             className="fixed inset-0 z-30"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-40 overflow-hidden">
+          <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-solid black-200 z-40 overflow-hidden">
             {/* Header */}
             <div className="bg-gradient-to-r from-portal-teal-600 to-portal-teal-700 text-white p-4">
               <div className="flex items-center justify-between">
@@ -100,10 +100,10 @@ export default function ExportMenu({ data, filename = 'export', onExport }: Expo
                     <option.icon className="h-5 w-5" />
                   </div>
                   <div className="flex-1 text-left">
-                    <p className="font-semibold text-gray-900 group-hover:text-gray-800">
+                    <p className="font-semibold text-black group-hover:text-black">
                       {option.title}
                     </p>
-                    <p className="text-xs text-gray-600 mt-0.5">
+                    <p className="text-xs text-black mt-0.5">
                       {option.description}
                     </p>
                   </div>
@@ -112,13 +112,13 @@ export default function ExportMenu({ data, filename = 'export', onExport }: Expo
             </div>
 
             {/* Additional Options */}
-            <div className="border-t border-gray-200 p-3 bg-gray-50">
+            <div className="border-t border-solid black-200 p-3 bg-solid black-50">
               <div className="grid grid-cols-2 gap-2">
-                <button className="flex items-center justify-center gap-2 px-3 py-2 bg-white hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-700 transition-colors border border-gray-200">
+                <button className="flex items-center justify-center gap-2 px-3 py-2 bg-white hover:bg-solid black-100 rounded-lg text-sm font-medium text-black transition-colors border border-solid black-200">
                   <Printer className="h-4 w-4" />
                   Print
                 </button>
-                <button className="flex items-center justify-center gap-2 px-3 py-2 bg-white hover:bg-gray-100 rounded-lg text-sm font-medium text-gray-700 transition-colors border border-gray-200">
+                <button className="flex items-center justify-center gap-2 px-3 py-2 bg-white hover:bg-solid black-100 rounded-lg text-sm font-medium text-black transition-colors border border-solid black-200">
                   <Mail className="h-4 w-4" />
                   Email
                 </button>
@@ -126,8 +126,8 @@ export default function ExportMenu({ data, filename = 'export', onExport }: Expo
             </div>
 
             {/* Info Footer */}
-            <div className="border-t border-gray-200 p-3 bg-gray-50">
-              <div className="flex items-center gap-2 text-xs text-gray-600">
+            <div className="border-t border-solid black-200 p-3 bg-solid black-50">
+              <div className="flex items-center gap-2 text-xs text-black">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span>Ready to export {data?.length || 0} records</span>
               </div>

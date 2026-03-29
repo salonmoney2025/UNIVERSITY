@@ -11,20 +11,20 @@ export default function ResetOtherStudentsPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-solid black-50">
         {/* Header */}
-        <div className="bg-gray-700 px-6 py-4">
+        <div className="bg-solid black-700 px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <UserX className="w-8 h-8 text-teal-400" />
               <div>
                 <h1 className="text-2xl font-bold text-white">RESET OTHER STUDENTS</h1>
-                <p className="text-sm text-gray-300">Reset part-time, distance learning students</p>
+                <p className="text-sm text-black">Reset part-time, distance learning students</p>
               </div>
             </div>
             <Link
               href="/dashboard"
-              className="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded flex items-center space-x-2 transition-colors"
+              className="px-4 py-2 bg-solid black-600 hover:bg-solid black-500 text-white rounded flex items-center space-x-2 transition-colors"
             >
               <Home className="w-4 h-4" />
               <span>Home</span>
@@ -34,7 +34,7 @@ export default function ResetOtherStudentsPage() {
 
         {/* Search Section */}
         <div className="px-6 py-6">
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg shadow border border-solid black-200 p-6 mb-6">
             <h2 className="text-xl font-semibold text-black mb-4">Find Student</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -45,7 +45,7 @@ export default function ResetOtherStudentsPage() {
                 <select
                   value={searchType}
                   onChange={(e) => setSearchType(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
+                  className="w-full px-3 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
                 >
                   <option value="part-time">Part-Time Students</option>
                   <option value="distance">Distance Learning Students</option>
@@ -63,7 +63,7 @@ export default function ResetOtherStudentsPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Enter Student ID or Name"
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
+                    className="flex-1 px-3 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
                   />
                   <button className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded flex items-center space-x-2 transition-colors">
                     <Search className="w-4 h-4" />
@@ -75,34 +75,34 @@ export default function ResetOtherStudentsPage() {
           </div>
 
           {/* Reset Options */}
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow border border-solid black-200 p-6">
             <h2 className="text-xl font-semibold text-black mb-4">Reset Options</h2>
 
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 border border-gray-300 rounded-lg">
+              <div className="flex items-center justify-between p-4 border border-solid black-300 rounded-lg">
                 <div>
                   <h3 className="font-medium text-black">Reset Password</h3>
-                  <p className="text-sm text-gray-600">Reset student account password</p>
+                  <p className="text-sm text-black">Reset student account password</p>
                 </div>
                 <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors">
                   Reset Password
                 </button>
               </div>
 
-              <div className="flex items-center justify-between p-4 border border-gray-300 rounded-lg">
+              <div className="flex items-center justify-between p-4 border border-solid black-300 rounded-lg">
                 <div>
                   <h3 className="font-medium text-black">Reset Enrollment</h3>
-                  <p className="text-sm text-gray-600">Reset course enrollment status</p>
+                  <p className="text-sm text-black">Reset course enrollment status</p>
                 </div>
                 <button className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded transition-colors">
                   Reset Enrollment
                 </button>
               </div>
 
-              <div className="flex items-center justify-between p-4 border border-gray-300 rounded-lg">
+              <div className="flex items-center justify-between p-4 border border-solid black-300 rounded-lg">
                 <div>
                   <h3 className="font-medium text-black">Reset Account Status</h3>
-                  <p className="text-sm text-gray-600">Reactivate suspended accounts</p>
+                  <p className="text-sm text-black">Reactivate suspended accounts</p>
                 </div>
                 <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded transition-colors">
                   Reset Status

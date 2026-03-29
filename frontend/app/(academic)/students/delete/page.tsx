@@ -38,7 +38,7 @@ export default function DeleteStudentsPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-solid black-50">
         {/* Header */}
         <div className="bg-red-700 px-6 py-4">
           <div className="flex items-center justify-between">
@@ -77,7 +77,7 @@ export default function DeleteStudentsPage() {
 
         {/* Search Student */}
         <div className="px-6 py-6">
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg shadow border border-solid black-200 p-6 mb-6">
             <h2 className="text-xl font-semibold text-black mb-4">Find Student to Delete</h2>
             <div className="flex space-x-3">
               <input
@@ -85,11 +85,11 @@ export default function DeleteStudentsPage() {
                 value={studentId}
                 onChange={(e) => setStudentId(e.target.value)}
                 placeholder="Enter Student ID or Email"
-                className="flex-1 px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-red-500 text-black"
+                className="flex-1 px-4 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-red-500 text-black"
               />
               <button
                 onClick={handleSearch}
-                className="px-6 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded flex items-center space-x-2 transition-colors"
+                className="px-6 py-2 bg-solid black-600 hover:bg-solid black-700 text-white rounded flex items-center space-x-2 transition-colors"
               >
                 <Search className="w-5 h-5" />
                 <span>Search</span>
@@ -100,31 +100,31 @@ export default function DeleteStudentsPage() {
           {/* Student Information & Delete Confirmation */}
           {studentInfo && (
             <>
-              <div className="bg-white rounded-lg shadow border border-gray-200 p-6 mb-6">
+              <div className="bg-white rounded-lg shadow border border-solid black-200 p-6 mb-6">
                 <h2 className="text-xl font-semibold text-black mb-4">Student Information</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div>
-                    <p className="text-sm text-gray-600">Student ID</p>
+                    <p className="text-sm text-black">Student ID</p>
                     <p className="text-black font-medium">{studentInfo.id}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Full Name</p>
+                    <p className="text-sm text-black">Full Name</p>
                     <p className="text-black font-medium">{studentInfo.name}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Email</p>
+                    <p className="text-sm text-black">Email</p>
                     <p className="text-black font-medium">{studentInfo.email}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Level</p>
+                    <p className="text-sm text-black">Level</p>
                     <p className="text-black font-medium">{studentInfo.level}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Department</p>
+                    <p className="text-sm text-black">Department</p>
                     <p className="text-black font-medium">{studentInfo.department}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Enrollment Date</p>
+                    <p className="text-sm text-black">Enrollment Date</p>
                     <p className="text-black font-medium">{studentInfo.enrollmentDate}</p>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export default function DeleteStudentsPage() {
                     <AlertTriangle className="w-8 h-8 text-red-600 mr-3" />
                     <div>
                       <h3 className="text-lg font-semibold text-black">Confirm Deletion</h3>
-                      <p className="text-gray-700 mt-2">
+                      <p className="text-black mt-2">
                         You are about to permanently delete <strong>{studentInfo.name}</strong> ({studentInfo.id}).
                         This action cannot be undone.
                       </p>
@@ -154,13 +154,13 @@ export default function DeleteStudentsPage() {
 
                   <div className="mb-4">
                     <label className="block text-sm font-medium text-black mb-2">
-                      Type <span className="font-mono bg-gray-100 px-2 py-1">DELETE</span> to confirm:
+                      Type <span className="font-mono bg-solid black-100 px-2 py-1">DELETE</span> to confirm:
                     </label>
                     <input
                       type="text"
                       value={confirmText}
                       onChange={(e) => setConfirmText(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-red-500 text-black"
+                      className="w-full px-4 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-red-500 text-black"
                       placeholder="Type DELETE to confirm"
                     />
                   </div>
@@ -171,7 +171,7 @@ export default function DeleteStudentsPage() {
                       className={`px-6 py-3 font-medium rounded flex items-center space-x-2 transition-colors ${
                         confirmText === 'DELETE'
                           ? 'bg-red-600 hover:bg-red-700 text-white'
-                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                          : 'bg-solid black-300 text-black cursor-not-allowed'
                       }`}
                     >
                       <Trash2 className="w-5 h-5" />
@@ -182,7 +182,7 @@ export default function DeleteStudentsPage() {
                         setShowConfirmation(false);
                         setConfirmText('');
                       }}
-                      className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded transition-colors"
+                      className="px-6 py-3 bg-solid black-600 hover:bg-solid black-700 text-white font-medium rounded transition-colors"
                     >
                       Cancel
                     </button>

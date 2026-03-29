@@ -83,7 +83,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white p-4">
       <div className="max-w-md w-full">
-        <div className="bg-white border-2 border-gray-200 rounded-lg shadow-lg p-8 space-y-8">
+        <div className="bg-white border-2 border-solid black-200 rounded-lg shadow-lg p-8 space-y-8">
           {/* Header */}
           <div className="text-center">
             <div className="flex justify-center mb-4">
@@ -91,12 +91,12 @@ export default function LoginPage() {
                 <GraduationCap className="h-14 w-14 text-white" />
               </div>
             </div>
-            <h1 className="text-3xl font-bold text-gray-800">EBKUST</h1>
-            <p className="mt-2 text-sm text-gray-600">
+            <h1 className="text-3xl font-bold text-black">EBKUST</h1>
+            <p className="mt-2 text-sm text-black">
               Ernest Bai Koroma University of Science and Technology
             </p>
             <div className="mt-4 h-1 w-16 bg-portal-teal-500 mx-auto"></div>
-            <p className="mt-4 text-lg font-semibold text-gray-700">
+            <p className="mt-4 text-lg font-semibold text-black">
               University Portal Login
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Username Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-black mb-2">
                 Username
               </label>
               <input
@@ -116,14 +116,14 @@ export default function LoginPage() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="block w-full px-4 py-3 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500 focus:border-portal-teal-500 transition-colors text-gray-700"
+                className="block w-full px-4 py-3 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500 focus:border-portal-teal-500 transition-colors text-black"
                 placeholder="Enter Username"
               />
             </div>
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-semibold text-black mb-2">
                 Password
               </label>
               <input
@@ -134,7 +134,7 @@ export default function LoginPage() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className="block w-full px-4 py-3 border-2 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500 focus:border-portal-teal-500 transition-colors text-gray-700"
+                className="block w-full px-4 py-3 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500 focus:border-portal-teal-500 transition-colors text-black"
                 placeholder="******"
               />
             </div>
@@ -164,8 +164,8 @@ export default function LoginPage() {
           </form>
 
           {/* Footer Links */}
-          <div className="text-center pt-4 border-t border-gray-200">
-            <p className="text-sm text-gray-600">
+          <div className="text-center pt-4 border-t border-solid black-200">
+            <p className="text-sm text-black">
               Need help?{' '}
               <Link href="/support" className="font-medium text-portal-teal-600 hover:text-portal-teal-700 transition-colors">
                 Contact Support
@@ -175,7 +175,7 @@ export default function LoginPage() {
 
           {/* System Info */}
           <div className="mt-6">
-            <div className="text-center text-xs text-gray-500 space-y-1">
+            <div className="text-center text-xs text-black space-y-1">
               <p>© 2026 EBKUST. All rights reserved.</p>
               <p className="text-portal-teal-600">Portal Version 2.0</p>
             </div>

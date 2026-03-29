@@ -91,7 +91,7 @@ export default function StudentDashboardPage() {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-SL', {
       style: 'currency',
-      currency: 'SLE',
+      currency: 'NSL',
       minimumFractionDigits: 2,
     }).format(amount);
   };
@@ -101,14 +101,14 @@ export default function StudentDashboardPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading dashboard...</p>
+          <p className="mt-4 text-black">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-solid black-50">
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -150,11 +150,11 @@ export default function StudentDashboardPage() {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {/* Total Paid */}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Paid</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">
+                <p className="text-sm font-medium text-black">Total Paid</p>
+                <p className="text-3xl font-bold text-black mt-2">
                   {formatCurrency(stats?.totalPaid || 0)}
                 </p>
               </div>
@@ -165,11 +165,11 @@ export default function StudentDashboardPage() {
           </div>
 
           {/* Total Payments */}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Payments</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">
+                <p className="text-sm font-medium text-black">Total Payments</p>
+                <p className="text-3xl font-bold text-black mt-2">
                   {stats?.paymentsCount || 0}
                 </p>
               </div>
@@ -180,11 +180,11 @@ export default function StudentDashboardPage() {
           </div>
 
           {/* Last Payment */}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600">Last Payment</p>
-                <p className="text-lg font-bold text-gray-900 mt-2">
+                <p className="text-sm font-medium text-black">Last Payment</p>
+                <p className="text-lg font-bold text-black mt-2">
                   {stats?.lastPaymentDate
                     ? new Date(stats.lastPaymentDate).toLocaleDateString()
                     : 'No payments yet'}
@@ -201,49 +201,49 @@ export default function StudentDashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <button
             onClick={() => router.push('/student/payments')}
-            className="bg-white p-4 rounded-lg border border-gray-200 hover:border-indigo-300 hover:shadow-md transition-all flex items-center gap-3"
+            className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-indigo-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-indigo-100 p-2 rounded-lg">
               <CreditCard className="h-5 w-5 text-indigo-600" />
             </div>
-            <span className="font-medium text-gray-900">View All Payments</span>
+            <span className="font-medium text-black">View All Payments</span>
           </button>
 
           <button
             onClick={() => router.push('/student/profile')}
-            className="bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all flex items-center gap-3"
+            className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-blue-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-blue-100 p-2 rounded-lg">
               <User className="h-5 w-5 text-blue-600" />
             </div>
-            <span className="font-medium text-gray-900">My Profile</span>
+            <span className="font-medium text-black">My Profile</span>
           </button>
 
           <button
             onClick={() => router.push('/helpdesk/submit')}
-            className="bg-white p-4 rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all flex items-center gap-3"
+            className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-green-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-green-100 p-2 rounded-lg">
               <LifeBuoy className="h-5 w-5 text-green-600" />
             </div>
-            <span className="font-medium text-gray-900">Get Support</span>
+            <span className="font-medium text-black">Get Support</span>
           </button>
 
           <button
             onClick={() => router.push('/student/notifications')}
-            className="bg-white p-4 rounded-lg border border-gray-200 hover:border-orange-300 hover:shadow-md transition-all flex items-center gap-3"
+            className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-orange-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-orange-100 p-2 rounded-lg">
               <Bell className="h-5 w-5 text-orange-600" />
             </div>
-            <span className="font-medium text-gray-900">Notifications</span>
+            <span className="font-medium text-black">Notifications</span>
           </button>
         </div>
 
         {/* Recent Payments */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-          <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-gray-900">Recent Payments</h2>
+        <div className="bg-white rounded-xl shadow-sm border border-solid black-200">
+          <div className="px-6 py-4 border-b border-solid black-200 flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-black">Recent Payments</h2>
             <button
               onClick={() => router.push('/student/payments')}
               className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
@@ -254,42 +254,42 @@ export default function StudentDashboardPage() {
 
           {stats?.recentPayments && stats.recentPayments.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-solid black-200">
+                <thead className="bg-solid black-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Receipt No
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Payment Type
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Amount
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Date
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider">
                       Action
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-white divide-y divide-solid black-200">
                   {stats.recentPayments.map((payment) => (
-                    <tr key={payment.id} className="hover:bg-gray-50">
+                    <tr key={payment.id} className="hover:bg-solid black-50">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">
                         {payment.receiptNo}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                         {payment.paymentType}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-black">
                         {formatCurrency(payment.amount)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
                         {new Date(payment.paymentDate).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -298,7 +298,7 @@ export default function StudentDashboardPage() {
                             ? 'bg-green-100 text-green-800'
                             : payment.status === 'pending'
                             ? 'bg-yellow-100 text-yellow-800'
-                            : 'bg-gray-100 text-gray-800'
+                            : 'bg-solid black-100 text-black'
                         }`}>
                           {payment.status}
                         </span>
@@ -319,9 +319,9 @@ export default function StudentDashboardPage() {
             </div>
           ) : (
             <div className="px-6 py-12 text-center">
-              <Receipt className="mx-auto h-12 w-12 text-gray-400" />
-              <h3 className="mt-2 text-sm font-medium text-gray-900">No payments yet</h3>
-              <p className="mt-1 text-sm text-gray-500">
+              <Receipt className="mx-auto h-12 w-12 text-black" />
+              <h3 className="mt-2 text-sm font-medium text-black">No payments yet</h3>
+              <p className="mt-1 text-sm text-black">
                 Your payment history will appear here once you make a payment.
               </p>
             </div>
@@ -331,28 +331,28 @@ export default function StudentDashboardPage() {
         {/* Information Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
           {/* Account Information */}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
+            <h3 className="text-lg font-semibold text-black mb-4 flex items-center gap-2">
               <User className="h-5 w-5 text-indigo-600" />
               Account Information
             </h3>
             <div className="space-y-3">
-              <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-sm text-gray-600">Name:</span>
-                <span className="text-sm font-medium text-gray-900">{user?.name}</span>
+              <div className="flex justify-between py-2 border-b border-solid black-100">
+                <span className="text-sm text-black">Name:</span>
+                <span className="text-sm font-medium text-black">{user?.name}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-sm text-gray-600">Email:</span>
-                <span className="text-sm font-medium text-gray-900">{user?.email}</span>
+              <div className="flex justify-between py-2 border-b border-solid black-100">
+                <span className="text-sm text-black">Email:</span>
+                <span className="text-sm font-medium text-black">{user?.email}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-gray-100">
-                <span className="text-sm text-gray-600">Student ID:</span>
-                <span className="text-sm font-medium text-gray-900">{user?.studentId}</span>
+              <div className="flex justify-between py-2 border-b border-solid black-100">
+                <span className="text-sm text-black">Student ID:</span>
+                <span className="text-sm font-medium text-black">{user?.studentId}</span>
               </div>
               {user?.department && (
                 <div className="flex justify-between py-2">
-                  <span className="text-sm text-gray-600">Department:</span>
-                  <span className="text-sm font-medium text-gray-900">{user.department}</span>
+                  <span className="text-sm text-black">Department:</span>
+                  <span className="text-sm font-medium text-black">{user.department}</span>
                 </div>
               )}
             </div>
@@ -365,38 +365,38 @@ export default function StudentDashboardPage() {
           </div>
 
           {/* Quick Links */}
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-xl shadow-sm p-6 border border-solid black-200">
+            <h3 className="text-lg font-semibold text-black mb-4 flex items-center gap-2">
               <FileText className="h-5 w-5 text-indigo-600" />
               Quick Links
             </h3>
             <div className="space-y-2">
               <button
                 onClick={() => router.push('/student/payments')}
-                className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-between"
+                className="w-full text-left px-4 py-3 rounded-lg hover:bg-solid black-50 transition-colors flex items-center justify-between"
               >
-                <span className="text-sm font-medium text-gray-700">Payment History</span>
-                <span className="text-xs text-gray-500">{stats?.paymentsCount || 0} payments</span>
+                <span className="text-sm font-medium text-black">Payment History</span>
+                <span className="text-xs text-black">{stats?.paymentsCount || 0} payments</span>
               </button>
               <button
                 onClick={() => router.push('/helpdesk/my-tickets')}
-                className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-between"
+                className="w-full text-left px-4 py-3 rounded-lg hover:bg-solid black-50 transition-colors flex items-center justify-between"
               >
-                <span className="text-sm font-medium text-gray-700">My Support Tickets</span>
-                <span className="text-xs text-gray-500">View all</span>
+                <span className="text-sm font-medium text-black">My Support Tickets</span>
+                <span className="text-xs text-black">View all</span>
               </button>
               <button
                 onClick={() => router.push('/student/profile')}
-                className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-between"
+                className="w-full text-left px-4 py-3 rounded-lg hover:bg-solid black-50 transition-colors flex items-center justify-between"
               >
-                <span className="text-sm font-medium text-gray-700">Account Settings</span>
-                <span className="text-xs text-gray-500">Update</span>
+                <span className="text-sm font-medium text-black">Account Settings</span>
+                <span className="text-xs text-black">Update</span>
               </button>
               <button
                 onClick={() => router.push('/helpdesk/submit')}
-                className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-between"
+                className="w-full text-left px-4 py-3 rounded-lg hover:bg-solid black-50 transition-colors flex items-center justify-between"
               >
-                <span className="text-sm font-medium text-gray-700">Submit New Ticket</span>
+                <span className="text-sm font-medium text-black">Submit New Ticket</span>
                 <span className="text-xs text-indigo-600">Create</span>
               </button>
             </div>

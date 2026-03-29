@@ -78,6 +78,50 @@ export async function PUT(
   }
 }
 
+// PATCH /api/banks/[id] - Partially update a bank
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const body = await request.json();
+
+    const bank = await prisma.bank.update({
+      where: { id: params.id },
+      data: {
+        bankName: body.bankName,
+        bankCode: body.bankCode,
+        swiftCode: body.swiftCode,
+        sortCode: body.sortCode,
+        branch: body.branch,
+        address: body.address,
+        city: body.city,
+        phone: body.phone,
+        email: body.email,
+        accountNumber: body.accountNumber,
+        accountName: body.accountName,
+        status: body.status,
+      },
+    });
+
+    return NextResponse.json(bank);
+  } catch (error: any) {
+    console.error('Error updating bank:', error);
+
+    if (error.code === 'P2025') {
+      return NextResponse.json(
+        { error: 'Bank not found' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { error: 'Failed to update bank' },
+      { status: 500 }
+    );
+  }
+}
+
 // DELETE /api/banks/[id] - Delete a bank
 export async function DELETE(
   request: NextRequest,

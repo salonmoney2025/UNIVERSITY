@@ -67,7 +67,7 @@ export async function notifyPaymentReceived(userId: string, amount: number, rece
   return createNotification({
     userId,
     title: 'Payment Received',
-    message: `Your payment of SLE ${amount.toFixed(2)} has been recorded. Receipt: ${receiptNo}`,
+    message: `Your payment of NSL ${amount.toFixed(2)} has been recorded. Receipt: ${receiptNo}`,
     type: 'payment',
     link: `/receipt/verify?receipt=${receiptNo}`,
   });

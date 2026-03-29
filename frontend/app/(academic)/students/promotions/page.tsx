@@ -11,20 +11,20 @@ export default function StudentPromotionsPage() {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-solid black-50">
         {/* Header */}
-        <div className="bg-gray-700 px-6 py-4">
+        <div className="bg-solid black-700 px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <TrendingUp className="w-8 h-8 text-teal-400" />
               <div>
                 <h1 className="text-2xl font-bold text-white">STUDENT PROMOTIONS</h1>
-                <p className="text-sm text-gray-300">Promote students to next level</p>
+                <p className="text-sm text-black">Promote students to next level</p>
               </div>
             </div>
             <Link
               href="/dashboard"
-              className="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded flex items-center space-x-2 transition-colors"
+              className="px-4 py-2 bg-solid black-600 hover:bg-solid black-500 text-white rounded flex items-center space-x-2 transition-colors"
             >
               <Home className="w-4 h-4" />
               <span>Home</span>
@@ -34,7 +34,7 @@ export default function StudentPromotionsPage() {
 
         {/* Promotion Form */}
         <div className="px-6 py-6">
-          <div className="bg-white rounded-lg shadow border border-gray-200 p-6">
+          <div className="bg-white rounded-lg shadow border border-solid black-200 p-6">
             <h2 className="text-xl font-semibold text-black mb-6">Student Promotion Settings</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -46,7 +46,7 @@ export default function StudentPromotionsPage() {
                 <select
                   value={selectedAcademicYear}
                   onChange={(e) => setSelectedAcademicYear(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
+                  className="w-full px-3 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
                 >
                   <option>2024/2025</option>
                   <option>2025/2026</option>
@@ -62,7 +62,7 @@ export default function StudentPromotionsPage() {
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
+                  className="w-full px-3 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black"
                 >
                   <option value="">--Select Level--</option>
                   <option>100 Level</option>
@@ -79,7 +79,7 @@ export default function StudentPromotionsPage() {
                 </label>
                 <select
                   disabled={!selectedLevel}
-                  className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black bg-gray-50"
+                  className="w-full px-3 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black bg-solid black-50"
                 >
                   <option value="">--Auto Selected--</option>
                   {selectedLevel === '100 Level' && <option>200 Level</option>}
@@ -94,7 +94,7 @@ export default function StudentPromotionsPage() {
                 <label className="block text-sm font-medium text-black mb-2">
                   Department (Optional)
                 </label>
-                <select className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-teal-500 text-black">
+                <select className="w-full px-3 py-2 border border-solid black-300 rounded focus:ring-2 focus:ring-teal-500 text-black">
                   <option value="">All Departments</option>
                   <option>Computer Science</option>
                   <option>Electrical Engineering</option>
@@ -109,8 +109,8 @@ export default function StudentPromotionsPage() {
               <h3 className="text-lg font-medium text-black mb-4">
                 Students Eligible for Promotion
               </h3>
-              <div className="border border-gray-300 rounded-lg p-4 bg-gray-50 text-center">
-                <p className="text-gray-600">
+              <div className="border border-solid black-300 rounded-lg p-4 bg-solid black-50 text-center">
+                <p className="text-black">
                   Select a level to view eligible students
                 </p>
               </div>
