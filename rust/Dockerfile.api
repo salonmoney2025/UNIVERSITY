@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
 COPY Cargo.toml ./
 COPY shared/ ./shared/
 COPY api/ ./api/
+COPY workers/ ./workers/
 
 # Build the API service (release mode)
 RUN cargo build --release --bin api
