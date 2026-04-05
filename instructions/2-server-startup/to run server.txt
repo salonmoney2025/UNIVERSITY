@@ -1,0 +1,24 @@
+Next Steps:
+
+  The dashboard should now load successfully! Simply refresh your
+  browser at http://localhost:3000/dashboard and the Network Error
+  should be resolved.
+
+  ---
+  For Future Reference:
+
+  To start both servers:
+
+  # Terminal 1 - Backend
+  cd backend
+  python manage.py runserver 0.0.0.0:5000
+
+  # Terminal 2 - Frontend
+  cd frontend
+  npm run dev
+
+  Both servers are currently running in the background and your
+  application is fully operational!
+
+  The EBKUST University Management System with all 11 major systems is
+  now ready for use! 🚀
