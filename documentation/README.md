@@ -232,8 +232,7 @@ UNIVERSITY/
 │
 ├── START_SERVERS.ps1          # PowerShell script to start servers
 ├── STOP_SERVERS.ps1           # PowerShell script to stop servers
-├── wisdom                     # This file
-└── README.md                  # Project documentation
+└── README.md                  # This file
 ```
 
 ---
