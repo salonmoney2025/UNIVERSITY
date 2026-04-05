@@ -1,14 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import {
   User,
-  Mail,
   Phone,
-  MapPin,
-  Calendar,
-  Building2,
   Briefcase,
   Camera,
   Save,
@@ -18,7 +13,6 @@ import {
   UserCircle,
   Info,
   AlertCircle,
-  CheckCircle,
   ArrowLeft
 } from 'lucide-react';
 import Link from 'next/link';
@@ -64,7 +58,6 @@ interface ProfileData {
 }
 
 export default function ProfileSettingsPage() {
-  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [activeTab, setActiveTab] = useState<'personal' | 'contact' | 'emergency' | 'professional' | 'additional'>('personal');
@@ -223,7 +216,7 @@ export default function ProfileSettingsPage() {
     setProfilePhoto(originalData.profilePhoto || '/placeholder-avatar.png');
     setPhotoFile(null);
     setIsEditing(false);
-    toast.info('Changes discarded');
+    toast('Changes discarded');
   };
 
   const tabs = [

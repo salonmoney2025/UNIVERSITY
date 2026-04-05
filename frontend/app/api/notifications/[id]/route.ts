@@ -7,9 +7,10 @@ const prisma = new PrismaClient();
 // PUT /api/notifications/[id] - Mark a single notification as read
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Verify authentication
     const token = request.cookies.get('auth-token')?.value;
     if (!token) {
@@ -20,8 +21,6 @@ export async function PUT(
     if (!user) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
-
-    const { id } = params;
 
     // Check if notification exists and belongs to user
     const notification = await prisma.notification.findUnique({
@@ -58,9 +57,10 @@ export async function PUT(
 // DELETE /api/notifications/[id] - Delete a notification
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Verify authentication
     const token = request.cookies.get('auth-token')?.value;
     if (!token) {
@@ -71,8 +71,6 @@ export async function DELETE(
     if (!user) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
-
-    const { id } = params;
 
     // Check if notification exists and belongs to user
     const notification = await prisma.notification.findUnique({

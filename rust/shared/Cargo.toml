@@ -22,6 +22,10 @@ uuid.workspace = true
 chrono.workspace = true
 rust_decimal.workspace = true
 
+# Auth & Security
+argon2.workspace = true
+rand_core.workspace = true
+
 # Validation
 validator.workspace = true
 

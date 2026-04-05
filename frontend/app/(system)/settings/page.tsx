@@ -1,26 +1,20 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import {
   User,
   Lock,
   Bell,
   Shield,
-  Database,
   Globe,
   Palette,
   Settings as SettingsIcon,
   ChevronRight,
   UserCircle,
-  Mail,
-  Phone,
-  MapPin,
   Camera
 } from 'lucide-react';
 
 export default function SettingsPage() {
-  const [activeSection, setActiveSection] = useState<string>('overview');
 
   const settingsSections = [
     {

@@ -40,7 +40,7 @@ export default function StudentProfilePage() {
   const handleSaveProfile = async () => {
     setIsSaving(true);
     try {
-      const response = await fetch(`/api/users/${user?.userId}`, {
+      const response = await fetch(`/api/users/${user?.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(profileData),
@@ -74,7 +74,7 @@ export default function StudentProfilePage() {
 
     setIsSaving(true);
     try {
-      const response = await fetch(`/api/users/${user?.userId}`, {
+      const response = await fetch(`/api/users/${user?.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: passwordData.newPassword }),

@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
-import { verifyPassword, generateToken } from '@/lib/auth';
+
+// Determine backend URL based on environment
+const getBackendUrl = () => {
+  // In Docker, use service name; otherwise use localhost
+  const isDocker = process.env.DOCKER_ENV === 'true' || process.env.NODE_ENV === 'production';
+  return isDocker ? 'http://backend:8000' : 'http://localhost:5000';
+};
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,98 +20,89 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Find user by email
-    const user = await prisma.user.findUnique({
-      where: { email: email.toLowerCase() },
+    // Call Django backend API directly
+    const backendUrl = getBackendUrl();
+    console.log('[Login] Calling Django backend at:', backendUrl);
+
+    const djangoResponse = await fetch(`${backendUrl}/api/v1/auth/login/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
     });
 
-    if (!user) {
-      return NextResponse.json(
-        { error: 'Invalid email or password' },
-        { status: 401 }
-      );
-    }
+    const responseText = await djangoResponse.text();
+    console.log('[Login] Django response status:', djangoResponse.status);
+    console.log('[Login] Django response:', responseText.substring(0, 200));
 
-    // Check if user is active
-    if (user.status !== 'active') {
-      return NextResponse.json(
-        { error: 'Account is inactive. Please contact administrator.' },
-        { status: 403 }
-      );
-    }
-
-    // Verify password
-    const isValidPassword = await verifyPassword(password, user.password);
-
-    if (!isValidPassword) {
-      return NextResponse.json(
-        { error: 'Invalid email or password' },
-        { status: 401 }
-      );
-    }
-
-    // Update last login
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { lastLogin: new Date() },
-    });
-
-    // Generate JWT token for Next.js
-    const token = generateToken({
-      userId: user.id,
-      email: user.email,
-      role: user.role,
-      name: user.name,
-    });
-
-    // ALSO get Django JWT token for backend API calls
-    let djangoTokens = null;
+    let djangoData;
     try {
-      const djangoResponse = await fetch('http://localhost:8000/api/v1/auth/login/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (djangoResponse.ok) {
-        const djangoData = await djangoResponse.json();
-        djangoTokens = djangoData.tokens;
-      }
-    } catch (error) {
-      console.error('Failed to get Django token:', error);
-      // Continue anyway with Next.js token
+      djangoData = JSON.parse(responseText);
+    } catch (e) {
+      console.error('[Login] Failed to parse Django response as JSON:', responseText);
+      return NextResponse.json(
+        { error: 'Backend server error. Please check if Django is running.' },
+        { status: 503 }
+      );
     }
 
-    // Create response with user data
+    if (!djangoResponse.ok) {
+      return NextResponse.json(
+        { error: djangoData.error || djangoData.detail || 'Invalid credentials' },
+        { status: djangoResponse.status }
+      );
+    }
+
+    // Extract tokens and user data from Django response
+    const tokens = djangoData.tokens || djangoData.access;
+    const user = djangoData.user || {};
+
+    // Create response with user data and tokens
     const response = NextResponse.json({
       success: true,
       user: {
         id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        studentId: user.studentId,
-        staffId: user.staffId,
+        email: user.email || email,
+        name: user.first_name && user.last_name
+          ? `${user.first_name} ${user.last_name}`
+          : user.email,
+        role: user.role || 'STUDENT',
+        studentId: user.student_id,
+        staffId: user.staff_id,
         department: user.department,
       },
-      token,
-      djangoTokens, // Include Django tokens in response
+      token: tokens?.access || tokens,
+      djangoTokens: tokens, // Include Django tokens for API calls
     });
 
-    // Set cookie in response header (httpOnly for security)
-    response.cookies.set('auth-token', token, {
-      httpOnly: true,
-      secure: false, // Set to false for localhost
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-      path: '/',
-    });
+    // Set auth cookie
+    if (tokens?.access) {
+      response.cookies.set('auth-token', tokens.access, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 7, // 7 days
+        path: '/',
+      });
+    }
 
+    console.log('[Login] Login successful for:', email);
     return response;
+
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('[Login] Error:', error);
+
+    // Provide more detailed error message
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+
     return NextResponse.json(
-      { error: 'An error occurred during login' },
+      {
+        error: 'Failed to connect to backend server',
+        details: errorMessage,
+        hint: 'Make sure Django backend is running on port 5000'
+      },
       { status: 500 }
     );
   }

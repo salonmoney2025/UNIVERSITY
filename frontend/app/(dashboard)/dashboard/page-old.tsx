@@ -16,9 +16,11 @@ interface RecentPayment {
   id: number;
   receiptNo: string;
   studentName: string;
+  studentId?: string;
   amount: number;
   paymentType: string;
   paymentDate: string;
+  status: string;
 }
 
 interface DashboardStats {
@@ -212,7 +214,7 @@ export default function DashboardPage() {
                 <XAxis dataKey="month" />
                 <YAxis />
                 <Tooltip
-                  formatter={(value: number) => formatCurrency(value)}
+                  formatter={(value: any) => typeof value === 'number' ? formatCurrency(value) : 'N/A'}
                   labelFormatter={(label) => `Month: ${label}`}
                 />
                 <Legend />
@@ -257,7 +259,7 @@ export default function DashboardPage() {
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      label={({ type, percent }) => `${type}: ${(percent * 100).toFixed(0)}%`}
+                      label={(props: any) => `${props.name || props.type}: ${(props.percent * 100).toFixed(0)}%`}
                       outerRadius={80}
                       fill="#8884d8"
                       dataKey="count"

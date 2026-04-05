@@ -37,15 +37,15 @@ export function verifyToken(token: string): JWTPayload | null {
 }
 
 // Get token from cookies
-export function getTokenFromCookies(): string | null {
-  const cookieStore = cookies();
+export async function getTokenFromCookies(): Promise<string | null> {
+  const cookieStore = await cookies();
   const token = cookieStore.get('auth-token');
   return token?.value || null;
 }
 
 // Get current user from token
-export function getCurrentUser(): JWTPayload | null {
-  const token = getTokenFromCookies();
+export async function getCurrentUser(): Promise<JWTPayload | null> {
+  const token = await getTokenFromCookies();
   if (!token) return null;
   return verifyToken(token);
 }

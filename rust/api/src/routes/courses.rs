@@ -19,10 +19,10 @@ use crate::state::AppState;
 pub fn router() -> Router<AppState> {
     Router::new()
         .route("/", get(list_courses))
-        .route("/:id", get(get_course))
-        .route("/code/:code", get(get_course_by_code))
+        .route("/{id}", get(get_course))
+        .route("/code/{code}", get(get_course_by_code))
         .route("/programs", get(list_programs))
-        .route("/programs/:id", get(get_program))
+        .route("/programs/{id}", get(get_program))
 }
 
 /// GET /api/v2/courses - List all courses with pagination

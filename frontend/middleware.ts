@@ -5,6 +5,7 @@ import type { NextRequest } from 'next/server';
 const protectedRoutes = [
   '/dashboard',
   '/admin-dashboard',
+  '/super-admin-settings',
   '/receipt',
   '/banks',
   '/payments',
@@ -23,6 +24,7 @@ const authRoutes = ['/login', '/register'];
 
 // Define role-based route access
 const roleBasedRoutes: Record<string, string[]> = {
+  '/super-admin-settings': ['SUPER_ADMIN'],
   '/admin': ['ADMIN', 'SUPER_ADMIN'],
   '/system-settings': ['ADMIN', 'SUPER_ADMIN'],
   '/finance': ['ADMIN', 'FINANCE'],
@@ -108,16 +110,17 @@ export function middleware(request: NextRequest) {
 function getDashboardForRole(role: string): string {
   switch (role) {
     case 'SUPER_ADMIN':
+      return '/super-admin-settings';
     case 'ADMIN':
-      return '/admin-dashboard';
+      return '/dashboard';
     case 'FINANCE':
       return '/finance/dashboard';
     case 'STAFF':
       return '/staff/dashboard';
     case 'STUDENT':
-      return '/student/dashboard';
+      return '/student-portal/dashboard';
     default:
-      return '/admin-dashboard';
+      return '/dashboard';
   }
 }
 

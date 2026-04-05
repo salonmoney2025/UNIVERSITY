@@ -5,6 +5,17 @@ const nextConfig = {
   // Performance optimizations
   reactStrictMode: true,
 
+  // ESLint configuration - only show errors, not warnings during build
+  eslint: {
+    ignoreDuringBuilds: false,
+    dirs: ['app', 'components', 'lib'],
+  },
+
+  // TypeScript configuration - continue on errors for faster builds
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+
   // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -22,8 +33,16 @@ const nextConfig = {
   // Reduce bundle size - SCALABILITY OPTIMIZATIONS
   experimental: {
     optimizePackageImports: ['lucide-react', 'react-hook-form', '@tanstack/react-query'],
-    // Enable SWC plugins for faster compilation
-    swcPlugins: [],
+  },
+
+  // Turbopack for faster dev builds (new location)
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
   },
 
   // Production optimizations
@@ -57,58 +76,6 @@ const nextConfig = {
     ];
   },
 
-  // Webpack optimizations - SCALABILITY
-  webpack: (config, { dev, isServer }) => {
-    // Production optimizations
-    if (!dev) {
-      // Minimize bundle size
-      config.optimization = {
-        ...config.optimization,
-        moduleIds: 'deterministic',
-        runtimeChunk: 'single',
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            // Split vendor code
-            vendor: {
-              name: 'vendor',
-              chunks: 'all',
-              test: /node_modules/,
-              priority: 20,
-            },
-            // Split common code
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'async',
-              priority: 10,
-              reuseExistingChunk: true,
-              enforce: true,
-            },
-            // Split React and related libraries
-            react: {
-              name: 'react',
-              test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
-              chunks: 'all',
-              priority: 40,
-            },
-          },
-        },
-      };
-    }
-
-    // Dev optimizations
-    if (dev && !isServer) {
-      config.watchOptions = {
-        poll: 1000,
-        aggregateTimeout: 300,
-      };
-    }
-
-    return config;
-  },
 };
 
 export default nextConfig;

@@ -53,8 +53,23 @@ export default function DashboardPage() {
     try {
       const response = await api.get('/analytics/dashboard/');
       setStats(response.data);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching dashboard stats:', error);
+
+      // If 401 error, clear authentication and redirect to login
+      if (error.response?.status === 401) {
+        console.log('Authentication failed - clearing tokens and redirecting to login');
+
+        // Clear all authentication data
+        localStorage.clear();
+        sessionStorage.clear();
+
+        // Clear auth cookie
+        document.cookie = 'auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+        // Redirect to login
+        router.push('/login?expired=true');
+      }
     } finally {
       setStatsLoading(false);
     }

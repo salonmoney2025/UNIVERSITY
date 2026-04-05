@@ -6,7 +6,7 @@ import { getAuthUser, validateRole } from '@/lib/api-middleware';
 export async function GET(request: NextRequest) {
   try {
     // Check authentication
-    const { error } = getAuthUser();
+    const { error } = await getAuthUser();
     if (error) return error;
 
     const { searchParams } = new URL(request.url);
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Check authentication
-    const { user, error: authError } = getAuthUser();
+    const { user, error: authError } = await getAuthUser();
     if (authError) return authError;
 
     // Check role permissions
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error creating bank:', error);
 
-    if (error.code === 'P2002') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
       return NextResponse.json(
         { error: 'Bank code already exists' },
         { status: 400 }

@@ -13,7 +13,7 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView
 )
-from core.views import api_root
+from core.views import api_root, health_check
 
 # API v1 URL patterns
 api_v1_patterns = [
@@ -52,11 +52,21 @@ api_v1_patterns = [
 
     # Notifications
     path('notifications/', include('apps.notifications.urls')),
+
+    # Messaging (Real-time chat)
+    path('messaging/', include('apps.messaging.urls')),
+
+    # Documents
+    path('documents/', include('apps.documents.urls')),
 ]
 
 urlpatterns = [
     # Welcome page
     path('', api_root, name='api-root'),
+
+    # Health check endpoint
+    path('health/', health_check, name='health-check'),
+    path('api/health/', health_check, name='api-health-check'),
 
     # Admin panel
     path('admin/', admin.site.urls),

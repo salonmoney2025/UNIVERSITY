@@ -444,7 +444,6 @@ export default function ApplicantFeesReconciliation() {
                 <ExportMenu
                   data={filteredRecords}
                   filename="applicant-fees-reconciliation"
-                  sheetName="Applicant Fees"
                 />
               </div>
             </div>

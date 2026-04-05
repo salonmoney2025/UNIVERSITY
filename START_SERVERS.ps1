@@ -117,6 +117,38 @@ if ($frontendStarted) {
 }
 
 Write-Host ""
+Write-Host "========================================" -ForegroundColor Green
+Write-Host "  Starting Rust API Server             " -ForegroundColor Green
+Write-Host "========================================" -ForegroundColor Green
+Write-Host ""
+
+# Check if Rust is installed
+$rustInstalled = Get-Command cargo -ErrorAction SilentlyContinue
+if ($rustInstalled) {
+    Write-Host "[RUST API] Starting Rust API on http://localhost:8081" -ForegroundColor Cyan
+    $RustPath = Join-Path $ProjectRoot "rust"
+
+    if (Test-Path $RustPath) {
+        Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd '$RustPath'; Write-Host 'Rust API Server' -ForegroundColor Green; Write-Host '===============' -ForegroundColor Green; Write-Host ''; cargo run --bin api"
+
+        Write-Host "[RUST API] Waiting for server to start..." -ForegroundColor Yellow
+        Start-Sleep -Seconds 5
+
+        $rustStarted = Test-Port 8081
+        if ($rustStarted) {
+            Write-Host "[SUCCESS] Rust API started successfully!" -ForegroundColor Green
+        } else {
+            Write-Host "[WARNING] Rust API may still be compiling..." -ForegroundColor Yellow
+        }
+    } else {
+        Write-Host "[WARNING] Rust directory not found at: $RustPath" -ForegroundColor Yellow
+    }
+} else {
+    Write-Host "[WARNING] Rust not installed. Skipping Rust API server." -ForegroundColor Yellow
+    Write-Host "          Install Rust from: https://rustup.rs/" -ForegroundColor Gray
+}
+
+Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "  Servers Status                       " -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
@@ -140,11 +172,21 @@ if ($frontendStarted) {
 }
 
 Write-Host ""
+
+if ($rustInstalled -and (Test-Path (Join-Path $ProjectRoot "rust"))) {
+    if ($rustStarted) {
+        Write-Host "[RUST API] Running  - http://localhost:8081" -ForegroundColor Green
+    } else {
+        Write-Host "[RUST API] Starting (compiling may take a few minutes)" -ForegroundColor Yellow
+    }
+}
+
+Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "  Instructions                         " -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "- Two terminal windows have been opened (Backend & Frontend)" -ForegroundColor White
+Write-Host "- Multiple terminal windows have been opened (Backend, Frontend, Rust API)" -ForegroundColor White
 Write-Host "- To stop servers: Run .\STOP_SERVERS.ps1" -ForegroundColor White
 Write-Host "- To stop manually: Press Ctrl+C in each terminal window" -ForegroundColor White
 Write-Host ""

@@ -171,9 +171,9 @@ export default function Sidebar() {
       name: 'LETTERS',
       icon: Mail,
       submenu: [
-        { name: 'Acceptance Letter', href: '/letters/acceptance', icon: FileSignature },
-        { name: 'Offer Letter', href: '/letters/offer', icon: HandshakeIcon },
-        { name: 'Provisional Letter', href: '/letters/provisional', icon: FileCheck },
+        { name: 'Acceptance Letter', href: '/letters/acceptance-letter', icon: FileSignature },
+        { name: 'Offer Letter', href: '/letters/print-offer-letter', icon: HandshakeIcon },
+        { name: 'Provisional Letter', href: '/letters/provisional-letter', icon: FileCheck },
         { name: 'Matriculation Letter', href: '/letters/matriculation', icon: GraduationCap },
         { name: 'Character Reference', href: '/letters/character-reference', icon: FileText },
       ],

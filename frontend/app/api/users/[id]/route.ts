@@ -6,11 +6,12 @@ import { hashPassword } from '@/lib/auth';
 // GET /api/users/[id] - Get single user (ADMIN only)
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Check authentication
-    const { user, error: authError } = getAuthUser();
+    const { user, error: authError } = await getAuthUser();
     if (authError) return authError;
 
     // Check role permissions (ADMIN only)
@@ -18,7 +19,7 @@ export async function GET(
     if (roleError) return roleError;
 
     const foundUser = await prisma.user.findUnique({
-      where: { id: params.id },
+      where: { id },
       select: {
         id: true,
         email: true,
@@ -54,11 +55,12 @@ export async function GET(
 // PUT /api/users/[id] - Update user (ADMIN only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Check authentication
-    const { user, error: authError } = getAuthUser();
+    const { user, error: authError } = await getAuthUser();
     if (authError) return authError;
 
     // Check role permissions (ADMIN only)
@@ -90,7 +92,7 @@ export async function PUT(
     }
 
     const updatedUser = await prisma.user.update({
-      where: { id: params.id },
+      where: { id },
       data,
       select: {
         id: true,
@@ -110,18 +112,20 @@ export async function PUT(
   } catch (error) {
     console.error('Error updating user:', error);
 
-    if (error.code === 'P2002') {
-      return NextResponse.json(
-        { error: 'Email, student ID, or staff ID already in use' },
-        { status: 400 }
-      );
-    }
+    if (error && typeof error === 'object' && 'code' in error) {
+      if (error.code === 'P2002') {
+        return NextResponse.json(
+          { error: 'Email, student ID, or staff ID already in use' },
+          { status: 400 }
+        );
+      }
 
-    if (error.code === 'P2025') {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
+      if (error.code === 'P2025') {
+        return NextResponse.json(
+          { error: 'User not found' },
+          { status: 404 }
+        );
+      }
     }
 
     return NextResponse.json(
@@ -134,11 +138,12 @@ export async function PUT(
 // DELETE /api/users/[id] - Delete user (ADMIN only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Check authentication
-    const { user, error: authError } = getAuthUser();
+    const { user, error: authError } = await getAuthUser();
     if (authError) return authError;
 
     // Check role permissions (ADMIN only)
@@ -146,7 +151,7 @@ export async function DELETE(
     if (roleError) return roleError;
 
     // Prevent self-deletion
-    if (user.userId === params.id) {
+    if (user.userId === id) {
       return NextResponse.json(
         { error: 'Cannot delete your own account' },
         { status: 400 }
@@ -154,14 +159,14 @@ export async function DELETE(
     }
 
     await prisma.user.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true, message: 'User deleted successfully' });
   } catch (error) {
     console.error('Error deleting user:', error);
 
-    if (error.code === 'P2025') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2025') {
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }

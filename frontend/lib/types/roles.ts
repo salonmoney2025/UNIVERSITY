@@ -179,7 +179,7 @@ export interface User {
 }
 
 // Permission checking functions
-export function hasRole(user: User | null, roles: UserRole[]): boolean {
+export function hasRole(user: User | null, roles: readonly UserRole[]): boolean {
   if (!user) return false;
   return roles.includes(user.role);
 }
@@ -408,9 +408,11 @@ export function getDefaultDashboardRoute(user: User | null): string {
 
   switch (user.role) {
     case USER_ROLES.SUPER_ADMIN:
+      return '/super-admin-settings';
+
     case USER_ROLES.ADMIN:
     case USER_ROLES.CAMPUS_ADMIN:
-      return '/admin-dashboard';
+      return '/dashboard';
 
     case USER_ROLES.CHANCELLOR:
       return '/chancellor-dashboard';

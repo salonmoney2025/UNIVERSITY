@@ -5,7 +5,7 @@ import { getAuthUser, validateRole } from '@/lib/api-middleware';
 export async function GET() {
   try {
     // Check authentication
-    const { user, error: authError } = getAuthUser();
+    const { user, error: authError } = await getAuthUser();
     if (authError) return authError;
 
     // Check role permissions (ADMIN and FINANCE can view dashboard stats)

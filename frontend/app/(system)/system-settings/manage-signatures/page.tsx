@@ -1,12 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import api from '@/lib/api';
-import { FileSignature, Edit, Trash2, Plus, Search, Upload, Building2, CheckCircle, XCircle, Star } from 'lucide-react';
+import { FileSignature, Plus, Search, Upload, Building2, CheckCircle, XCircle, Star } from 'lucide-react';
 import toast from 'react-hot-toast';
-import Image from 'next/image';
 
 interface Signature {
   id: number;
@@ -29,7 +27,6 @@ interface Campus {
 }
 
 export default function ManageSignaturesPage() {
-  const router = useRouter();
   const [signatures, setSignatures] = useState<Signature[]>([]);
   const [campuses, setCampuses] = useState<Campus[]>([]);
   const [loading, setLoading] = useState(true);
@@ -56,11 +53,15 @@ export default function ManageSignaturesPage() {
         api.get('/communications/signatures/'),
         api.get('/campuses/')
       ]);
-      setSignatures(signaturesRes.data.results || signaturesRes.data);
-      setCampuses(campusesRes.data.results || campusesRes.data);
+      const signaturesData = signaturesRes.data.results || signaturesRes.data;
+      const campusesData = campusesRes.data.results || campusesRes.data;
+      setSignatures(Array.isArray(signaturesData) ? signaturesData : []);
+      setCampuses(Array.isArray(campusesData) ? campusesData : []);
     } catch (error) {
       console.error('Error fetching data:', error);
       toast.error('Failed to load data');
+      setSignatures([]);
+      setCampuses([]);
     } finally {
       setLoading(false);
     }
@@ -241,7 +242,7 @@ export default function ManageSignaturesPage() {
                       )}
                     </div>
                     {signature.is_default && (
-                      <Star className="h-5 w-5 text-yellow-500 fill-current" title="Default Signature" />
+                      <Star className="h-5 w-5 text-yellow-500 fill-current" />
                     )}
                   </div>
 

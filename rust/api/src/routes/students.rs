@@ -19,10 +19,10 @@ use crate::state::AppState;
 pub fn router() -> Router<AppState> {
     Router::new()
         .route("/", get(list_students).post(create_student))
-        .route("/:id", get(get_student))
-        .route("/student-id/:student_id", get(get_student_by_student_id))
-        .route("/campus/:campus_id", get(list_students_by_campus))
-        .route("/status/:status", get(list_students_by_status))
+        .route("/{id}", get(get_student))
+        .route("/student-id/{student_id}", get(get_student_by_student_id))
+        .route("/campus/{campus_id}", get(list_students_by_campus))
+        .route("/status/{status}", get(list_students_by_status))
 }
 
 /// GET /api/v2/students - List all students with pagination
@@ -180,7 +180,7 @@ async fn list_students_by_status(
 /// POST /api/v2/students - Create a new student
 async fn create_student(
     State(state): State<AppState>,
-    Json(payload): Json(serde_json::Value>,
+    Json(payload): Json<serde_json::Value>,
 ) -> impl IntoResponse {
     tracing::info!("Creating student: {:?}", payload);
 

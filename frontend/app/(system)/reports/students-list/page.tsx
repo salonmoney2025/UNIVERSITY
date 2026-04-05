@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import ExportMenu from '@/components/export/ExportMenu';
 import {
@@ -40,6 +40,7 @@ export default function StudentsListReport() {
   const [campusFilter, setCampusFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 25;
+  const [campuses, setCampuses] = useState<any[]>([]);
 
   // Mock data
   const students: Student[] = [
@@ -103,7 +104,23 @@ export default function StudentsListReport() {
   const faculties = ['All', 'Faculty of Engineering', 'Faculty of Business Administration', 'Faculty of Science', 'Faculty of Arts'];
   const levels = ['All', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'];
   const statuses = ['All', 'Active', 'Inactive', 'Graduated', 'Suspended'];
-  const campuses = ['All', 'Main Campus', 'Makeni Campus', 'Bo Campus'];
+
+  useEffect(() => {
+    const fetchCampuses = async () => {
+      try {
+        const response = await fetch('/api/v1/campuses/');
+        if (response.ok) {
+          const data = await response.json();
+          const campusData = data.results || data;
+          setCampuses(Array.isArray(campusData) ? campusData : []);
+        }
+      } catch (error) {
+        console.error('Error fetching campuses:', error);
+        setCampuses([]);
+      }
+    };
+    fetchCampuses();
+  }, []);
 
   const getStatusBadge = (status: string) => {
     const badges = {
@@ -290,8 +307,11 @@ export default function StudentsListReport() {
                 onChange={(e) => setCampusFilter(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               >
+                <option value="All">All</option>
                 {campuses.map((campus) => (
-                  <option key={campus} value={campus}>{campus}</option>
+                  <option key={campus.id} value={campus.name}>
+                    {campus.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -380,7 +400,7 @@ export default function StudentsListReport() {
           <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
             <div className="text-sm text-gray-700">
               Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to{' '}
-              <span className="font-medium">{Math.min(currentPage * itemsPerPageedStudents.length)}</span> of{' '}
+              <span className="font-medium">{Math.min(currentPage * itemsPerPage, filteredStudents.length)}</span> of{' '}
               <span className="font-medium">{filteredStudents.length}</span> results
             </div>
             <div className="flex items-center space-x-2">

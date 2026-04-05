@@ -79,7 +79,7 @@ export default function AddCoursePage() {
     setLoading(true);
 
     try {
-      const response = await api.post('/courses/courses/', formData);
+      await api.post('/courses/courses/', formData);
       toast.success('Course added successfully!');
       router.push('/courses/manage');
     } catch (error: any) {

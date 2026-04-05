@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import api from '@/lib/api';
 import { MessageSquare, Edit, Trash2, Plus, Search, Eye, CheckCircle, XCircle } from 'lucide-react';
@@ -21,7 +20,6 @@ interface SMSTemplate {
 }
 
 export default function SMSTemplatesPage() {
-  const router = useRouter();
   const [templates, setTemplates] = useState<SMSTemplate[]>([]);
   const [templateTypes, setTemplateTypes] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);

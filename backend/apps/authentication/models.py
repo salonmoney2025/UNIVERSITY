@@ -382,3 +382,22 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
         """Override save to run validation"""
         self.full_clean()
         super().save(*args, **kwargs)
+
+# Import RBAC models to ensure they're registered with Django
+from .rbac_models import Permission, RolePermission, UserPermission, PermissionAuditLog, RoleHierarchy  # noqa: E402, F401
+
+# Import Approval Workflow models
+from .approval_models import (  # noqa: E402, F401
+    ApprovalChain, ApprovalLevel, ApprovalRequest,
+    ApprovalAction, ApprovalComment, ApprovalTemplate
+)
+
+# Import Session Management models
+from .session_models import (  # noqa: E402, F401
+    UserSession, SessionActivity, LoginAttempt, DeviceFingerprint
+)
+
+# Import Two-Factor Authentication models
+from .twofa_models import (  # noqa: E402, F401
+    TwoFactorAuth, TwoFactorVerification, TrustedDevice
+)

@@ -459,7 +459,6 @@ export default function PINSalesReconciliation() {
                 <ExportMenu
                   data={filteredRecords}
                   filename="pin-sales-reconciliation"
-                  sheetName="PIN Sales"
                 />
               </div>
             </div>

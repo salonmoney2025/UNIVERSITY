@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import api from '@/lib/api';
 import { RefreshCw, AlertCircle, CheckCircle, Building2, Calendar } from 'lucide-react';
@@ -14,7 +13,6 @@ interface Campus {
 }
 
 export default function CourseRolloverPage() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [campuses, setCampuses] = useState<Campus[]>([]);
   const [formData, setFormData] = useState({

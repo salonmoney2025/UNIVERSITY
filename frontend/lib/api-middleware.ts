@@ -12,7 +12,7 @@ export interface AuthenticatedRequest extends NextRequest {
 export function requireAuth(handler: (req: AuthenticatedRequest) => Promise<NextResponse>) {
   return async (req: NextRequest) => {
     try {
-      const user = getCurrentUser();
+      const user = await getCurrentUser();
 
       if (!user) {
         return NextResponse.json(
@@ -43,7 +43,7 @@ export function requireAuth(handler: (req: AuthenticatedRequest) => Promise<Next
 export function requireRole(allowedRoles: string[], handler: (req: AuthenticatedRequest) => Promise<NextResponse>) {
   return async (req: NextRequest) => {
     try {
-      const user = getCurrentUser();
+      const user = await getCurrentUser();
 
       if (!user) {
         return NextResponse.json(
@@ -85,8 +85,8 @@ export function hasRole(user: JWTPayload | null, allowedRoles: string[]): boolea
 /**
  * Get current authenticated user or return error response
  */
-export function getAuthUser(): { user: JWTPayload; error: null } | { user: null; error: NextResponse } {
-  const user = getCurrentUser();
+export async function getAuthUser(): Promise<{ user: JWTPayload; error: null } | { user: null; error: NextResponse }> {
+  const user = await getCurrentUser();
 
   if (!user) {
     return {

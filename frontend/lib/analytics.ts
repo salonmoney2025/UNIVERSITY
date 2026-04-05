@@ -101,7 +101,7 @@ export async function getAnalytics(
     const dailyRevenue = dayPayments.reduce((sum, p) => sum + p.amount, 0);
 
     // Payment by type
-    const paymentsByType = allPayments.reduce((acc: Record<string, unknown>, p) => {
+    const paymentsByType = allPayments.reduce((acc: Record<string, { count: number; revenue: number }>, p) => {
       if (!acc[p.paymentType]) {
         acc[p.paymentType] = { count: 0, revenue: 0 };
       }
@@ -140,7 +140,7 @@ export async function getAnalytics(
     }));
 
     // User analytics
-    const usersByRole = users.reduce((acc: Record<string, unknown>, u) => {
+    const usersByRole = users.reduce((acc: Record<string, number>, u) => {
       acc[u.role] = (acc[u.role] || 0) + 1;
       return acc;
     }, {});
@@ -155,7 +155,7 @@ export async function getAnalytics(
     ).length;
 
     // Ticket analytics
-    const ticketsByCategory = tickets.reduce((acc: Record<string, unknown>, t) => {
+    const ticketsByCategory = tickets.reduce((acc: Record<string, number>, t) => {
       acc[t.category] = (acc[t.category] || 0) + 1;
       return acc;
     }, {});
@@ -166,7 +166,7 @@ export async function getAnalytics(
     }));
 
     // Document analytics
-    const docsByCategory = documents.reduce((acc: Record<string, unknown>, d) => {
+    const docsByCategory = documents.reduce((acc: Record<string, number>, d) => {
       acc[d.category] = (acc[d.category] || 0) + 1;
       return acc;
     }, {});
@@ -184,7 +184,7 @@ export async function getAnalytics(
     }));
 
     // Activity analytics
-    const actionCounts = activityLogs.reduce((acc: Record<string, unknown>, log) => {
+    const actionCounts = activityLogs.reduce((acc: Record<string, number>, log) => {
       acc[log.action] = (acc[log.action] || 0) + 1;
       return acc;
     }, {});
@@ -194,7 +194,7 @@ export async function getAnalytics(
       .sort((a, b) => b.count - a.count)
       .slice(0, 10);
 
-    const userActivity = activityLogs.reduce((acc: Record<string, unknown>, log) => {
+    const userActivity = activityLogs.reduce((acc: Record<string, number>, log) => {
       acc[log.userName] = (acc[log.userName] || 0) + 1;
       return acc;
     }, {});

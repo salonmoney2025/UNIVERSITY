@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import DashboardLayout from '@/components/layout/DashboardLayout';
@@ -34,6 +34,7 @@ interface Application {
 
 export default function ResetApplicationPage() {
   const router = useRouter();
+  const [campuses, setCampuses] = useState<any[]>([]);
   const [selectedCampus, setSelectedCampus] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [applications, setApplications] = useState<Application[]>([
@@ -93,6 +94,24 @@ export default function ResetApplicationPage() {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
   const [resetReason, setResetReason] = useState('');
+
+  // Fetch campuses from API
+  useEffect(() => {
+    const fetchCampuses = async () => {
+      try {
+        const response = await fetch('/api/v1/campuses/');
+        if (response.ok) {
+          const data = await response.json();
+          const campusData = data.results || data;
+          setCampuses(Array.isArray(campusData) ? campusData : []);
+        }
+      } catch (error) {
+        console.error('Error fetching campuses:', error);
+        setCampuses([]);
+      }
+    };
+    fetchCampuses();
+  }, []);
 
   const handleRefresh = () => {
     console.log('Refreshing data...');
@@ -242,9 +261,11 @@ export default function ResetApplicationPage() {
                 className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
               >
                 <option value="all">All Campuses</option>
-                <option value="Main Campus">Main Campus</option>
-                <option value="Bo Campus">Bo Campus</option>
-                <option value="Makeni Campus">Makeni Campus</option>
+                {campuses.map((campus) => (
+                  <option key={campus.id} value={campus.name}>
+                    {campus.name}
+                  </option>
+                ))}
               </select>
             </div>
 

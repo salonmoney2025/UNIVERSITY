@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
@@ -15,6 +15,13 @@ export default function LoginPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword] = useState(false);
+
+  // Show session expired message if redirected due to 401
+  useEffect(() => {
+    if (searchParams.get('expired') === 'true') {
+      toast.error('Your session has expired. Please login again.');
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,7 +66,7 @@ export default function LoginPage() {
       } else if (userRole === 'FINANCE' || userRole === 'STAFF') {
         targetUrl = '/receipt/generate';
       } else if (userRole === 'STUDENT') {
-        targetUrl = '/student/dashboard';
+        targetUrl = '/student-portal/dashboard';
       }
 
       // Force immediate redirect using router.push instead of window.location

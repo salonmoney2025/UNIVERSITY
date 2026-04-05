@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import ExportMenu from '@/components/export/ExportMenu';
 import {
@@ -39,6 +39,7 @@ export default function FacultiesReport() {
   const [statusFilter, setStatusFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [campuses, setCampuses] = useState<any[]>([]);
 
   // Mock data - replace with API call
   const faculties: Faculty[] = [
@@ -131,8 +132,24 @@ export default function FacultiesReport() {
     totalStudents: 5405,
   };
 
-  const campuses = ['All', 'Main Campus', 'Makeni Campus', 'Bo Campus'];
   const statuses = ['All', 'Active', 'Inactive'];
+
+  useEffect(() => {
+    const fetchCampuses = async () => {
+      try {
+        const response = await fetch('/api/v1/campuses/');
+        if (response.ok) {
+          const data = await response.json();
+          const campusData = data.results || data;
+          setCampuses(Array.isArray(campusData) ? campusData : []);
+        }
+      } catch (error) {
+        console.error('Error fetching campuses:', error);
+        setCampuses([]);
+      }
+    };
+    fetchCampuses();
+  }, []);
 
   const getStatusBadge = (status: string) => {
     return status === 'active'
@@ -271,8 +288,11 @@ export default function FacultiesReport() {
                 onChange={(e) => setCampusFilter(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
+                <option value="All">All</option>
                 {campuses.map((campus) => (
-                  <option key={campus} value={campus}>{campus}</option>
+                  <option key={campus.id} value={campus.name}>
+                    {campus.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -368,7 +388,7 @@ export default function FacultiesReport() {
             <div className="flex items-center justify-between">
               <div className="text-sm text-gray-700">
                 Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to{' '}
-                <span className="font-medium">{Math.min(currentPage * itemsPerPageedFaculties.length)}</span> of{' '}
+                <span className="font-medium">{Math.min(currentPage * itemsPerPage, filteredFaculties.length)}</span> of{' '}
                 <span className="font-medium">{filteredFaculties.length}</span> results
               </div>
               <div className="flex items-center space-x-2">

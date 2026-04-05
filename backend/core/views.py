@@ -1,5 +1,42 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
+from django.db import connection
+from django.core.cache import cache
+import time
+
+
+@require_http_methods(["GET"])
+def health_check(request):
+    """
+    Health check endpoint for Docker health monitoring
+    Checks database and cache connectivity
+    """
+    status = {
+        'status': 'healthy',
+        'timestamp': time.time(),
+        'checks': {}
+    }
+
+    # Check database connectivity
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+        status['checks']['database'] = 'ok'
+    except Exception as e:
+        status['checks']['database'] = f'error: {str(e)}'
+        status['status'] = 'unhealthy'
+
+    # Check cache connectivity
+    try:
+        cache.set('health_check', 'ok', 10)
+        cache_value = cache.get('health_check')
+        status['checks']['cache'] = 'ok' if cache_value == 'ok' else 'error'
+    except Exception as e:
+        status['checks']['cache'] = f'error: {str(e)}'
+        status['status'] = 'unhealthy'
+
+    response_status = 200 if status['status'] == 'healthy' else 503
+    return JsonResponse(status, status=response_status)
 
 
 @require_http_methods(["GET"])

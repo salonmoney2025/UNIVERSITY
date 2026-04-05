@@ -3,6 +3,7 @@ Django base settings for University LMS project.
 """
 from pathlib import Path
 from decouple import config
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -26,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party apps
+    # 'daphne',  # ASGI server for Django Channels (disabled - using polling)
+    # 'channels',  # WebSocket support (disabled - using polling)
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
@@ -48,6 +51,8 @@ INSTALLED_APPS = [
     'apps.letters',
     'apps.business_center',
     'apps.notifications',
+    'apps.documents',
+    'apps.messaging',
 ]
 
 MIDDLEWARE = [
@@ -186,8 +191,6 @@ REST_FRAMEWORK = {
 }
 
 # JWT Settings
-from datetime import timedelta
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
@@ -285,3 +288,22 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
+
+# Django Channels Settings for Real-time Messaging
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(config('REDIS_HOST', default='localhost'), config('REDIS_PORT', default=6379, cast=int))],
+            'capacity': 10000,
+            'expiry': 10,
+        },
+    },
+}
+
+# WebSocket Settings
+WEBSOCKET_ALLOWED_ORIGINS = config(
+    'WEBSOCKET_ALLOWED_ORIGINS',
+    default='http://localhost:3000,http://localhost:5173',
+    cast=lambda v: [s.strip() for s in v.split(',')]
+)

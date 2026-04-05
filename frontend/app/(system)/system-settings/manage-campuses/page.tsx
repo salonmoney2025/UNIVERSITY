@@ -38,10 +38,12 @@ export default function ManageCampusesPage() {
   const fetchCampuses = async () => {
     try {
       const response = await api.get('/campuses/');
-      setCampuses(response.data.results || response.data);
+      const data = response.data.results || response.data;
+      setCampuses(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error fetching campuses:', error);
       toast.error('Failed to load campuses');
+      setCampuses([]);
     } finally {
       setLoading(false);
     }

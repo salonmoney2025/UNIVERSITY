@@ -41,8 +41,8 @@ export default function SubmitTicketPage() {
             <HelpCircle className="w-6 h-6 text-orange-600" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-black">Submit Support Ticket</h1>
-            <p className="text-sm text-black">Get help from our support team</p>
+            <h1 className="text-3xl font-bold text-white">Submit Support Ticket</h1>
+            <p className="text-sm text-white">Get help from our support team</p>
           
             <Link
               href="/dashboard"
@@ -168,7 +168,7 @@ export default function SubmitTicketPage() {
             <button
               type="button"
               onClick={() => window.history.back()}
-              className="px-6 py-2 border border-solid black-300 text-black rounded-lg hover:bg-solid black-50"
+              className="px-6 py-2 border border-solid black-300 text-white rounded-lg hover:bg-solid black-50"
             >
               Cancel
             </button>

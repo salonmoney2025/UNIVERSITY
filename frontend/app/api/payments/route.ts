@@ -6,7 +6,7 @@ import { getAuthUser, validateRole } from '@/lib/api-middleware';
 export async function GET(request: NextRequest) {
   try {
     // Check authentication
-    const { user, error } = getAuthUser();
+    const { user, error } = await getAuthUser();
     if (error) return error;
 
     const { searchParams } = new URL(request.url);
@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Check authentication
-    const { user, error: authError } = getAuthUser();
+    const { user, error: authError } = await getAuthUser();
     if (authError) return authError;
 
     // Check role permissions

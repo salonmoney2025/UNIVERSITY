@@ -38,9 +38,11 @@ interface RecentPayment {
   id: string;
   receiptNo: string;
   studentName: string;
+  studentId?: string;
   amount: number;
   paymentType: string;
   paymentDate: string;
+  status?: string;
 }
 
 interface FinanceStats {
@@ -295,7 +297,7 @@ export default function FinanceDashboardPage() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" />
                 <YAxis />
-                <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                <Tooltip formatter={(value: any) => typeof value === 'number' ? formatCurrency(value) : value} />
                 <Legend />
                 <Line
                   type="monotone"
@@ -318,7 +320,7 @@ export default function FinanceDashboardPage() {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ type, percent }) => `${type}: ${(percent * 100).toFixed(0)}%`}
+                  label={(props: any) => `${props.name || props.type}: ${((props.percent || 0) * 100).toFixed(0)}%`}
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="amount"
@@ -327,7 +329,7 @@ export default function FinanceDashboardPage() {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                <Tooltip formatter={(value: any) => typeof value === 'number' ? formatCurrency(value) : value} />
               </PieChart>
             </ResponsiveContainer>
           </div>

@@ -11,9 +11,10 @@ const prisma = new PrismaClient();
 // GET /api/documents/[id] - Download/view a document
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Verify authentication
     const token = request.cookies.get('auth-token')?.value;
     if (!token) {
@@ -24,8 +25,6 @@ export async function GET(
     if (!user) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
-
-    const { id } = params;
 
     // Find document
     const document = await prisma.document.findUnique({
@@ -63,9 +62,10 @@ export async function GET(
 // DELETE /api/documents/[id] - Delete a document
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Verify authentication
     const token = request.cookies.get('auth-token')?.value;
     if (!token) {
@@ -76,8 +76,6 @@ export async function DELETE(
     if (!user) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
-
-    const { id } = params;
 
     // Find document
     const document = await prisma.document.findUnique({
@@ -120,9 +118,10 @@ export async function DELETE(
 // PUT /api/documents/[id] - Update document metadata
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // Verify authentication
     const token = request.cookies.get('auth-token')?.value;
     if (!token) {
@@ -133,8 +132,6 @@ export async function PUT(
     if (!user) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
-
-    const { id } = params;
     const body = await request.json();
     const { category, description, isPublic } = body;
 

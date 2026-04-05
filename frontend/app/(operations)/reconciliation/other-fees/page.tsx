@@ -455,7 +455,6 @@ export default function OtherFeesReconciliation() {
                 <ExportMenu
                   data={filteredRecords}
                   filename="other-fees-reconciliation"
-                  sheetName="Other Fees"
                 />
               </div>
             </div>

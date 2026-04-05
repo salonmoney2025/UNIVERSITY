@@ -229,7 +229,7 @@ export default function RegisterPage() {
                       id="staffId"
                       name="staffId"
                       type="text"
-                      required={formData.role !== 'STUDENT'}
+                      required
                       value={formData.staffId}
                       onChange={handleChange}
                       className="block w-full pl-10 pr-3 py-2.5 border border-solid black-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"

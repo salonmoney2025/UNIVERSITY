@@ -11,11 +11,13 @@ from .views import (
     ResetPasswordAPIView,
     CurrentUserAPIView
 )
+from .bulk_views import BulkOperationsViewSet
 
 app_name = 'authentication'
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
+router.register(r'bulk', BulkOperationsViewSet, basename='bulk-operations')
 
 urlpatterns = [
     # Router URLs
@@ -33,4 +35,16 @@ urlpatterns = [
 
     # Current user
     path('me/', CurrentUserAPIView.as_view(), name='current_user'),
+
+    # RBAC - Role-Based Access Control
+    path('rbac/', include('apps.authentication.rbac_urls')),
+
+    # Approval Workflow System
+    path('approvals/', include('apps.authentication.approval_urls')),
+
+    # Session Management
+    path('sessions/', include('apps.authentication.session_urls')),
+
+    # Two-Factor Authentication
+    path('2fa/', include('apps.authentication.twofa_urls')),
 ]

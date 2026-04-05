@@ -1,46 +1,63 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth';
+
+// Determine backend URL based on environment
+const getBackendUrl = () => {
+  const isDocker = process.env.DOCKER_ENV === 'true' || process.env.NODE_ENV === 'production';
+  return isDocker ? 'http://backend:8000' : 'http://localhost:5000';
+};
 
 export async function GET(request: NextRequest) {
   try {
     // Get token from cookie
     const token = request.cookies.get('auth-token')?.value;
 
-    // Log for debugging
-    console.log('Auth check - Token present:', !!token);
-    console.log('Auth check - All cookies:', request.cookies.getAll().map(c => c.name));
+    console.log('[Auth Check] Token present:', !!token);
 
     if (!token) {
-      console.log('Auth check - No token found, returning 401');
+      console.log('[Auth Check] No token found');
       return NextResponse.json(
         { error: 'Not authenticated' },
         { status: 401 }
       );
     }
 
-    // Verify token
-    const user = verifyToken(token);
+    // Call Django backend to validate token and get user info
+    const backendUrl = getBackendUrl();
+    console.log('[Auth Check] Calling Django backend at:', backendUrl);
 
-    if (!user) {
-      console.log('Auth check - Invalid token, returning 401');
+    const djangoResponse = await fetch(`${backendUrl}/api/v1/auth/me/`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!djangoResponse.ok) {
+      console.log('[Auth Check] Django returned:', djangoResponse.status);
       return NextResponse.json(
-        { error: 'Invalid token' },
+        { error: 'Invalid or expired token' },
         { status: 401 }
       );
     }
 
-    console.log('Auth check - Success for user:', user.email);
+    const userData = await djangoResponse.json();
+    console.log('[Auth Check] Success for user:', userData.email);
+
     return NextResponse.json({
       success: true,
       user: {
-        id: user.userId,
-        email: user.email,
-        name: user.name,
-        role: user.role,
+        id: userData.id,
+        email: userData.email,
+        name: userData.full_name || userData.email,
+        role: userData.role,
+        studentId: userData.student_id,
+        staffId: userData.staff_id,
+        department: userData.department,
       },
     });
   } catch (error) {
-    console.error('Auth check error:', error);
+    console.error('[Auth Check] Error:', error);
     return NextResponse.json(
       { error: 'Failed to check authentication' },
       { status: 500 }

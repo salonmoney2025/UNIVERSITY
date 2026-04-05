@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import DashboardLayout from '@/components/layout/DashboardLayout';
@@ -33,6 +33,7 @@ export default function ApplicantCountsPage() {
   const [selectedCampus, setSelectedCampus] = useState('all');
   const [selectedYear, setSelectedYear] = useState('2025/2026');
   const [viewMode, setViewMode] = useState<'overview' | 'faculty' | 'program' | 'status'>('overview');
+  const [campuses, setCampuses] = useState<any[]>([]);
 
   // Mock data
   const totalApplicants = 1250;
@@ -63,6 +64,23 @@ export default function ApplicantCountsPage() {
     { id: '2', category: 'Campus', subcategory: 'Bo Campus', count: 320, percentage: 25.6, trend: 'stable' },
     { id: '3', category: 'Campus', subcategory: 'Makeni Campus', count: 250, percentage: 20.0, trend: 'up' }
   ];
+
+  useEffect(() => {
+    const fetchCampuses = async () => {
+      try {
+        const response = await fetch('/api/v1/campuses/');
+        if (response.ok) {
+          const data = await response.json();
+          const campusData = data.results || data;
+          setCampuses(Array.isArray(campusData) ? campusData : []);
+        }
+      } catch (error) {
+        console.error('Error fetching campuses:', error);
+        setCampuses([]);
+      }
+    };
+    fetchCampuses();
+  }, []);
 
   const handleRefresh = () => {
     console.log('Refreshing data...');
@@ -228,9 +246,11 @@ export default function ApplicantCountsPage() {
                   className="px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                 >
                   <option value="all">All Campuses</option>
-                  <option value="Main Campus">Main Campus</option>
-                  <option value="Bo Campus">Bo Campus</option>
-                  <option value="Makeni Campus">Makeni Campus</option>
+                  {campuses.map((campus) => (
+                    <option key={campus.id} value={campus.name}>
+                      {campus.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

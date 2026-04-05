@@ -7,7 +7,7 @@ import { hashPassword } from '@/lib/auth';
 export async function GET(request: NextRequest) {
   try {
     // Check authentication
-    const { user, error: authError } = getAuthUser();
+    const { user, error: authError } = await getAuthUser();
     if (authError) return authError;
 
     // Check role permissions (ADMIN only)
@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Check authentication
-    const { user, error: authError } = getAuthUser();
+    const { user, error: authError } = await getAuthUser();
     if (authError) return authError;
 
     // Check role permissions (ADMIN only)
@@ -133,7 +133,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error creating user:', error);
 
-    if (error.code === 'P2002') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
       return NextResponse.json(
         { error: 'User with this email, student ID, or staff ID already exists' },
         { status: 400 }

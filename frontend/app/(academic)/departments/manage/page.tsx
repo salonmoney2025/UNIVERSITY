@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import DashboardLayout from '@/components/layout/DashboardLayout';
@@ -38,6 +38,7 @@ export default function ManageDepartmentsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFaculty, setSelectedFaculty] = useState('all');
   const [selectedCampus, setSelectedCampus] = useState('all');
+  const [campuses, setCampuses] = useState<any[]>([]);
   const [departments, setDepartments] = useState<Department[]>([
     {
       id: '1',
@@ -109,6 +110,23 @@ export default function ManageDepartmentsPage() {
     hodName: '',
     campus: ''
   });
+
+  useEffect(() => {
+    const fetchCampuses = async () => {
+      try {
+        const response = await fetch('/api/v1/campuses/');
+        if (response.ok) {
+          const data = await response.json();
+          const campusData = data.results || data;
+          setCampuses(Array.isArray(campusData) ? campusData : []);
+        }
+      } catch (error) {
+        console.error('Error fetching campuses:', error);
+        setCampuses([]);
+      }
+    };
+    fetchCampuses();
+  }, []);
 
   const handleRefresh = useCallback(() => {
     console.log('Refreshing data...');
@@ -333,9 +351,11 @@ export default function ManageDepartmentsPage() {
                 className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
               >
                 <option value="all">All Campuses</option>
-                <option value="Main Campus">Main Campus</option>
-                <option value="Bo Campus">Bo Campus</option>
-                <option value="Makeni Campus">Makeni Campus</option>
+                {campuses.map((campus) => (
+                  <option key={campus.id} value={campus.name}>
+                    {campus.name}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -565,9 +585,11 @@ export default function ManageDepartmentsPage() {
                         className="w-full px-4 py-2 border-2 border-solid black-300 rounded focus:outline-none focus:ring-2 focus:ring-portal-teal-500"
                       >
                         <option value="">Select Campus</option>
-                        <option value="Main Campus">Main Campus</option>
-                        <option value="Bo Campus">Bo Campus</option>
-                        <option value="Makeni Campus">Makeni Campus</option>
+                        {campuses.map((campus) => (
+                          <option key={campus.id} value={campus.name}>
+                            {campus.name}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>

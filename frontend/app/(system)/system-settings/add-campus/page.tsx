@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import api from '@/lib/api';
-import { Building2, MapPin, Phone, Mail, Globe, Save, X } from 'lucide-react';
+import { Building2, MapPin, Phone, Save, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function AddCampusPage() {
@@ -35,7 +35,7 @@ export default function AddCampusPage() {
     setLoading(true);
 
     try {
-      const response = await api.post('/campuses/', formData);
+      await api.post('/campuses/', formData);
       toast.success('Campus added successfully!');
       router.push('/system-settings/manage-campuses');
     } catch (error: any) {

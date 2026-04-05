@@ -2,7 +2,7 @@
 # Optimized for fast builds and small final image
 
 # Stage 1: Build
-FROM rust:1.83-slim as builder
+FROM rust:slim as builder
 
 WORKDIR /app
 
@@ -30,6 +30,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     libssl3 \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy binary from builder

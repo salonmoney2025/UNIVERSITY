@@ -19,9 +19,9 @@ use crate::state::AppState;
 pub fn router() -> Router<AppState> {
     Router::new()
         .route("/", get(list_exams))
-        .route("/:id", get(get_exam))
-        .route("/:id/grades", get(get_exam_grades))
-        .route("/students/:student_id/grades", get(get_student_grades))
+        .route("/{id}", get(get_exam))
+        .route("/{id}/grades", get(get_exam_grades))
+        .route("/students/{student_id}/grades", get(get_student_grades))
 }
 
 /// GET /api/v2/exams - List all exams with pagination

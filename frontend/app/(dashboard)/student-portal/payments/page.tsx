@@ -102,11 +102,12 @@ export default function StudentPaymentsPage() {
         amount: payment.amount,
         paymentType: payment.paymentType,
         paymentMethod: payment.paymentMethod,
-        paymentDate: new Date(payment.paymentDate),
+        paymentDate: new Date(payment.paymentDate).toISOString(),
         transactionRef: payment.transactionRef,
         bankName: payment.bank?.bankName,
         academicYear: payment.academicYear,
         semester: payment.semester,
+        status: payment.status,
       });
       toast.success('Receipt downloaded successfully!');
     } catch {

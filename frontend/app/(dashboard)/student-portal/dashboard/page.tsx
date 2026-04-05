@@ -78,9 +78,12 @@ export default function StudentDashboardPage() {
         amount: payment.amount,
         paymentType: payment.paymentType,
         paymentMethod: payment.paymentMethod,
-        paymentDate: new Date(payment.paymentDate),
+        paymentDate: new Date(payment.paymentDate).toISOString(),
         transactionRef: payment.transactionRef,
         bankName: payment.bank?.bankName,
+        academicYear: new Date().getFullYear().toString(),
+        semester: '1',
+        status: payment.status,
       });
       toast.success('Receipt downloaded successfully!');
     } catch {
@@ -200,7 +203,7 @@ export default function StudentDashboardPage() {
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <button
-            onClick={() => router.push('/student/payments')}
+            onClick={() => router.push('/student-portal/payments')}
             className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-indigo-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-indigo-100 p-2 rounded-lg">
@@ -210,7 +213,7 @@ export default function StudentDashboardPage() {
           </button>
 
           <button
-            onClick={() => router.push('/student/profile')}
+            onClick={() => router.push('/student-portal/profile')}
             className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-blue-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-blue-100 p-2 rounded-lg">
@@ -220,7 +223,7 @@ export default function StudentDashboardPage() {
           </button>
 
           <button
-            onClick={() => router.push('/helpdesk/submit')}
+            onClick={() => router.push('/help-desk/submit')}
             className="bg-white p-4 rounded-lg border border-solid black-200 hover:border-green-300 hover:shadow-md transition-all flex items-center gap-3"
           >
             <div className="bg-green-100 p-2 rounded-lg">
@@ -245,7 +248,7 @@ export default function StudentDashboardPage() {
           <div className="px-6 py-4 border-b border-solid black-200 flex items-center justify-between">
             <h2 className="text-lg font-semibold text-black">Recent Payments</h2>
             <button
-              onClick={() => router.push('/student/payments')}
+              onClick={() => router.push('/student-portal/payments')}
               className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
             >
               View All
@@ -357,7 +360,7 @@ export default function StudentDashboardPage() {
               )}
             </div>
             <button
-              onClick={() => router.push('/student/profile')}
+              onClick={() => router.push('/student-portal/profile')}
               className="mt-4 w-full bg-indigo-50 text-indigo-600 py-2 px-4 rounded-lg hover:bg-indigo-100 transition-colors font-medium text-sm"
             >
               Edit Profile
@@ -372,7 +375,7 @@ export default function StudentDashboardPage() {
             </h3>
             <div className="space-y-2">
               <button
-                onClick={() => router.push('/student/payments')}
+                onClick={() => router.push('/student-portal/payments')}
                 className="w-full text-left px-4 py-3 rounded-lg hover:bg-solid black-50 transition-colors flex items-center justify-between"
               >
                 <span className="text-sm font-medium text-black">Payment History</span>
@@ -386,14 +389,14 @@ export default function StudentDashboardPage() {
                 <span className="text-xs text-black">View all</span>
               </button>
               <button
-                onClick={() => router.push('/student/profile')}
+                onClick={() => router.push('/student-portal/profile')}
                 className="w-full text-left px-4 py-3 rounded-lg hover:bg-solid black-50 transition-colors flex items-center justify-between"
               >
                 <span className="text-sm font-medium text-black">Account Settings</span>
                 <span className="text-xs text-black">Update</span>
               </button>
               <button
-                onClick={() => router.push('/helpdesk/submit')}
+                onClick={() => router.push('/help-desk/submit')}
                 className="w-full text-left px-4 py-3 rounded-lg hover:bg-solid black-50 transition-colors flex items-center justify-between"
               >
                 <span className="text-sm font-medium text-black">Submit New Ticket</span>

@@ -109,7 +109,7 @@ export default function FileUpload({
         file,
         status: error ? 'error' : 'uploading',
         progress: error ? 0 : 0,
-        error,
+        error: error || undefined,
       };
     });
 

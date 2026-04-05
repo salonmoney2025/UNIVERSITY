@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import api from '@/lib/api';
 import { GraduationCap, Edit, Trash2, Plus, Search, Building2, User } from 'lucide-react';
@@ -26,7 +25,6 @@ interface Campus {
 }
 
 export default function ManageFacultiesPage() {
-  const router = useRouter();
   const [faculties, setFaculties] = useState<Faculty[]>([]);
   const [campuses, setCampuses] = useState<Campus[]>([]);
   const [loading, setLoading] = useState(true);

@@ -22,7 +22,7 @@ interface RetryableRequestConfig extends InternalAxiosRequestConfig {
 
 // Create axios instance
 const api: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -78,7 +78,7 @@ api.interceptors.response.use(
         const refreshToken = localStorage.getItem('refresh_token');
         if (refreshToken) {
           const response = await axios.post(
-            `${process.env.NEXT_PUBLIC_API_URL}/auth/token/refresh/`,
+            `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1'}/auth/token/refresh/`,
             { refresh: refreshToken }
           );
 
@@ -91,12 +91,27 @@ api.interceptors.response.use(
         }
       } catch (refreshError) {
         // Refresh failed, logout user
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        localStorage.removeItem('user');
-        window.location.href = '/login';
+        console.log('[API] Token refresh failed - clearing all auth data');
+        localStorage.clear();
+        sessionStorage.clear();
+
+        // Clear auth cookie
+        document.cookie = 'auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+        window.location.href = '/login?expired=true';
         return Promise.reject(refreshError);
       }
+    } else if (error.response?.status === 401) {
+      // 401 without refresh token - clear everything and redirect
+      console.log('[API] Unauthorized - clearing all auth data');
+      localStorage.clear();
+      sessionStorage.clear();
+
+      // Clear auth cookie
+      document.cookie = 'auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+      window.location.href = '/login?expired=true';
+      return Promise.reject(error);
     }
 
     return Promise.reject(error);

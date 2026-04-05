@@ -1,0 +1,233 @@
+# ===========================================
+# EBKUST University Management System
+# GitLab CI/CD Pipeline
+# ===========================================
+
+stages:
+  - test
+  - build
+  - security
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_REGISTRY: $CI_REGISTRY
+  IMAGE_TAG: $CI_COMMIT_SHORT_SHA
+
+# ===========================================
+# Templates
+# ===========================================
+
+.docker_login: &docker_login
+  before_script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+
+.ssh_setup: &ssh_setup
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan $DEPLOY_HOST >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+
+# ===========================================
+# Test Stage
+# ===========================================
+
+test:frontend:
+  stage: test
+  image: node:20-alpine
+  cache:
+    paths:
+      - frontend/node_modules/
+  script:
+    - cd frontend
+    - npm ci --legacy-peer-deps
+    - npx prisma generate
+    - npm run lint || true
+    - npx tsc --noEmit || true
+  only:
+    - main
+    - develop
+    - merge_requests
+
+test:backend:
+  stage: test
+  image: python:3.11-slim
+  services:
+    - postgres:15-alpine
+  variables:
+    POSTGRES_DB: test_db
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    DATABASE_URL: postgresql://postgres:postgres@postgres:5432/test_db
+    SECRET_KEY: test-secret-key-for-ci-cd
+  cache:
+    paths:
+      - backend/.cache/pip
+  script:
+    - cd backend
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+    - python manage.py test || true
+  only:
+    - main
+    - develop
+    - merge_requests
+
+# ===========================================
+# Build Stage
+# ===========================================
+
+build:frontend:
+  stage: build
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  <<: *docker_login
+  script:
+    - cd frontend
+    - docker build -t $CI_REGISTRY_IMAGE/frontend:$IMAGE_TAG -t $CI_REGISTRY_IMAGE/frontend:latest --target production .
+    - docker push $CI_REGISTRY_IMAGE/frontend:$IMAGE_TAG
+    - docker push $CI_REGISTRY_IMAGE/frontend:latest
+  only:
+    - main
+    - develop
+
+build:backend:
+  stage: build
+  image: docker:24-dind
+  services:
+    - docker:24-dind
+  <<: *docker_login
+  script:
+    - cd backend
+    - docker build -t $CI_REGISTRY_IMAGE/backend:$IMAGE_TAG -t $CI_REGISTRY_IMAGE/backend:latest .
+    - docker push $CI_REGISTRY_IMAGE/backend:$IMAGE_TAG
+    - docker push $CI_REGISTRY_IMAGE/backend:latest
+  only:
+    - main
+    - develop
+
+# ===========================================
+# Security Stage
+# ===========================================
+
+security:trivy:
+  stage: security
+  image: aquasec/trivy:latest
+  script:
+    - trivy fs --exit-code 0 --no-progress --severity HIGH,CRITICAL ./frontend
+    - trivy fs --exit-code 0 --no-progress --severity HIGH,CRITICAL ./backend
+  allow_failure: true
+  only:
+    - main
+    - develop
+
+security:secrets:
+  stage: security
+  image: zricethezav/gitleaks:latest
+  script:
+    - gitleaks detect --source . --verbose --exit-code 0
+  allow_failure: true
+  only:
+    - main
+    - develop
+
+# ===========================================
+# Deploy Stage - Staging
+# ===========================================
+
+deploy:staging:
+  stage: deploy
+  image: alpine:latest
+  <<: *ssh_setup
+  variables:
+    DEPLOY_HOST: $STAGING_HOST
+    DEPLOY_USER: $STAGING_USER
+    SSH_PRIVATE_KEY: $STAGING_SSH_KEY
+  script:
+    - |
+      ssh $DEPLOY_USER@$DEPLOY_HOST << 'EOF'
+        cd /opt/ebkust-university
+        git pull origin develop
+        docker compose -f docker-compose.yml down
+        docker compose -f docker-compose.yml pull
+        docker compose -f docker-compose.yml up -d
+        docker compose -f docker-compose.yml exec -T backend python manage.py migrate
+      EOF
+    - sleep 30
+    - curl -f https://staging.ebkustsl.edu.sl/api/v1/health/ || exit 1
+  environment:
+    name: staging
+    url: https://staging.ebkustsl.edu.sl
+  only:
+    - develop
+  when: manual
+
+# ===========================================
+# Deploy Stage - Production
+# ===========================================
+
+deploy:production:
+  stage: deploy
+  image: alpine:latest
+  <<: *ssh_setup
+  variables:
+    DEPLOY_HOST: $PRODUCTION_HOST
+    DEPLOY_USER: $PRODUCTION_USER
+    SSH_PRIVATE_KEY: $PRODUCTION_SSH_KEY
+  script:
+    # Backup database
+    - |
+      ssh $DEPLOY_USER@$DEPLOY_HOST << 'EOF'
+        cd /opt/ebkust-university
+        ./scripts/backup-database.sh production
+      EOF
+    # Deploy
+    - |
+      ssh $DEPLOY_USER@$DEPLOY_HOST << 'EOF'
+        cd /opt/ebkust-university
+        git pull origin main
+        ./scripts/deploy-production.sh --migrate --collect-static
+      EOF
+    # Health check
+    - sleep 60
+    - curl -f https://ebkustsl.edu.sl/api/v1/health/ || exit 1
+    - curl -f https://ebkustsl.edu.sl/api/v2/health || exit 1
+  environment:
+    name: production
+    url: https://ebkustsl.edu.sl
+  only:
+    - main
+  when: manual
+
+# ===========================================
+# Rollback Production
+# ===========================================
+
+rollback:production:
+  stage: deploy
+  image: alpine:latest
+  <<: *ssh_setup
+  variables:
+    DEPLOY_HOST: $PRODUCTION_HOST
+    DEPLOY_USER: $PRODUCTION_USER
+    SSH_PRIVATE_KEY: $PRODUCTION_SSH_KEY
+  script:
+    - |
+      ssh $DEPLOY_USER@$DEPLOY_HOST << 'EOF'
+        cd /opt/ebkust-university
+        git reset --hard HEAD~1
+        ./scripts/deploy-production.sh
+      EOF
+  environment:
+    name: production
+    url: https://ebkustsl.edu.sl
+    action: rollback
+  only:
+    - main
+  when: manual

@@ -40,6 +40,9 @@ export default function UsersManagementPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   const applyFilters = useCallback(() => {
     let filtered = [...users];
@@ -71,7 +74,7 @@ export default function UsersManagementPage() {
   useEffect(() => {
     if (currentUser?.role !== 'ADMIN') {
       router.push('/dashboard');
-      return;
+        return;
     }
     fetchUsers();
   }, [currentUser, router]);
@@ -411,7 +414,7 @@ export default function UsersManagementPage() {
                           >
                             {user.status === 'active' ? <XCircle className="h-4 w-4" /> : <CheckCircle className="h-4 w-4" />}
                           </button>
-                          {currentUser?.userId !== user.id && (
+                          {currentUser?.id !== user.id && (
                             <button
                               onClick={() => handleDeleteUser(user.id, user.name)}
                               className="text-red-600 hover:text-red-900"

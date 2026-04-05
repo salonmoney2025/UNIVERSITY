@@ -5,8 +5,15 @@ import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Loader2, Home } from 'lucide-react';
 import Link from 'next/link';
 
+interface Payment {
+  id: string;
+  receiptNo: string;
+  studentName: string;
+  amount: number;
+}
+
 export default function PaymentRecordsPage() {
-  const [payments, setPayments] = useState([]);
+  const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 

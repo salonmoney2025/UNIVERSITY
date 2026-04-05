@@ -4,11 +4,12 @@ import prisma from '@/lib/prisma';
 // GET /api/banks/[id] - Get a single bank
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const bank = await prisma.bank.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         payments: {
           take: 10,
@@ -37,13 +38,14 @@ export async function GET(
 // PUT /api/banks/[id] - Update a bank
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
 
     const bank = await prisma.bank.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         bankName: body.bankName,
         bankCode: body.bankCode,
@@ -64,7 +66,7 @@ export async function PUT(
   } catch (error) {
     console.error('Error updating bank:', error);
 
-    if (error.code === 'P2025') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2025') {
       return NextResponse.json(
         { error: 'Bank not found' },
         { status: 404 }
@@ -81,13 +83,14 @@ export async function PUT(
 // PATCH /api/banks/[id] - Partially update a bank
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
 
     const bank = await prisma.bank.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         bankName: body.bankName,
         bankCode: body.bankCode,
@@ -125,18 +128,19 @@ export async function PATCH(
 // DELETE /api/banks/[id] - Delete a bank
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await prisma.bank.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ message: 'Bank deleted successfully' });
   } catch (error) {
     console.error('Error deleting bank:', error);
 
-    if (error.code === 'P2025') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2025') {
       return NextResponse.json(
         { error: 'Bank not found' },
         { status: 404 }

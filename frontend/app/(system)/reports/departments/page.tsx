@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import ExportMenu from '@/components/export/ExportMenu';
 import {
@@ -41,6 +41,7 @@ export default function DepartmentsReport() {
   const [statusFilter, setStatusFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 15;
+  const [campuses, setCampuses] = useState<any[]>([]);
 
   // Mock data - replace with API call
   const departments: Department[] = [
@@ -118,7 +119,7 @@ export default function DepartmentsReport() {
       headEmail: 'ba.head@ebkust.edu.sl',
       headPhone: '+232 76 555 666',
       totalPrograms: 4,
-      totalStudrams: 567,
+      totalStudents: 567,
       totalLecturers: 11,
       office: 'Business School, Room 201',
       campus: 'Main Campus',
@@ -150,8 +151,24 @@ export default function DepartmentsReport() {
   };
 
   const faculties = ['All', 'Faculty of Basic Sciences', 'Faculty of Engineering', 'Faculty of Business Administration'];
-  const campuses = ['All', 'Main Campus', 'Makeni Campus', 'Bo Campus'];
   const statuses = ['All', 'Active', 'Inactive'];
+
+  useEffect(() => {
+    const fetchCampuses = async () => {
+      try {
+        const response = await fetch('/api/v1/campuses/');
+        if (response.ok) {
+          const data = await response.json();
+          const campusData = data.results || data;
+          setCampuses(Array.isArray(campusData) ? campusData : []);
+        }
+      } catch (error) {
+        console.error('Error fetching campuses:', error);
+        setCampuses([]);
+      }
+    };
+    fetchCampuses();
+  }, []);
 
   const getStatusBadge = (status: string) => {
     return status === 'active'
@@ -304,8 +321,11 @@ export default function DepartmentsReport() {
                 onChange={(e) => setCampusFilter(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
+                <option value="All">All</option>
                 {campuses.map((campus) => (
-                  <option key={campus} value={campus}>{campus}</option>
+                  <option key={campus.id} value={campus.name}>
+                    {campus.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -402,7 +422,7 @@ export default function DepartmentsReport() {
           <div className="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
             <div className="text-sm text-gray-700">
               Showing <span className="font-medium">{(currentPage - 1) * itemsPerPage + 1}</span> to{' '}
-              <span className="font-medium">{Math.min(currentPage * itemsPerPageedDepartments.length)}</span> of{' '}
+              <span className="font-medium">{Math.min(currentPage * itemsPerPage, filteredDepartments.length)}</span> of{' '}
               <span className="font-medium">{filteredDepartments.length}</span> results
             </div>
             <div className="flex items-center space-x-2">

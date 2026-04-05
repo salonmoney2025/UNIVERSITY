@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import api from '@/lib/api';
 import { Layers, Edit, Trash2, Plus, Search, Building2, User, CheckCircle, XCircle } from 'lucide-react';
@@ -29,7 +28,6 @@ interface Campus {
 }
 
 export default function ManageDepartmentsPage() {
-  const router = useRouter();
   const [departments, setDepartments] = useState<Department[]>([]);
   const [campuses, setCampuses] = useState<Campus[]>([]);
   const [loading, setLoading] = useState(true);
@@ -305,17 +303,17 @@ export default function ManageDepartmentsPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black-700 mb-2">
                   Campus <span className="text-red-500">*</span>
                 </label>
                 <select
                   value={formData.campus}
                   onChange={(e) => setFormData({...formData, campus: e.target.value})}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500"
-                  required
-                >
+                  className="w-full px-4 py-2 border border-black-300 rounded-lg focus:ring-2 focus:ring-portal-teal-500"
+                  required >
                   <option value="">Select Campus</option>
-                  {campuses.map(campus => (
+                  {Array.isArray(campuses) &&
+                  campuses.map(campus => (
                     <option key={campus.id} value={campus.id}>
                       {campus.name} ({campus.code})
                     </option>

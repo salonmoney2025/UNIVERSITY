@@ -80,18 +80,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
         {/* Footer */}
         <footer className="bg-portal-header border-t border-solid black-700 px-4 lg:px-6 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-black">
+          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white">
             <p>
               © 2026 EBKUST - Ernest Bai Koroma University of Science and Technology. All rights reserved.
             </p>
             <div className="flex space-x-4 mt-2 md:mt-0">
-              <a href="#" className="hover:text-portal-teal-400 transition-colors">
+              <a href="#" className="text-white hover:text-portal-teal-400 transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-portal-teal-400 transition-colors">
+              <a href="#" className="text-white hover:text-portal-teal-400 transition-colors">
                 Terms of Service
               </a>
-              <a href="#" className="hover:text-portal-teal-400 transition-colors">
+              <a href="#" className="text-white hover:text-portal-teal-400 transition-colors">
                 Support
               </a>
             </div>

@@ -391,7 +391,6 @@ export default function StudentFeesReconciliation() {
                 <ExportMenu
                   data={filteredRecords}
                   filename="student-fees-reconciliation"
-                  sheetName="Student Fees"
                 />
               </div>
             </div>
